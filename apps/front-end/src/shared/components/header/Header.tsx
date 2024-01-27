@@ -1,15 +1,12 @@
-import { MenuIcon } from '@/shared/assets/svgs'
 import { HeaderStyle } from './Header.style'
-import { IconButton } from '../buttons/IconButton'
 import { Text } from '../text/Text'
+import { Menu } from './utils/menu/Menu'
 
 export function Header() {
   return (
     <HeaderStyle>
       <div className="header-info">
-        <IconButton>
-          <MenuIcon />
-        </IconButton>
+        <Menu />
 
         <Text
           as="h2"
