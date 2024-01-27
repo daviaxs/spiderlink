@@ -12,7 +12,7 @@ import {
 } from './Menu.style'
 import { Text } from '@/shared/components/text/Text'
 import { Palette, UserRound, X } from 'lucide-react'
-import { ButtonMenu } from '../button'
+import { ButtonMenu } from '../header/utils/button'
 
 export function Menu() {
   return (

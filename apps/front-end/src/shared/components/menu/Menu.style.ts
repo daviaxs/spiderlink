@@ -68,6 +68,7 @@ export const MenuHeader = styled.div`
 
   background-color: ${themeColors['dark-blue-50']};
   border-bottom: 1px solid ${themeColors['dark-blue-200']};
+  border-radius: 0.5rem 0.5rem 0 0;
 `
 
 export const MenuContent = styled.div`

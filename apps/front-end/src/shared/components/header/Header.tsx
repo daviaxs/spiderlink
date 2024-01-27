@@ -1,6 +1,6 @@
 import { HeaderStyle } from './Header.style'
 import { Text } from '../text/Text'
-import { Menu } from './utils/menu/Menu'
+import { Menu } from '../menu/Menu'
 
 export function Header() {
   return (
