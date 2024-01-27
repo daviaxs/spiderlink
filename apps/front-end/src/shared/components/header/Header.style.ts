@@ -13,4 +13,5 @@ export const HeaderStyle = styled.header`
   padding: 1.25rem 0.625rem;
 
   background-color: ${themeColors['dark-blue-50']};
+  border-bottom: 1px solid ${themeColors['dark-blue-200']};
 `
