@@ -1,10 +1,8 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import StyledComponentsRegistry from './lib/registry'
 import { Header } from '@/shared/components/header/Header'
 import { GlobalStyle } from '@/shared/style/global'
-
-const inter = Inter({ subsets: ['latin'] })
+import { roboto } from '@/shared/style/theme/fonts'
 
 export const metadata: Metadata = {
   title: 'SpiderLink',
@@ -18,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={inter.className}>
+      <body className={roboto.className}>
         <StyledComponentsRegistry>
           <GlobalStyle />
           <Header />
