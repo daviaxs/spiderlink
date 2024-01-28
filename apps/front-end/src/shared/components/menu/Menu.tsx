@@ -13,12 +13,15 @@ import {
 import { Text } from '@/shared/components/text/Text'
 import { Palette, UserRound, X } from 'lucide-react'
 import { ButtonMenu } from '../header/utils/button'
+import { useTheme } from 'styled-components'
 
 export function Menu({ toggleTheme }: { toggleTheme?: () => void }) {
+  const theme = useTheme()
+
   return (
     <Dialog.Root>
       <Trigger>
-        <MenuIcon />
+        <MenuIcon color={theme.icon} />
       </Trigger>
 
       <Dialog.Portal>

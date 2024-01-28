@@ -8,13 +8,7 @@ export function Header({ toggleTheme }: { toggleTheme?: () => void }) {
       <div className="header-info">
         <Menu toggleTheme={toggleTheme} />
 
-        <Text
-          as="h2"
-          size={30}
-          color="dark-blue-800"
-          fontVariant="all-small-caps"
-          $weight="900"
-        >
+        <Text as="h2" size={30} fontVariant="all-small-caps" $weight="900">
           spiderlink
         </Text>
       </div>
