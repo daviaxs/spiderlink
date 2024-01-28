@@ -1,21 +1,12 @@
 import { useEffect, useState } from 'react'
 
 export function useTheme() {
-  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-    if (typeof window !== 'undefined') {
-      const theme = window.localStorage.getItem('SPIDERLINK_THEME')
-      return theme === 'light' ? 'light' : 'dark'
-    }
-
-    return 'light'
-  })
+  const [theme, setTheme] = useState<'light' | 'dark'>('light')
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const theme = window.localStorage.getItem('SPIDERLINK_THEME')
-      setTheme((theme as 'light' | 'dark') ?? 'light')
-    }
-  }, [setTheme])
+    const storedTheme = window.localStorage.getItem('SPIDERLINK_THEME')
+    setTheme(storedTheme === 'dark' ? 'dark' : 'light')
+  }, [])
 
   function toggleTheme() {
     const newTheme = theme === 'light' ? 'dark' : 'light'
