@@ -1,4 +1,6 @@
 export const themeColors = {
+  white: '#fff',
+
   'primary-50': '#ede6f7',
   'primary-100': '#c7b0e7',
   'primary-200': '#ac8adc',
