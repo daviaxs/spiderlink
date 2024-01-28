@@ -14,7 +14,7 @@ import { Text } from '@/shared/components/text/Text'
 import { Palette, UserRound, X } from 'lucide-react'
 import { ButtonMenu } from '../header/utils/button'
 
-export function Menu() {
+export function Menu({ toggleTheme }: { toggleTheme?: () => void }) {
   return (
     <Dialog.Root>
       <Trigger>
@@ -36,7 +36,7 @@ export function Menu() {
           </MenuHeader>
 
           <MenuContent>
-            <ButtonMenu.Root>
+            <ButtonMenu.Root toggleTheme={toggleTheme}>
               <ButtonMenu.ButtonIcon>
                 <Palette size={25} />
               </ButtonMenu.ButtonIcon>

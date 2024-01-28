@@ -2,11 +2,11 @@ import { HeaderStyle } from './Header.style'
 import { Text } from '../text/Text'
 import { Menu } from '../menu/Menu'
 
-export function Header() {
+export function Header({ toggleTheme }: { toggleTheme?: () => void }) {
   return (
     <HeaderStyle>
       <div className="header-info">
-        <Menu />
+        <Menu toggleTheme={toggleTheme} />
 
         <Text
           as="h2"

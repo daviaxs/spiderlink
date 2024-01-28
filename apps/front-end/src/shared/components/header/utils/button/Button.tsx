@@ -1,6 +1,11 @@
 import { ReactNode } from 'react'
 import { ButtonStyle } from './Button.style'
 
-export function Button({ children }: { children: ReactNode }) {
-  return <ButtonStyle>{children}</ButtonStyle>
+export interface ButtonProps {
+  children: ReactNode
+  toggleTheme?: () => void
+}
+
+export function Button({ children, toggleTheme }: ButtonProps) {
+  return <ButtonStyle onClick={toggleTheme}>{children}</ButtonStyle>
 }
