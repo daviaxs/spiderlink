@@ -40,8 +40,8 @@ export const Content = styled(Dialog.Content)`
   left: 50%;
   transform: translate(-50%, -50%);
 
-  background-color: #fff;
-  border: 1px solid ${themeColors['dark-blue-100']};
+  background-color: ${(props) => props.theme.body};
+  border: 1px solid ${(props) => props.theme.border};
   border-radius: 0.5rem;
 `
 
@@ -66,9 +66,13 @@ export const MenuHeader = styled.div`
   width: 100%;
   padding: 1.25rem 0.625rem;
 
-  background-color: ${themeColors['dark-blue-50']};
-  border-bottom: 1px solid ${themeColors['dark-blue-200']};
+  background-color: ${(props) => props.theme.bodySecondary};
+  border-bottom: 1px solid ${(props) => props.theme.border};
   border-radius: 0.5rem 0.5rem 0 0;
+
+  h2 {
+    color: ${(props) => props.theme.title};
+  }
 `
 
 export const MenuContent = styled.div`

@@ -4,7 +4,11 @@ import { ReactNode } from 'react'
 
 export function ButtonTitle({ children }: { children: ReactNode }) {
   return (
-    <Text size={20} $weight="900" className={roboto.className}>
+    <Text
+      size={20}
+      $weight="900"
+      className={`${roboto.className} button-title`}
+    >
       {children}
     </Text>
   )

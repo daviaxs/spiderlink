@@ -30,10 +30,10 @@ export function Menu({ toggleTheme }: { toggleTheme?: () => void }) {
         <Content>
           <MenuHeader>
             <Close>
-              <X size={30} />
+              <X size={30} color={theme.icon} />
             </Close>
 
-            <Text size={24} fontVariant="all-small-caps" $weight="900">
+            <Text as="h2" size={24} fontVariant="all-small-caps" $weight="900">
               Configurações
             </Text>
           </MenuHeader>
@@ -41,18 +41,20 @@ export function Menu({ toggleTheme }: { toggleTheme?: () => void }) {
           <MenuContent>
             <ButtonMenu.Root toggleTheme={toggleTheme}>
               <ButtonMenu.ButtonIcon>
-                <Palette size={25} />
+                <Palette size={25} color={theme.icon} />
               </ButtonMenu.ButtonIcon>
 
               <ButtonMenu.ButtonTexts>
                 <ButtonMenu.ButtonTitle>Tema</ButtonMenu.ButtonTitle>
-                <ButtonMenu.ButtonSubTitle>claro</ButtonMenu.ButtonSubTitle>
+                <ButtonMenu.ButtonSubTitle>
+                  {theme.current}
+                </ButtonMenu.ButtonSubTitle>
               </ButtonMenu.ButtonTexts>
             </ButtonMenu.Root>
 
             <ButtonMenu.Root>
               <ButtonMenu.ButtonIcon>
-                <UserRound size={25} />
+                <UserRound size={25} color={theme.icon} />
               </ButtonMenu.ButtonIcon>
 
               <ButtonMenu.ButtonTexts>

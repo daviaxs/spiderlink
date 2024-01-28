@@ -7,8 +7,7 @@ export function ButtonSubTitle({ children }: { children: ReactNode }) {
     <Text
       size={24}
       $weight="900"
-      color="dark-blue-400"
-      className={roboto.className}
+      className={`${roboto.className} button-sub-title`}
       fontVariant="small-caps"
     >
       {children}

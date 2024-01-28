@@ -1,6 +1,5 @@
 'use client'
 
-import { themeColors } from '@/shared/style/theme/pallete'
 import styled from 'styled-components'
 
 export const ButtonStyle = styled.button`
@@ -12,8 +11,8 @@ export const ButtonStyle = styled.button`
   align-items: center;
   justify-content: start;
 
-  background-color: ${themeColors['dark-blue-50']};
-  border: 1px solid ${themeColors['dark-blue-100']};
+  background-color: ${(props) => props.theme.bodySecondary};
+  border: 1px solid ${(props) => props.theme.border};
   border-radius: 0.5rem;
 
   padding: 0rem 1.25rem;
@@ -27,6 +26,15 @@ export const ButtonStyle = styled.button`
     justify-content: space-between;
     width: 100%;
   }
+
+  .button-title {
+    color: ${(props) => props.theme.title};
+    letter-spacing: 0.05rem;
+  }
+
+  .button-sub-title {
+    color: ${(props) => props.theme.subtext};
+  }
 `
 
 export const IconContainer = styled.div`
@@ -36,5 +44,5 @@ export const IconContainer = styled.div`
   border-radius: 0.375rem;
   padding: 0.625rem;
 
-  background-color: ${themeColors['dark-blue-100']};
+  background-color: ${(props) => props.theme.iconContainer};
 `
