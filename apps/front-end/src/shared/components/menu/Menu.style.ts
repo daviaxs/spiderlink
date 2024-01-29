@@ -20,6 +20,13 @@ export const Trigger = styled(Dialog.Trigger)`
   border-radius: 50%;
   padding: 0.2rem;
 
+  width: 2.5rem;
+  height: 2.5rem;
+
+  .menu-icon {
+    margin-top: 0.1rem;
+  }
+
   &:hover {
     transition: all 0.2s ease-in-out;
     background-color: ${themeColors['dark-blue-100']}50;

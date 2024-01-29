@@ -8,6 +8,7 @@ export function MenuIcon({ color = '#16151A' }: SvgsProps) {
       viewBox="0 0 30 30"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="menu-icon"
     >
       <path
         d="M5 15H21"
