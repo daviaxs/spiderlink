@@ -48,6 +48,8 @@ export const Content = styled(Dialog.Content)`
     width: 100%;
     height: 100%;
     justify-content: start;
+    border-radius: 0;
+    border: none;
   }
 `
 
@@ -78,6 +80,10 @@ export const MenuHeader = styled.div`
 
   h2 {
     color: ${(props) => props.theme.title};
+  }
+
+  @media (max-width: 450px) {
+    border-radius: 0;
   }
 `
 
