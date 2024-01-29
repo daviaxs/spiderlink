@@ -36,6 +36,7 @@ export const Banner = styled.div`
 
     @media (max-width: 900px) {
       border-radius: 0;
+      height: 150px;
     }
   }
 `
@@ -51,16 +52,38 @@ export const Infos = styled.div`
   .avatar {
     border-radius: 2.5rem;
   }
+
+  @media (max-width: 900px) {
+    padding: 1.875rem 1.25rem 0rem 1.25rem;
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 1.875rem;
+    }
+
+    h1 {
+      font-size: 1rem;
+    }
+  }
 `
 
 export const Texts = styled.div`
   display: flex;
   align-items: center;
-  width: 100%;
   justify-content: space-between;
   color: ${(props) => props.theme.title};
 
+  gap: 2rem;
+  width: 100%;
+
   p {
     color: ${themeColors['primary-300']};
+  }
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    align-items: start;
+    gap: 1rem;
   }
 `
