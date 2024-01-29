@@ -3,13 +3,26 @@
 import styled from 'styled-components'
 import * as Dialog from '@radix-ui/react-dialog'
 import { themeColors } from '@/shared/style/theme/pallete'
+import {
+  AnimationFadeInOpacity,
+  AnimationFadeInOpacityWithTop,
+  AnimationFadeOutOpacity,
+} from '@/shared/style/animations'
 
 export const Overlay = styled(Dialog.Overlay)`
-  background: ${themeColors['dark-blue-900']}50;
+  background: ${themeColors['dark-blue-900']}70;
   position: fixed;
   width: 100vw;
   height: 100vh;
   inset: 0;
+
+  &[data-state='open'] {
+    animation: ${AnimationFadeInOpacity} 0.2s ease-in-out;
+  }
+
+  &[data-state='closed'] {
+    animation: ${AnimationFadeOutOpacity} 0.2s ease-in-out;
+  }
 `
 
 export const Trigger = styled(Dialog.Trigger)`
@@ -57,6 +70,14 @@ export const Content = styled(Dialog.Content)`
     justify-content: start;
     border-radius: 0;
     border: none;
+  }
+
+  &[data-state='open'] {
+    animation: ${AnimationFadeInOpacityWithTop} 0.2s ease-in-out;
+  }
+
+  &[data-state='closed'] {
+    animation: ${AnimationFadeOutOpacity} 0.2s ease-in-out;
   }
 `
 
