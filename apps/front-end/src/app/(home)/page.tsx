@@ -33,7 +33,12 @@ export default function Home() {
               SpiderLink - Asa - Avenida Rede dos Sites (asa)
             </Text>
 
-            <Text size={20} $weight="700" className={inter.className}>
+            <Text
+              size={20}
+              $weight="700"
+              className={inter.className}
+              $whiteSpace="nowrap"
+            >
               Ver mais
             </Text>
           </Texts>
