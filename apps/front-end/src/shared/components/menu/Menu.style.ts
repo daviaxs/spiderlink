@@ -43,6 +43,12 @@ export const Content = styled(Dialog.Content)`
   background-color: ${(props) => props.theme.body};
   border: 1px solid ${(props) => props.theme.border};
   border-radius: 0.5rem;
+
+  @media (max-width: 450px) {
+    width: 100%;
+    height: 100%;
+    justify-content: start;
+  }
 `
 
 export const Close = styled(Dialog.Close)`
