@@ -3,6 +3,11 @@
 import styled from 'styled-components'
 
 export const HeaderStyle = styled.header`
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  transition: transform 0.5s ease-in-out;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,6 +18,10 @@ export const HeaderStyle = styled.header`
 
   background-color: ${(props) => props.theme.bodySecondary};
   border-bottom: 1px solid ${(props) => props.theme.border};
+
+  &.hideHeader {
+    transform: translateY(-100%);
+  }
 
   .header-info {
     display: flex;
