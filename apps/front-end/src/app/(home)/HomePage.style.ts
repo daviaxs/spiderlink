@@ -8,7 +8,6 @@ export const Root = styled.main`
   flex-direction: column;
   flex: 1;
   position: relative;
-  overflow-x: hidden;
 `
 
 export const Apresentation = styled.div`
