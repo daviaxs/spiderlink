@@ -20,6 +20,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     background-color: ${({ theme }) => theme.body};
+    color: ${({ theme }) => theme.text};
     overflow-x: hidden;
   }
 `
