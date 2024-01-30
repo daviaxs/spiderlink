@@ -20,11 +20,6 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     background-color: ${({ theme }) => theme.body};
-
-    display: flex;
-    flex-direction: column;
-    
-    width: 100vw;
-    height: 100vh;
+    overflow-x: hidden;
   }
 `
