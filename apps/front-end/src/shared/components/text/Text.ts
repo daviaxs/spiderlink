@@ -5,6 +5,7 @@ import styled from 'styled-components'
 interface TextProps {
   as: keyof JSX.IntrinsicElements
   size: number
+  color?: string
   $weight?: '200' | '300' | '400' | '500' | '700' | '800' | '900'
   $textalign?: 'center' | 'left' | 'right'
   $lineheight?: string
@@ -19,6 +20,7 @@ interface TextProps {
 }
 
 export const Text = styled.p<TextProps>`
+  color: ${({ color, theme }) => color || theme.text};
   font-size: ${({ size }) => size}px;
   font-weight: ${({ $weight }) => $weight};
   line-height: ${({ $lineheight }) => $lineheight || '100%'};
