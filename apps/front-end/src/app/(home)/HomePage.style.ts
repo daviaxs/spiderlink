@@ -7,6 +7,7 @@ export const Root = styled.main`
   display: flex;
   flex-direction: column;
   flex: 1;
+  position: relative;
 `
 
 export const Apresentation = styled.div`
@@ -54,7 +55,13 @@ export const Infos = styled.div`
   }
 
   @media (max-width: 900px) {
+    background-color: ${(props) => props.theme.body};
+    width: 100%;
+
     padding: 1.875rem 1.25rem 0rem 1.25rem;
+    border-radius: 0.75rem 0.75rem 0 0;
+    position: absolute;
+    top: 130px;
 
     .avatar {
       width: 100px;
