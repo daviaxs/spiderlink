@@ -1,7 +1,7 @@
-import fastifyCookie from "@fastify/cookie";
-import fastifyCors from "@fastify/cors";
-import fastify from "fastify";
-import { env } from "./env";
+import fastifyCookie from '@fastify/cookie'
+import fastifyCors from '@fastify/cors'
+import fastify from 'fastify'
+import { env } from './env'
 
 export const app = fastify()
 
