@@ -9,6 +9,7 @@ export const lightTheme = {
   border: themeColors['dark-blue-100'],
 
   title: themeColors['dark-blue-800'],
+  text: themeColors['dark-blue-800'],
   subtext: themeColors['dark-blue-400'],
 
   icon: themeColors['dark-blue-800'],
@@ -24,6 +25,7 @@ export const darkTheme = {
   border: themeColors['dark-blue-500'],
 
   title: themeColors.white,
+  text: themeColors['dark-blue-50'],
   subtext: themeColors['dark-blue-200'],
 
   icon: themeColors['dark-blue-50'],
