@@ -4,17 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": ""
+    "dev": "tsx watch src/server.ts",
+    "build": "tsup src"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fastify/cookie": "^9.3.1",
+    "@fastify/cors": "^9.0.0",
     "fastify": "^4.26.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "^20.11.10",
+    "dotenv": "^16.4.1",
+    "tsup": "^8.0.1",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3"
   }
