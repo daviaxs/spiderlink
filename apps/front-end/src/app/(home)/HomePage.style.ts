@@ -8,6 +8,7 @@ export const Root = styled.main`
   flex-direction: column;
   flex: 1;
   position: relative;
+  overflow-x: hidden;
 `
 
 export const Apresentation = styled.div`
@@ -18,7 +19,7 @@ export const Apresentation = styled.div`
   padding: 1.88rem 2rem 0;
 
   @media (max-width: 900px) {
-    padding: 0;
+    padding: 0 0 7.5rem 0;
   }
 `
 
