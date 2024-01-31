@@ -1,0 +1,94 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id            String @id @default(uuid())
+  email         String @unique
+  password_hash String
+
+  name         String?
+  phone        String?
+  cep          String?
+  address      String?
+  cnpj         String?
+  deliveryTime String?
+
+  Categories  Categories[]
+  Products    Products[]
+  Subsections Subsections[]
+  Options     Options[]
+  Schedules   Schedules[]
+}
+
+model Categories {
+  id       String     @id @default(uuid())
+  name     String
+  Products Products[]
+
+  userId String
+  user   Users   @relation(fields: [userId], references: [id])
+}
+
+model Products {
+  id String @id @default(uuid())
+
+  name        String
+  price       Float
+  description String
+
+  categoryId  String
+  category    Categories    @relation(fields: [categoryId], references: [id])
+  Subsections Subsections[]
+
+  userId String
+  user   Users   @relation(fields: [userId], references: [id])
+}
+
+model Subsections {
+  id   String @id @default(uuid())
+  name String
+
+  multipleChoice Boolean
+  limit          Int
+  required       Boolean
+
+  ProductId String
+  Product   Products  @relation(fields: [ProductId], references: [id])
+  Options   Options[]
+
+  userId String
+  user   Users   @relation(fields: [userId], references: [id])
+}
+
+model Options {
+  id          String  @id @default(uuid())
+  name        String
+  description String?
+  price       Float
+
+  SubsectionId String
+  Subsection   Subsections @relation(fields: [SubsectionId], references: [id])
+
+  userId String
+  user   Users   @relation(fields: [userId], references: [id])
+}
+
+model Schedules {
+  id  String @id @default(uuid())
+  seg Json
+  ter Json
+  qua Json
+  qui Json
+  sex Json
+  sab Json
+  dom Json
+
+  userId String
+  user   Users   @relation(fields: [userId], references: [id])
+}
