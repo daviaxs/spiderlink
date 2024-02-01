@@ -1,6 +1,7 @@
 import { UsersRepository } from '@/repositories/users-repository'
 import { User } from '@prisma/client'
 import { hash } from 'bcryptjs'
+import { UserAlreadyEmailExistError } from './errors/user-already-email-exist-erro'
 
 interface CreateAccountParams {
   email: string
@@ -25,7 +26,7 @@ export class CreateAccountUseCase {
     const findUserEmail = await this.usersRepository.findUserByEmail(email)
 
     if (findUserEmail) {
-      throw new Error('Email already exists')
+      throw new UserAlreadyEmailExistError()
     }
 
     const user = await this.usersRepository.createUser({
