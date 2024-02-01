@@ -9,5 +9,5 @@ export interface SchedulesRepository {
 
   findScheduleByUserId(userId: number): Promise<Schedules | null>
 
-  deleteSchedule(id: number): Promise<void>
+  deleteSchedule(id: string): Promise<void>
 }

@@ -9,5 +9,5 @@ export interface SubsectionsRepository {
     subSection: Prisma.SubsectionsUpdateInput,
   ): Promise<Subsections | null>
 
-  deleteSubsection(id: number): Promise<void>
+  deleteSubsection(id: string): Promise<void>
 }
