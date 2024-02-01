@@ -1,7 +1,7 @@
 import { UsersRepository } from '@/repositories/users-repository'
-import { User } from '@prisma/client'
 import { hash } from 'bcryptjs'
 import { UserAlreadyEmailExistError } from './errors/user-already-email-exist-erro'
+import { UserInterfaceParams } from '@/interfaces/user-interface'
 
 interface CreateAccountParams {
   email: string
@@ -10,7 +10,7 @@ interface CreateAccountParams {
 }
 
 interface CreateAccountResponse {
-  user: User
+  user: UserInterfaceParams
 }
 
 export class CreateAccountUseCase {
