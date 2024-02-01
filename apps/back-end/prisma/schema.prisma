@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Users {
+model User {
   id            String @id @default(uuid())
   email         String @unique
   password_hash String
@@ -33,7 +33,7 @@ model Categories {
   Products Products[]
 
   userId String
-  user   Users  @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id])
 }
 
 model Products {
@@ -44,11 +44,11 @@ model Products {
   description String
 
   categoryId  String
-  category    Categories    @relation(fields: [categoryId], references: [id])
+  category    Categories    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   Subsections Subsections[]
 
   userId String
-  user   Users  @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id])
 }
 
 model Subsections {
@@ -60,11 +60,11 @@ model Subsections {
   required       Boolean
 
   ProductId String
-  Product   Products  @relation(fields: [ProductId], references: [id])
+  Product   Products  @relation(fields: [ProductId], references: [id], onDelete: Cascade)
   Options   Options[]
 
   userId String
-  user   Users  @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id])
 }
 
 model Options {
@@ -74,10 +74,10 @@ model Options {
   price       Float
 
   SubsectionId String
-  Subsection   Subsections @relation(fields: [SubsectionId], references: [id])
+  Subsection   Subsections @relation(fields: [SubsectionId], references: [id], onDelete: Cascade)
 
   userId String
-  user   Users  @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id])
 }
 
 model Schedules {
@@ -91,5 +91,5 @@ model Schedules {
   dom Json
 
   userId String
-  user   Users  @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id])
 }
