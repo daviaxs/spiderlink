@@ -33,7 +33,7 @@ model Categories {
   Products Products[]
 
   userId String
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Products {
@@ -48,7 +48,7 @@ model Products {
   Subsections Subsections[]
 
   userId String
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Subsections {
@@ -64,7 +64,7 @@ model Subsections {
   Options   Options[]
 
   userId String
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Options {
@@ -77,7 +77,7 @@ model Options {
   Subsection   Subsections @relation(fields: [SubsectionId], references: [id], onDelete: Cascade)
 
   userId String
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Schedules {
@@ -91,5 +91,5 @@ model Schedules {
   dom Json
 
   userId String
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
