@@ -39,7 +39,7 @@ export class PrismaCategoriesRepository implements CategoriesRepository {
     })
   }
 
-  listCategories(domainName: string) {
+  async listCategories(domainName: string) {
     const categories = prismaClient.categories.findMany({
       where: {
         Domain: {
