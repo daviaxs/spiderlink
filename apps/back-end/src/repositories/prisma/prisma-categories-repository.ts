@@ -1,7 +1,6 @@
 import { Prisma } from '@prisma/client'
 import { CategoriesRepository } from '../categories-repository'
 import { prismaClient } from '@/lib/prisma'
-import { DomainWhereUniqueInput } from '@/@types/prisma'
 
 export class PrismaCategoriesRepository implements CategoriesRepository {
   async addCategory(
@@ -10,8 +9,8 @@ export class PrismaCategoriesRepository implements CategoriesRepository {
   ) {
     const domain = await prismaClient.domain.findUnique({
       where: {
-        name: domainName,
-      } as DomainWhereUniqueInput,
+        domainName,
+      },
     })
 
     if (!domain) {
@@ -44,7 +43,7 @@ export class PrismaCategoriesRepository implements CategoriesRepository {
     const categories = prismaClient.categories.findMany({
       where: {
         Domain: {
-          name: domainName,
+          domainName,
         },
       },
       include: { Domain: true },
