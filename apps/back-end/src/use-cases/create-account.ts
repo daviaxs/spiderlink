@@ -6,7 +6,7 @@ import { UserInterfaceParams } from '@/interfaces/user-interface'
 interface CreateAccountParams {
   email: string
   password: string
-  domain: string
+  domainId: string
 }
 
 interface CreateAccountResponse {
@@ -19,7 +19,7 @@ export class CreateAccountUseCase {
   async execute({
     email,
     password,
-    domain,
+    domainId,
   }: CreateAccountParams): Promise<CreateAccountResponse> {
     const password_hash = await hash(password, 6)
 
@@ -31,8 +31,12 @@ export class CreateAccountUseCase {
 
     const user = await this.usersRepository.createUser({
       email,
-      domain,
       password_hash,
+      Domain: {
+        connect: {
+          id: domainId,
+        },
+      },
     })
 
     return { user }
