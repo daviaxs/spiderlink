@@ -1,5 +1,5 @@
 import { UsersRepository } from '@/repositories/users-repository'
-import { UserNotFoundError } from './errors/user-not-found-error'
+import { UserNotFoundError } from '../errors/user-not-found-error'
 import { UserInterfaceParams } from '@/interfaces/user-interface'
 
 interface UpdateUserResponse {

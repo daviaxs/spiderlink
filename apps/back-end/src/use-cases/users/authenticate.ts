@@ -1,6 +1,6 @@
 import { UsersRepository } from '@/repositories/users-repository'
 import { compare } from 'bcryptjs'
-import { InvalidCredentialsError } from './errors/invalid-credentials-error'
+import { InvalidCredentialsError } from '../errors/invalid-credentials-error'
 import { UserInterfaceParams } from '@/interfaces/user-interface'
 
 interface AuthenticateParams {

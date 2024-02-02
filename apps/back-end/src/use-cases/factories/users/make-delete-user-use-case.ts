@@ -1,4 +1,4 @@
-import { DeleteUserUseCase } from '@/use-cases/delete-user'
+import { DeleteUserUseCase } from '@/use-cases/users/delete-user'
 import { factoryUsersRepository } from '../factories-repositories/factory-users-repository'
 
 export function makeDeleteUserUseCase() {

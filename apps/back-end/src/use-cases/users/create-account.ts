@@ -1,6 +1,6 @@
 import { UsersRepository } from '@/repositories/users-repository'
 import { hash } from 'bcryptjs'
-import { UserAlreadyEmailExistError } from './errors/user-already-email-exist-erro'
+import { UserAlreadyEmailExistError } from '../errors/user-already-email-exist-erro'
 import { UserInterfaceParams } from '@/interfaces/user-interface'
 
 interface CreateAccountParams {

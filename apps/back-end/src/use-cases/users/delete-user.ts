@@ -1,5 +1,5 @@
 import { UsersRepository } from '@/repositories/users-repository'
-import { UserNotFoundError } from './errors/user-not-found-error'
+import { UserNotFoundError } from '../errors/user-not-found-error'
 
 interface deleteUserParams {
   userId: string

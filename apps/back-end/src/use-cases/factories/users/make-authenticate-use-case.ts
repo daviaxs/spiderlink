@@ -1,4 +1,4 @@
-import { AuthenticateUseCase } from '../../authenticate'
+import { AuthenticateUseCase } from '../../users/authenticate'
 import { factoryUsersRepository } from '../factories-repositories/factory-users-repository'
 
 export function makeAuthenticateUseCase() {
