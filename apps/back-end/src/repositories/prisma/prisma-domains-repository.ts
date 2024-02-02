@@ -11,6 +11,17 @@ export class PrismaDomainsRepository implements DomainsRepository {
     return newDomain
   }
 
+  async updateDomain(domain: Prisma.DomainUpdateInput, domainName: string) {
+    const updatedDomain = await prismaClient.domain.update({
+      where: {
+        domainName,
+      },
+      data: domain,
+    })
+
+    return updatedDomain
+  }
+
   async deleteDomain(domainName: string) {
     const domain = await prismaClient.domain.findUnique({
       where: {
