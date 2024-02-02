@@ -7,19 +7,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id            String @id @default(uuid())
-  email         String @unique
-  password_hash String
-  domain        String
+model Domain {
+  id String @id @default(uuid())
 
-  name         String?
-  phone        String?
-  cep          String?
-  address      String?
+  name         String
+  phone        String
+  cep          String
+  address      String
   cnpj         String?
-  deliveryTime String?
+  deliveryTime String
 
+  User        User[]
   Categories  Categories[]
   Products    Products[]
   Subsections Subsections[]
@@ -27,13 +25,22 @@ model User {
   Schedules   Schedules[]
 }
 
+model User {
+  id            String @id @default(uuid())
+  email         String @unique
+  password_hash String
+
+  domainId String?
+  Domain   Domain? @relation(fields: [domainId], references: [id])
+}
+
 model Categories {
   id       String     @id @default(uuid())
   name     String
   Products Products[]
 
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Domain   Domain? @relation(fields: [domainId], references: [id])
+  domainId String?
 }
 
 model Products {
@@ -47,8 +54,8 @@ model Products {
   category    Categories    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   Subsections Subsections[]
 
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Domain   Domain? @relation(fields: [domainId], references: [id])
+  domainId String?
 }
 
 model Subsections {
@@ -63,8 +70,8 @@ model Subsections {
   Product   Products  @relation(fields: [ProductId], references: [id], onDelete: Cascade)
   Options   Options[]
 
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Domain   Domain? @relation(fields: [domainId], references: [id])
+  domainId String?
 }
 
 model Options {
@@ -76,8 +83,8 @@ model Options {
   SubsectionId String
   Subsection   Subsections @relation(fields: [SubsectionId], references: [id], onDelete: Cascade)
 
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Domain   Domain? @relation(fields: [domainId], references: [id])
+  domainId String?
 }
 
 model Schedules {
@@ -90,6 +97,6 @@ model Schedules {
   sab Json
   dom Json
 
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Domain   Domain? @relation(fields: [domainId], references: [id])
+  domainId String?
 }
