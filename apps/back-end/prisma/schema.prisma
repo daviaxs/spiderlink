@@ -32,7 +32,7 @@ model User {
   password_hash String
 
   domainId String?
-  Domain   Domain? @relation(fields: [domainId], references: [id])
+  Domain   Domain? @relation(fields: [domainId], references: [id], onDelete: Cascade)
 }
 
 model Categories {
@@ -40,13 +40,14 @@ model Categories {
   name     String
   Products Products[]
 
-  Domain   Domain? @relation(fields: [domainId], references: [id])
-  domainId String?
+  domainName String
+  Domain     Domain @relation(fields: [domainName], references: [domainName], onDelete: Cascade)
 }
 
 model Products {
   id String @id @default(uuid())
 
+  img         String?
   name        String
   price       Float
   description String
@@ -55,8 +56,8 @@ model Products {
   category    Categories    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   Subsections Subsections[]
 
-  Domain   Domain? @relation(fields: [domainId], references: [id])
-  domainId String?
+  domainName String
+  Domain     Domain @relation(fields: [domainName], references: [domainName], onDelete: Cascade)
 }
 
 model Subsections {
@@ -71,8 +72,8 @@ model Subsections {
   Product   Products  @relation(fields: [ProductId], references: [id], onDelete: Cascade)
   Options   Options[]
 
-  Domain   Domain? @relation(fields: [domainId], references: [id])
-  domainId String?
+  domainName String
+  Domain     Domain @relation(fields: [domainName], references: [domainName], onDelete: Cascade)
 }
 
 model Options {
@@ -84,8 +85,8 @@ model Options {
   SubsectionId String
   Subsection   Subsections @relation(fields: [SubsectionId], references: [id], onDelete: Cascade)
 
-  Domain   Domain? @relation(fields: [domainId], references: [id])
-  domainId String?
+  domainName String
+  Domain     Domain @relation(fields: [domainName], references: [domainName], onDelete: Cascade)
 }
 
 model Schedules {
@@ -98,6 +99,6 @@ model Schedules {
   sab Json
   dom Json
 
-  Domain   Domain? @relation(fields: [domainId], references: [id])
-  domainId String?
+  domainName String
+  Domain     Domain @relation(fields: [domainName], references: [domainName], onDelete: Cascade)
 }
