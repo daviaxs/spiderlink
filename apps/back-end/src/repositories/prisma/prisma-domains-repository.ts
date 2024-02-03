@@ -39,4 +39,14 @@ export class PrismaDomainsRepository implements DomainsRepository {
       },
     })
   }
+
+  findDomain(domainId: string) {
+    const domain = prismaClient.domain.findUnique({
+      where: {
+        id: domainId,
+      },
+    })
+
+    return domain
+  }
 }
