@@ -3,6 +3,8 @@ import fastifyCors from '@fastify/cors'
 import fastifyJwt from '@fastify/jwt'
 import fastify from 'fastify'
 import { env } from './env'
+import { userRoutes } from './http/controllers/users/routes'
+import { domainsRoutes } from './http/controllers/domains/routes'
 
 export const app = fastify()
 
@@ -21,3 +23,6 @@ app.register(fastifyJwt, {
 })
 
 app.register(fastifyCookie)
+
+app.register(userRoutes)
+app.register(domainsRoutes)
