@@ -13,21 +13,26 @@ export async function createDomain(req: FastifyRequest, reply: FastifyReply) {
     cnpj: z.string().min(14).max(14),
   })
 
+  const parsed = createDomainBodySchema.safeParse(req.body)
+
+  if (!parsed.success) {
+    const message = parsed.error.errors[0].message
+    return reply.status(400).send({ message })
+  }
+
   const { address, cep, cnpj, deliveryTime, domainName, name, phone } =
-    createDomainBodySchema.parse(req.body)
+    parsed.data
+
+  // eslint-disable-next-line prettier/prettier
+  if (!address || !cep || !cnpj || !deliveryTime || !domainName || !name || !phone) {
+    return reply.status(400).send({ message: 'Missing body parameter' })
+  }
 
   try {
     const createDomainUseCase = makeCreateDomainUseCase()
 
-    await createDomainUseCase.execute({
-      address,
-      cep,
-      cnpj,
-      deliveryTime,
-      domainName,
-      name,
-      phone,
-    })
+    // eslint-disable-next-line prettier/prettier
+    await createDomainUseCase.execute({address, cep, cnpj, deliveryTime, domainName, name, phone})
   } catch (err) {
     if (err instanceof ZodError) {
       const message = err.issues[0].message
