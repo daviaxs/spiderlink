@@ -25,4 +25,6 @@ export async function createAccount(req: FastifyRequest, reply: FastifyReply) {
     const error = err as Error
     return reply.status(400).send({ message: error.message })
   }
+
+  reply.status(201).send({ message: 'Account created' })
 }
