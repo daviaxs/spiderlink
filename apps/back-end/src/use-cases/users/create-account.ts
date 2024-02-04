@@ -30,7 +30,7 @@ export class CreateAccountUseCase {
 
     const findUserEmail = await this.usersRepository.findUserByEmail(email)
 
-    const domain = await this.domainsRepository.findDomain(domainId)
+    const domain = await this.domainsRepository.findDomainById(domainId)
 
     if (!domain) {
       throw new DomainNotFoundError()
