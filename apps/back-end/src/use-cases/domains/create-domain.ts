@@ -13,6 +13,13 @@ export class CreateDomainUseCase {
     phone,
     cnpj,
   }: Prisma.DomainCreateInput) {
+    const domainExists =
+      await this.domainsRepository.findDomainByName(domainName)
+
+    if (domainExists) {
+      throw new Error('Domain already exists')
+    }
+
     const domain = await this.domainsRepository.addDomain({
       name,
       phone,
