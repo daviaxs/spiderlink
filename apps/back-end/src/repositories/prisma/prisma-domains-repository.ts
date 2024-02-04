@@ -11,10 +11,10 @@ export class PrismaDomainsRepository implements DomainsRepository {
     return newDomain
   }
 
-  async updateDomain(domain: Prisma.DomainUpdateInput, domainName: string) {
+  async updateDomain(domain: Prisma.DomainUpdateInput, domainId: string) {
     const updatedDomain = await prismaClient.domain.update({
       where: {
-        domainName,
+        id: domainId,
       },
       data: domain,
     })
