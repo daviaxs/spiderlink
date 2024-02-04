@@ -7,6 +7,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  OWNER
+  ADMIN
+}
+
 model Domain {
   id         String @id @default(uuid())
   domainName String @unique
@@ -30,6 +35,7 @@ model User {
   id            String @id @default(uuid())
   email         String @unique
   password_hash String
+  role          Role   @default(ADMIN)
 
   domainId String?
   Domain   Domain? @relation(fields: [domainId], references: [id], onDelete: Cascade)
