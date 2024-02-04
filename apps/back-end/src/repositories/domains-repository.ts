@@ -1,7 +1,7 @@
 import { Domain, Prisma } from '@prisma/client'
 
 export interface DomainsRepository {
-  addDomain(domain: Prisma.DomainCreateInput): Promise<Prisma.DomainCreateInput>
+  addDomain(domain: Prisma.DomainCreateInput): Promise<Domain | null>
 
   updateDomain(
     domain: Prisma.DomainUpdateInput,
@@ -10,5 +10,6 @@ export interface DomainsRepository {
 
   deleteDomain(domainName: string): Promise<void>
 
-  findDomain(domainId: string): Promise<Domain | null>
+  findDomainById(domainId: string): Promise<Domain | null>
+  findDomainByName(domainName: string): Promise<Domain | null>
 }
