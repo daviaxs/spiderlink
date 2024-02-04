@@ -1,13 +1,13 @@
-import { UserInterfaceParams } from '@/interfaces/user-interface'
 import { UsersRepository } from '@/repositories/users-repository'
 import { UserNotFoundError } from '../errors/user-not-found-error'
+import { User } from '@prisma/client'
 
 interface GetUserProfileParams {
   userId: string
 }
 
 interface GetUserProfileResponse {
-  user: UserInterfaceParams
+  user: User
 }
 
 export class GetUserProfileUseCase {

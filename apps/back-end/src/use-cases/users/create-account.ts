@@ -1,9 +1,9 @@
 import { UsersRepository } from '@/repositories/users-repository'
 import { hash } from 'bcryptjs'
 import { UserAlreadyEmailExistError } from '../errors/user-already-email-exist-erro'
-import { UserInterfaceParams } from '@/interfaces/user-interface'
 import { DomainNotFoundError } from '../errors/domain-not-found'
 import { DomainsRepository } from '@/repositories/domains-repository'
+import { User } from '@prisma/client'
 
 interface CreateAccountParams {
   email: string
@@ -12,7 +12,7 @@ interface CreateAccountParams {
 }
 
 interface CreateAccountResponse {
-  user: UserInterfaceParams
+  user: User
 }
 
 export class CreateAccountUseCase {

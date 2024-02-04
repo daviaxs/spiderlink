@@ -1,18 +1,15 @@
 import { UsersRepository } from '@/repositories/users-repository'
 import { UserNotFoundError } from '../errors/user-not-found-error'
-import { UserInterfaceParams } from '@/interfaces/user-interface'
+import { User } from '@prisma/client'
 
 interface UpdateUserResponse {
-  user: UserInterfaceParams | null
+  user: User | null
 }
 
 export class UpdateUserUseCase {
   constructor(private usersRepository: UsersRepository) {}
 
-  async execute(
-    userId: string,
-    data: UserInterfaceParams,
-  ): Promise<UpdateUserResponse> {
+  async execute(userId: string, data: User): Promise<UpdateUserResponse> {
     const user = await this.usersRepository.findUserById(userId)
 
     if (!user) {
