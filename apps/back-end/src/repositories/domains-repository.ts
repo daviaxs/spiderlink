@@ -5,7 +5,7 @@ export interface DomainsRepository {
 
   updateDomain(
     domain: Prisma.DomainUpdateInput,
-    domainName: string,
+    domainId: string,
   ): Promise<Prisma.DomainUpdateInput>
 
   deleteDomain(domainName: string): Promise<void>
