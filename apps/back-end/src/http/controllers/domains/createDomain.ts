@@ -31,8 +31,17 @@ export async function createDomain(req: FastifyRequest, reply: FastifyReply) {
   try {
     const createDomainUseCase = makeCreateDomainUseCase()
 
-    // eslint-disable-next-line prettier/prettier
-    await createDomainUseCase.execute({address, cep, cnpj, deliveryTime, domainName, name, phone})
+    const domain = await createDomainUseCase.execute({
+      address,
+      cep,
+      cnpj,
+      deliveryTime,
+      domainName,
+      name,
+      phone,
+    })
+
+    return reply.status(201).send({ message: 'Domain created', data: domain })
   } catch (err) {
     if (err instanceof ZodError) {
       const message = err.issues[0].message
