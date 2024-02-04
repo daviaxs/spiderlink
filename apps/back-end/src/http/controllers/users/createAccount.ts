@@ -6,7 +6,7 @@ export async function createAccount(req: FastifyRequest, reply: FastifyReply) {
   const createAccountBodySchema = z.object({
     email: z.string().email(),
     password: z.string().min(6),
-    domainId: z.string(),
+    domainId: z.string().optional(),
   })
 
   const { email, password, domainId } = createAccountBodySchema.parse(req.body)
