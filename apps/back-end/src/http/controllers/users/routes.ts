@@ -4,10 +4,20 @@ import { authenticate } from './authenticate'
 import { deleteUser } from './deleteUser'
 import { VerifyJWT } from '@/http/middlewares/verify-jwt'
 import { getUserProfile } from './getUserProfile'
+import { updateUser } from './updateUser'
+import { VerifyJWTRule } from '@/http/middlewares/verify-jwt-rule'
 
 export async function userRoutes(app: FastifyInstance) {
   app.post('/users', createAccount)
   app.post('/users/authenticate', authenticate)
+
   app.get('/users/profile', { onRequest: [VerifyJWT] }, getUserProfile)
-  app.delete('/users/:userId', { onRequest: [VerifyJWT] }, deleteUser)
+
+  app.patch('/users/:id', { onRequest: [VerifyJWT] }, updateUser)
+
+  app.delete(
+    '/users/:userId',
+    { onRequest: [VerifyJWTRule('OWNER')] },
+    deleteUser,
+  )
 }

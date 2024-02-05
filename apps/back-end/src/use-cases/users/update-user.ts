@@ -1,23 +1,32 @@
 import { UsersRepository } from '@/repositories/users-repository'
-import { UserNotFoundError } from '../errors/user-not-found-error'
-import { User } from '@prisma/client'
-
-interface UpdateUserResponse {
-  user: User | null
-}
+import { Prisma } from '@prisma/client'
+import { hash } from 'bcryptjs'
 
 export class UpdateUserUseCase {
   constructor(private usersRepository: UsersRepository) {}
 
-  async execute(userId: string, data: User): Promise<UpdateUserResponse> {
-    const user = await this.usersRepository.findUserById(userId)
-
-    if (!user) {
-      throw new UserNotFoundError()
+  async execute(
+    userId: string,
+    { email, password_hash, role }: Prisma.UserUpdateInput,
+  ) {
+    let newPassword
+    if (typeof password_hash === 'string') {
+      newPassword = await hash(password_hash, 6)
     }
 
-    const updatedUser = await this.usersRepository.updateUser(userId, data)
+    const user = await this.usersRepository.updateUser(
+      {
+        email,
+        password_hash: newPassword,
+        role,
+      },
+      userId,
+    )
 
-    return { user: updatedUser }
+    if (!user) {
+      throw new Error('User not found')
+    }
+
+    return { user }
   }
 }
