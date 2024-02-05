@@ -8,7 +8,7 @@ import { User } from '@prisma/client'
 interface CreateAccountParams {
   email: string
   password: string
-  domainId?: string
+  domainId: string
 }
 
 interface CreateAccountResponse {
@@ -34,13 +34,10 @@ export class CreateAccountUseCase {
       throw new UserAlreadyEmailExistError()
     }
 
-    let domain
-    if (domainId) {
-      domain = await this.domainsRepository.findDomainById(domainId)
+    const domain = await this.domainsRepository.findDomainById(domainId)
 
-      if (!domain) {
-        throw new DomainNotFoundError()
-      }
+    if (!domain) {
+      throw new DomainNotFoundError()
     }
 
     const user = await this.usersRepository.createUser({
