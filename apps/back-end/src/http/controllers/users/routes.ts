@@ -13,7 +13,7 @@ export async function userRoutes(app: FastifyInstance) {
 
   app.get('/users/profile', { onRequest: [VerifyJWT] }, getUserProfile)
 
-  app.patch('/users/:id', { onRequest: [VerifyJWT] }, updateUser)
+  app.patch('/users/:id', { onRequest: [VerifyJWTRule('OWNER')] }, updateUser)
 
   app.delete(
     '/users/:userId',
