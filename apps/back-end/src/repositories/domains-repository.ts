@@ -8,8 +8,7 @@ export interface DomainsRepository {
     domainId: string,
   ): Promise<Prisma.DomainUpdateInput>
 
-  listDomains(): Promise<Domain[]>
-
+  listDomains(options?: Prisma.DomainFindManyArgs): Promise<Domain[]>
   deleteDomain(domainName: string): Promise<void>
 
   findDomainById(domainId: string): Promise<Domain | null>

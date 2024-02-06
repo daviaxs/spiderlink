@@ -22,10 +22,8 @@ export class PrismaDomainsRepository implements DomainsRepository {
     return updatedDomain
   }
 
-  async listDomains() {
-    const domains = await prismaClient.domain.findMany()
-
-    return domains
+  async listDomains(options?: Prisma.DomainFindManyArgs) {
+    return prismaClient.domain.findMany(options)
   }
 
   async deleteDomain(domainName: string) {
