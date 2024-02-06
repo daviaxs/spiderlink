@@ -1,13 +1,10 @@
+import { User } from '@prisma/client'
 import { FastifyReply, FastifyRequest } from 'fastify'
-
-interface VerifyJWTRuleParam {
-  role: 'OWNER' | 'ADMIN'
-}
 
 export function VerifyJWTRule(role: 'OWNER' | 'ADMIN') {
   return async (req: FastifyRequest, reply: FastifyReply) => {
     try {
-      const user = (await req.jwtVerify()) as VerifyJWTRuleParam
+      const user: User = await req.jwtVerify()
 
       if (user.role !== role) {
         return reply.status(403).send({ message: 'Access denied' })
