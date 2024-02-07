@@ -24,11 +24,13 @@ model Domain {
   deliveryTime String
 
   User        User[]
-  Categories  Categories[]
-  Products    Products[]
-  Subsections Subsections[]
-  Options     Options[]
-  Schedules   Schedules[]
+  Categories  Categorie[]
+  Products    Product[]
+  Subsections Subsection[]
+  Options     Option[]
+  Schedules   Schedule[]
+
+  @@map("domains")
 }
 
 model User {
@@ -39,18 +41,22 @@ model User {
 
   domainId String?
   Domain   Domain? @relation(fields: [domainId], references: [id], onDelete: Cascade)
+
+  @@map("users")
 }
 
-model Categories {
+model Categorie {
   id       String     @id @default(uuid())
   name     String
-  Products Products[]
+  Products Product[]
 
   domainName String
   Domain     Domain @relation(fields: [domainName], references: [domainName], onDelete: Cascade)
+
+  @@map("categories")
 }
 
-model Products {
+model Product {
   id String @id @default(uuid())
 
   img         String?
@@ -59,14 +65,16 @@ model Products {
   description String
 
   categoryId  String
-  category    Categories    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  Subsections Subsections[]
+  category    Categorie    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  Subsections Subsection[]
 
   domainName String
   Domain     Domain @relation(fields: [domainName], references: [domainName], onDelete: Cascade)
+
+  @@map("products")
 }
 
-model Subsections {
+model Subsection {
   id   String @id @default(uuid())
   name String
 
@@ -75,27 +83,31 @@ model Subsections {
   required       Boolean
 
   ProductId String
-  Product   Products  @relation(fields: [ProductId], references: [id], onDelete: Cascade)
-  Options   Options[]
+  Product   Product  @relation(fields: [ProductId], references: [id], onDelete: Cascade)
+  Options   Option[]
 
   domainName String
   Domain     Domain @relation(fields: [domainName], references: [domainName], onDelete: Cascade)
+
+  @@map("subsections")
 }
 
-model Options {
+model Option {
   id          String  @id @default(uuid())
   name        String
   description String?
   price       Float
 
   SubsectionId String
-  Subsection   Subsections @relation(fields: [SubsectionId], references: [id], onDelete: Cascade)
+  Subsection   Subsection @relation(fields: [SubsectionId], references: [id], onDelete: Cascade)
 
   domainName String
   Domain     Domain @relation(fields: [domainName], references: [domainName], onDelete: Cascade)
+
+  @@map("options")
 }
 
-model Schedules {
+model Schedule {
   id  String @id @default(uuid())
   seg Json
   ter Json
@@ -107,4 +119,6 @@ model Schedules {
 
   domainName String
   Domain     Domain @relation(fields: [domainName], references: [domainName], onDelete: Cascade)
+
+  @@map("schedules")
 }
