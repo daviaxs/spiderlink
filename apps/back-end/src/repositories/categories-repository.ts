@@ -5,7 +5,13 @@ export interface CategoriesRepository {
     category: Prisma.CategoryCreateInput,
     domainName: string,
   ): Promise<Category>
+
   deleteCategory(id: string): Promise<void>
+
   listCategories(domainName: string): Promise<Category[]>
-  findCategoryByName(categoryName: string): Promise<Category | null>
+
+  findCategoryByName(
+    categoryName: string,
+    domainName: string,
+  ): Promise<Category | null>
 }

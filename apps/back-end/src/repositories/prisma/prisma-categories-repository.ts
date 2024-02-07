@@ -43,16 +43,18 @@ export class PrismaCategoriesRepository implements CategoriesRepository {
           domainName,
         },
       },
-      include: { Domain: true },
     })
 
     return categories
   }
 
-  findCategoryByName(categoryName: string) {
+  findCategoryByName(categoryName: string, domainName: string) {
     const category = prismaClient.category.findFirst({
       where: {
         name: categoryName,
+        Domain: {
+          domainName,
+        },
       },
     })
 
