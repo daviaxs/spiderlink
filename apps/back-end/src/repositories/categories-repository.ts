@@ -1,10 +1,11 @@
-import { Categorie, Prisma } from '@prisma/client'
+import { Category, Prisma } from '@prisma/client'
 
 export interface CategoriesRepository {
   addCategory(
-    category: Prisma.CategorieCreateInput,
+    category: Prisma.CategoryCreateInput,
     domainName: string,
-  ): Promise<Categorie>
+  ): Promise<Category>
   deleteCategory(id: string): Promise<void>
-  listCategories(domainName: string): Promise<Categorie[]>
+  listCategories(domainName: string): Promise<Category[]>
+  findCategoryByName(categoryName: string): Promise<Category | null>
 }
