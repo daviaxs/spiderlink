@@ -2,6 +2,7 @@ import { env } from '@/env'
 import { makeAuthenticateUseCase } from '@/use-cases/factories/users/make-authenticate-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
+import { handleError } from '../handleError'
 
 export async function authenticate(req: FastifyRequest, reply: FastifyReply) {
   const authenticateBodySchema = z.object({
@@ -61,7 +62,6 @@ export async function authenticate(req: FastifyRequest, reply: FastifyReply) {
       .status(200)
       .send({ message: 'Authenticated', data: { token } })
   } catch (err) {
-    const error = err as Error
-    return reply.status(400).send({ message: error.message })
+    handleError(err, reply)
   }
 }

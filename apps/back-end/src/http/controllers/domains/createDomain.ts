@@ -1,6 +1,7 @@
 import { makeCreateDomainUseCase } from '@/use-cases/factories/domains/make-create-domain-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { ZodError, z } from 'zod'
+import { z } from 'zod'
+import { handleError } from '../handleError'
 
 export async function createDomain(req: FastifyRequest, reply: FastifyReply) {
   const createDomainBodySchema = z.object({
@@ -43,13 +44,6 @@ export async function createDomain(req: FastifyRequest, reply: FastifyReply) {
 
     return reply.status(201).send({ message: 'Domain created', data: domain })
   } catch (err) {
-    if (err instanceof ZodError) {
-      const message = err.issues[0].message
-
-      reply.status(400).send({ message })
-    }
-
-    const error = err as Error
-    return reply.status(400).send({ message: error.message })
+    handleError(err, reply)
   }
 }

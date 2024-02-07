@@ -1,6 +1,7 @@
 import { makeDeleteDomainUseCase } from '@/use-cases/factories/domains/make-delete-domain-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
+import { handleError } from '../handleError'
 
 export async function deleteDomain(req: FastifyRequest, reply: FastifyReply) {
   const deleteDomainBodySchema = z.object({
@@ -21,7 +22,6 @@ export async function deleteDomain(req: FastifyRequest, reply: FastifyReply) {
 
     await deleteDomainUseCase.execute(domainName)
   } catch (err) {
-    const error = err as Error
-    return reply.status(400).send({ message: error.message })
+    handleError(err, reply)
   }
 }
