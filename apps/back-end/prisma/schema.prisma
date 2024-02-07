@@ -24,7 +24,7 @@ model Domain {
   deliveryTime String
 
   User        User[]
-  Categories  Categorie[]
+  Categories  Category[]
   Products    Product[]
   Subsections Subsection[]
   Options     Option[]
@@ -45,7 +45,7 @@ model User {
   @@map("users")
 }
 
-model Categorie {
+model Category {
   id       String     @id @default(uuid())
   name     String
   Products Product[]
@@ -65,7 +65,7 @@ model Product {
   description String
 
   categoryId  String
-  category    Categorie    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  category    Category    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   Subsections Subsection[]
 
   domainName String
