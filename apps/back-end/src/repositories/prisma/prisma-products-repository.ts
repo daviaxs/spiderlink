@@ -49,10 +49,11 @@ export class PrismaProductsRepository implements ProductsRepository {
     return product
   }
 
-  async deleteProduct(productId: string) {
+  async deleteProduct(productId: string, domainId: string) {
     await prismaClient.product.delete({
       where: {
         id: productId,
+        domainId,
       },
     })
   }

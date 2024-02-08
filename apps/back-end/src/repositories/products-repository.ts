@@ -13,7 +13,7 @@ export interface ProductsRepository {
     productId: string,
   ): Promise<Product | null>
 
-  deleteProduct(id: string): Promise<void>
+  deleteProduct(id: string, domainId: string): Promise<void>
 
   listProducts(domainName: string, categoryName: string): Promise<Product[]>
 
