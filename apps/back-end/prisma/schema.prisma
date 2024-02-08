@@ -46,8 +46,8 @@ model User {
 }
 
 model Category {
-  id       String     @id @default(uuid())
-  name     String
+  id       String    @id @default(uuid())
+  name     String    @unique
   Products Product[]
 
   domainName String
@@ -60,13 +60,13 @@ model Product {
   id String @id @default(uuid())
 
   img         String?
-  name        String
+  name        String  @unique
   price       Float
   description String
 
-  categoryId  String
-  category    Category    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  Subsections Subsection[]
+  categoryName String
+  category     Category     @relation(fields: [categoryName], references: [name], onDelete: Cascade)
+  Subsections  Subsection[]
 
   domainName String
   Domain     Domain @relation(fields: [domainName], references: [domainName], onDelete: Cascade)
@@ -76,15 +76,15 @@ model Product {
 
 model Subsection {
   id   String @id @default(uuid())
-  name String
+  name String @unique
 
   multipleChoice Boolean
   limit          Int
   required       Boolean
 
-  ProductId String
-  Product   Product  @relation(fields: [ProductId], references: [id], onDelete: Cascade)
-  Options   Option[]
+  ProductName String
+  Product     Product  @relation(fields: [ProductName], references: [name], onDelete: Cascade)
+  Options     Option[]
 
   domainName String
   Domain     Domain @relation(fields: [domainName], references: [domainName], onDelete: Cascade)
@@ -98,8 +98,8 @@ model Option {
   description String?
   price       Float
 
-  SubsectionId String
-  Subsection   Subsection @relation(fields: [SubsectionId], references: [id], onDelete: Cascade)
+  SubsectionName String
+  Subsection     Subsection @relation(fields: [SubsectionName], references: [name], onDelete: Cascade)
 
   domainName String
   Domain     Domain @relation(fields: [domainName], references: [domainName], onDelete: Cascade)
