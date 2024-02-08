@@ -2,7 +2,7 @@ import { User } from '@prisma/client'
 import { FastifyReply, FastifyRequest, RouteGenericInterface } from 'fastify'
 
 interface RouteParams {
-  id: string
+  domainId: string
 }
 
 interface MyRouteGenericInterface extends RouteGenericInterface {
@@ -21,7 +21,7 @@ export async function CheckUserDomainAccess(
     }
 
     if (user.role === 'ADMIN') {
-      const domainId = req.params.id
+      const domainId = req.params.domainId
 
       if (domainId !== user.domainId) {
         return reply.status(403).send({ message: 'Access denied' })
