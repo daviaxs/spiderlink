@@ -6,6 +6,7 @@ import { env } from './env'
 import { userRoutes } from './http/controllers/users/routes'
 import { domainsRoutes } from './http/controllers/domains/routes'
 import { categoriesRoutes } from './http/controllers/categories/routes'
+import { productsRoutes } from './http/controllers/products/routes'
 
 export const app = fastify()
 
@@ -28,3 +29,4 @@ app.register(fastifyCookie)
 app.register(userRoutes)
 app.register(domainsRoutes)
 app.register(categoriesRoutes)
+app.register(productsRoutes)

@@ -3,13 +3,22 @@ import { ProductsRepository } from '../products-repository'
 import { prismaClient } from '@/lib/prisma'
 
 export class PrismaProductsRepository implements ProductsRepository {
-  async addProduct(data: Prisma.ProductCreateInput, domainName: string) {
+  async addProduct(
+    data: Prisma.ProductCreateInput,
+    categoryName: string,
+    domainId: string,
+  ) {
     const product = await prismaClient.product.create({
       data: {
         ...data,
+        category: {
+          connect: {
+            name: categoryName,
+          },
+        },
         Domain: {
           connect: {
-            domainName,
+            id: domainId,
           },
         },
       },
@@ -20,7 +29,7 @@ export class PrismaProductsRepository implements ProductsRepository {
 
   async updateProduct(
     data: Prisma.ProductUpdateInput,
-    domainName: string,
+    domainId: string,
     productId: string,
   ) {
     const product = await prismaClient.product.update({
@@ -31,7 +40,7 @@ export class PrismaProductsRepository implements ProductsRepository {
         ...data,
         Domain: {
           connect: {
-            domainName,
+            id: domainId,
           },
         },
       },
@@ -48,12 +57,12 @@ export class PrismaProductsRepository implements ProductsRepository {
     })
   }
 
-  async listProducts(domainName: string, categoryName: string) {
+  async listProducts(domainId: string, categoryName: string) {
     const products = prismaClient.product.findMany({
       where: {
         category: {
           Domain: {
-            domainName,
+            id: domainId,
           },
           name: categoryName,
         },
@@ -77,6 +86,16 @@ export class PrismaProductsRepository implements ProductsRepository {
           },
           name: categoryName,
         },
+      },
+    })
+
+    return product
+  }
+
+  findProductById(productId: string) {
+    const product = prismaClient.product.findFirst({
+      where: {
+        id: productId,
       },
     })
 
