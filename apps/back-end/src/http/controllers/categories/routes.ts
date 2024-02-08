@@ -5,12 +5,16 @@ import { deleteCategory } from './deleteCategory'
 import { listCategories } from './listCategories'
 
 export async function categoriesRoutes(app: FastifyInstance) {
-  app.get('/categories', listCategories)
+  app.get('/categories/:domainId', listCategories)
 
-  app.post('/categories', { onRequest: [CheckUserDomainAccess] }, addCategory)
+  app.post(
+    '/categories/:domainId',
+    { onRequest: [CheckUserDomainAccess] },
+    addCategory,
+  )
 
   app.delete(
-    '/categories/:id',
+    '/categories/:domainId/:categoryId',
     { onRequest: [CheckUserDomainAccess] },
     deleteCategory,
   )

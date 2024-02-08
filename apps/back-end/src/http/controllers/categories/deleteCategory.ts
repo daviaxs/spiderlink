@@ -5,7 +5,8 @@ import { handleError } from '../handleError'
 
 export async function deleteCategory(req: FastifyRequest, reply: FastifyReply) {
   const deleteCategoryBodySchema = z.object({
-    id: z.string(),
+    categoryId: z.string(),
+    domainId: z.string(),
   })
 
   const parsed = deleteCategoryBodySchema.safeParse(req.params)
@@ -15,12 +16,12 @@ export async function deleteCategory(req: FastifyRequest, reply: FastifyReply) {
     return reply.status(400).send({ message })
   }
 
-  const { id } = parsed.data
+  const { categoryId, domainId } = parsed.data
 
   try {
     const deleteCategoryUseCase = makeDeleteCategoryUseCase()
 
-    await deleteCategoryUseCase.execute(id)
+    await deleteCategoryUseCase.execute(categoryId, domainId)
 
     return reply.status(204).send()
   } catch (err) {

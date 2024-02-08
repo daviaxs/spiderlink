@@ -6,7 +6,7 @@ export interface CategoriesRepository {
     domainId: string,
   ): Promise<Category>
 
-  deleteCategory(id: string): Promise<void>
+  deleteCategory(id: string, domainId: string): Promise<void>
 
   listCategories(domainId: string): Promise<Category[]>
 

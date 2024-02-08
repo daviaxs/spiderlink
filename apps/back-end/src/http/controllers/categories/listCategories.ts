@@ -5,22 +5,22 @@ import { handleError } from '../handleError'
 
 export async function listCategories(req: FastifyRequest, reply: FastifyReply) {
   const listCategoriesBodySchema = z.object({
-    domainName: z.string(),
+    domainId: z.string(),
   })
 
-  const parsed = listCategoriesBodySchema.safeParse(req.body)
+  const parsed = listCategoriesBodySchema.safeParse(req.params)
 
   if (!parsed.success) {
     const message = parsed.error.errors[0].message
     return reply.status(400).send({ message })
   }
 
-  const { domainName } = parsed.data
+  const { domainId } = parsed.data
 
   try {
     const listCategoriesUseCase = makeListCategoriesUseCase()
 
-    const { categories } = await listCategoriesUseCase.execute(domainName)
+    const { categories } = await listCategoriesUseCase.execute(domainId)
 
     return reply.status(200).send({ categories })
   } catch (err) {

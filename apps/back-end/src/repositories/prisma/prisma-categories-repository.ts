@@ -28,10 +28,11 @@ export class PrismaCategoriesRepository implements CategoriesRepository {
     return newCategory
   }
 
-  async deleteCategory(id: string): Promise<void> {
+  async deleteCategory(id: string, domainId: string): Promise<void> {
     await prismaClient.category.delete({
       where: {
         id,
+        domainId,
       },
     })
   }

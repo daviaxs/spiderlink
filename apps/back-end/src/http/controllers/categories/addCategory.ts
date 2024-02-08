@@ -4,19 +4,29 @@ import { z } from 'zod'
 import { handleError } from '../handleError'
 
 export async function addCategory(req: FastifyRequest, reply: FastifyReply) {
+  const domainBodySchema = z.object({
+    domainId: z.string(),
+  })
+
   const addCategoryBodySchema = z.object({
     name: z.string(),
-    domainName: z.string(),
   })
 
   const parsed = addCategoryBodySchema.safeParse(req.body)
+  const parsedDomain = domainBodySchema.safeParse(req.params)
 
   if (!parsed.success) {
     const message = parsed.error.errors[0].message
     return reply.status(400).send({ message })
   }
 
-  const { name, domainName } = parsed.data
+  if (!parsedDomain.success) {
+    const message = parsedDomain.error.errors[0].message
+    return reply.status(400).send({ message })
+  }
+
+  const { name } = parsed.data
+  const { domainId } = parsedDomain.data
 
   try {
     const addCategoryUseCase = makeAddCategoryUseCase()
@@ -26,11 +36,11 @@ export async function addCategory(req: FastifyRequest, reply: FastifyReply) {
         name,
         Domain: {
           connect: {
-            domainName,
+            id: domainId,
           },
         },
       },
-      domainName,
+      domainId,
     )
 
     return reply
