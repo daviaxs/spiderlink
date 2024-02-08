@@ -3,15 +3,15 @@ import { CategoriesRepository } from '../categories-repository'
 import { prismaClient } from '@/lib/prisma'
 
 export class PrismaCategoriesRepository implements CategoriesRepository {
-  async addCategory(category: Prisma.CategoryCreateInput, domainName: string) {
+  async addCategory(category: Prisma.CategoryCreateInput, domainId: string) {
     const domain = await prismaClient.domain.findUnique({
       where: {
-        domainName,
+        id: domainId,
       },
     })
 
     if (!domain) {
-      throw new Error(`Domain [${domainName}] not found`)
+      throw new Error(`Domain not found`)
     }
 
     const newCategory = await prismaClient.category.create({
@@ -19,7 +19,7 @@ export class PrismaCategoriesRepository implements CategoriesRepository {
         ...category,
         Domain: {
           connect: {
-            domainName,
+            id: domainId,
           },
         },
       },
@@ -36,11 +36,11 @@ export class PrismaCategoriesRepository implements CategoriesRepository {
     })
   }
 
-  async listCategories(domainName: string) {
+  async listCategories(domainId: string) {
     const categories = prismaClient.category.findMany({
       where: {
         Domain: {
-          domainName,
+          id: domainId,
         },
       },
     })
@@ -48,12 +48,12 @@ export class PrismaCategoriesRepository implements CategoriesRepository {
     return categories
   }
 
-  findCategoryByName(categoryName: string, domainName: string) {
+  findCategoryByName(categoryName: string, domainId: string) {
     const category = prismaClient.category.findFirst({
       where: {
         name: categoryName,
         Domain: {
-          domainName,
+          id: domainId,
         },
       },
     })

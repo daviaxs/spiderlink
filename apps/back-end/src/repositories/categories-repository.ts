@@ -3,15 +3,15 @@ import { Category, Prisma } from '@prisma/client'
 export interface CategoriesRepository {
   addCategory(
     category: Prisma.CategoryCreateInput,
-    domainName: string,
+    domainId: string,
   ): Promise<Category>
 
   deleteCategory(id: string): Promise<void>
 
-  listCategories(domainName: string): Promise<Category[]>
+  listCategories(domainId: string): Promise<Category[]>
 
   findCategoryByName(
     categoryName: string,
-    domainName: string,
+    domainId: string,
   ): Promise<Category | null>
 }

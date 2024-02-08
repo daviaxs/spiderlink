@@ -5,10 +5,10 @@ import { CategoryAlreadyExists } from '../errors/category-already-exists-error'
 export class AddCategoryUseCase {
   constructor(private categoriesRepository: CategoriesRepository) {}
 
-  async execute({ name }: Prisma.CategoryCreateInput, domainName: string) {
+  async execute({ name }: Prisma.CategoryCreateInput, domainId: string) {
     const categoryExists = await this.categoriesRepository.findCategoryByName(
       name,
-      domainName,
+      domainId,
     )
 
     if (categoryExists) {
@@ -20,11 +20,11 @@ export class AddCategoryUseCase {
         name,
         Domain: {
           connect: {
-            domainName,
+            id: domainId,
           },
         },
       },
-      domainName,
+      domainId,
     )
 
     return { category }
