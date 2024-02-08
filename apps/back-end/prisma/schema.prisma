@@ -50,8 +50,8 @@ model Category {
   name     String    @unique
   Products Product[]
 
-  domainName String
-  Domain     Domain @relation(fields: [domainName], references: [domainName], onDelete: Cascade)
+  domainId String
+  Domain   Domain @relation(fields: [domainId], references: [id], onDelete: Cascade)
 
   @@map("categories")
 }
@@ -68,8 +68,8 @@ model Product {
   category     Category     @relation(fields: [categoryName], references: [name], onDelete: Cascade)
   Subsections  Subsection[]
 
-  domainName String
-  Domain     Domain @relation(fields: [domainName], references: [domainName], onDelete: Cascade)
+  domainId String
+  Domain   Domain @relation(fields: [domainId], references: [id], onDelete: Cascade)
 
   @@map("products")
 }
@@ -86,8 +86,8 @@ model Subsection {
   Product     Product  @relation(fields: [ProductName], references: [name], onDelete: Cascade)
   Options     Option[]
 
-  domainName String
-  Domain     Domain @relation(fields: [domainName], references: [domainName], onDelete: Cascade)
+  domainId String
+  Domain   Domain @relation(fields: [domainId], references: [id], onDelete: Cascade)
 
   @@map("subsections")
 }
@@ -101,8 +101,8 @@ model Option {
   SubsectionName String
   Subsection     Subsection @relation(fields: [SubsectionName], references: [name], onDelete: Cascade)
 
-  domainName String
-  Domain     Domain @relation(fields: [domainName], references: [domainName], onDelete: Cascade)
+  domainId String
+  Domain   Domain @relation(fields: [domainId], references: [id], onDelete: Cascade)
 
   @@map("options")
 }
@@ -117,8 +117,8 @@ model Schedule {
   sab Json
   dom Json
 
-  domainName String
-  Domain     Domain @relation(fields: [domainName], references: [domainName], onDelete: Cascade)
+  domainId String
+  Domain   Domain @relation(fields: [domainId], references: [id], onDelete: Cascade)
 
   @@map("schedules")
 }
