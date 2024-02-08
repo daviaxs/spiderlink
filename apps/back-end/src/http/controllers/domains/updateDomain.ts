@@ -5,7 +5,7 @@ import { handleError } from '../handleError'
 
 export async function updateDomain(req: FastifyRequest, reply: FastifyReply) {
   const domainIdBodySchema = z.object({
-    id: z.string(),
+    domainId: z.string(),
   })
 
   const updateDomainBodySchema = z
@@ -33,7 +33,7 @@ export async function updateDomain(req: FastifyRequest, reply: FastifyReply) {
     return reply.status(400).send({ message })
   }
 
-  const { id } = parsedId.data
+  const { domainId } = parsedId.data
 
   const { domainName, name, address, cep, deliveryTime, phone, cnpj } =
     parsed.data
@@ -41,7 +41,7 @@ export async function updateDomain(req: FastifyRequest, reply: FastifyReply) {
   try {
     const updateDomainUseCase = makeUpdateDomainUseCase()
 
-    const domain = await updateDomainUseCase.execute(id, {
+    const domain = await updateDomainUseCase.execute(domainId, {
       domainName,
       name,
       address,
