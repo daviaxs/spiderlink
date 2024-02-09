@@ -64,9 +64,10 @@ model Product {
   price       Float
   description String
 
-  categoryName String
-  category     Category     @relation(fields: [categoryName], references: [name], onDelete: Cascade)
   Subsections  Subsection[]
+
+  categoryId String
+  Category     Category     @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 
   domainId String
   Domain   Domain @relation(fields: [domainId], references: [id], onDelete: Cascade)
