@@ -3,9 +3,9 @@ import { Prisma, Product } from '@prisma/client'
 export interface ProductsRepository {
   addProduct(
     product: Prisma.ProductCreateInput,
-    categoryName: string,
+    categoryId: string,
     domainId: string,
-  ): Promise<Product | null>
+  ): Promise<Product>
 
   updateProduct(
     product: Prisma.ProductUpdateInput,
@@ -15,11 +15,11 @@ export interface ProductsRepository {
 
   deleteProduct(id: string, domainId: string): Promise<void>
 
-  listProducts(domainName: string, categoryName: string): Promise<Product[]>
+  listProducts(categoryId: string, domainId: string): Promise<Product[]>
 
   findProductByName(
     productName: string,
-    categoryName: string,
+    categoryId: string,
     domainId: string,
   ): Promise<Product | null>
 

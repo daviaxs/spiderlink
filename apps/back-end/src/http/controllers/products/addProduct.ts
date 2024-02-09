@@ -1,11 +1,12 @@
-import { makeAddProductUseCase } from '@/use-cases/factories/products/make-add-product-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 import { handleError } from '../handleError'
+import { makeAddProductUseCase } from '@/use-cases/factories/products/make-add-product-use-case'
 
 export async function addProduct(req: FastifyRequest, reply: FastifyReply) {
-  const domainIdBodySchema = z.object({
+  const paramsBodySchema = z.object({
     domainId: z.string(),
+    categoryId: z.string(),
   })
 
   const addProductBodySchema = z.object({
@@ -13,41 +14,36 @@ export async function addProduct(req: FastifyRequest, reply: FastifyReply) {
     name: z.string(),
     price: z.number(),
     description: z.string(),
-    categoryName: z.string(),
   })
 
   const parsed = addProductBodySchema.safeParse(req.body)
-  const parsedId = domainIdBodySchema.safeParse(req.params)
+  const parsedDomain = paramsBodySchema.safeParse(req.params)
 
   if (!parsed.success) {
     const message = parsed.error.errors[0].message
     return reply.status(400).send({ message })
   }
 
-  if (!parsedId.success) {
-    const message = parsedId.error.errors[0].message
+  if (!parsedDomain.success) {
+    const message = parsedDomain.error.errors[0].message
     return reply.status(400).send({ message })
   }
 
-  const { img, name, price, description, categoryName } = parsed.data
-  const { domainId } = parsedId.data
-
-  if (!name || !price || !description || !categoryName) {
-    return reply.status(400).send({ message: 'Missing body parameter' })
-  }
+  const { img, name, price, description } = parsed.data
+  const { domainId, categoryId } = parsedDomain.data
 
   try {
     const addProductUseCase = makeAddProductUseCase()
 
     const product = await addProductUseCase.execute(
       {
+        img,
         name,
         price,
-        img,
         description,
-        category: {
+        Category: {
           connect: {
-            name: categoryName,
+            id: categoryId,
           },
         },
         Domain: {
@@ -56,11 +52,13 @@ export async function addProduct(req: FastifyRequest, reply: FastifyReply) {
           },
         },
       },
-      categoryName,
+      categoryId,
       domainId,
     )
 
-    return reply.status(201).send({ message: 'Product created', data: product })
+    return reply
+      .status(201)
+      .send({ message: 'Category created', data: product })
   } catch (err) {
     handleError(err, reply)
   }

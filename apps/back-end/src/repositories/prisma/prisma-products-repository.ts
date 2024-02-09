@@ -4,16 +4,36 @@ import { prismaClient } from '@/lib/prisma'
 
 export class PrismaProductsRepository implements ProductsRepository {
   async addProduct(
-    data: Prisma.ProductCreateInput,
-    categoryName: string,
+    product: Prisma.ProductCreateInput,
+    categoryId: string,
     domainId: string,
   ) {
-    const product = await prismaClient.product.create({
+    const domain = await prismaClient.domain.findUnique({
+      where: {
+        id: domainId,
+      },
+    })
+
+    if (!domain) {
+      throw new Error(`Domain not found`)
+    }
+
+    const category = await prismaClient.category.findUnique({
+      where: {
+        id: categoryId,
+      },
+    })
+
+    if (!category) {
+      throw new Error(`Category not found`)
+    }
+
+    const newProduct = await prismaClient.product.create({
       data: {
-        ...data,
-        category: {
+        ...product,
+        Category: {
           connect: {
-            name: categoryName,
+            id: categoryId,
           },
         },
         Domain: {
@@ -24,7 +44,7 @@ export class PrismaProductsRepository implements ProductsRepository {
       },
     })
 
-    return product
+    return newProduct
   }
 
   async updateProduct(
@@ -58,14 +78,14 @@ export class PrismaProductsRepository implements ProductsRepository {
     })
   }
 
-  async listProducts(domainId: string, categoryName: string) {
+  async listProducts(categoryId: string, domainId: string) {
     const products = prismaClient.product.findMany({
       where: {
-        category: {
+        Category: {
+          id: categoryId,
           Domain: {
             id: domainId,
           },
-          name: categoryName,
         },
       },
     })
@@ -75,17 +95,17 @@ export class PrismaProductsRepository implements ProductsRepository {
 
   async findProductByName(
     productName: string,
-    categoryName: string,
-    domainName: string,
+    categoryId: string,
+    domainId: string,
   ) {
     const product = prismaClient.product.findFirst({
       where: {
         name: productName,
-        category: {
+        Category: {
+          id: categoryId,
           Domain: {
-            domainName,
+            id: domainId,
           },
-          name: categoryName,
         },
       },
     })
