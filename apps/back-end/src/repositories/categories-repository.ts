@@ -14,4 +14,6 @@ export interface CategoriesRepository {
     categoryName: string,
     domainId: string,
   ): Promise<Category | null>
+
+  findCategoryById(categoryId: string): Promise<Category | null>
 }

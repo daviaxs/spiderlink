@@ -1,12 +1,24 @@
+import { CategoriesRepository } from '@/repositories/categories-repository'
 import { ProductsRepository } from '@/repositories/products-repository'
+import { CategoryNotFoundError } from '../errors/category-not-found-error'
 
 export class ListProductsUseCase {
-  constructor(private productsRepository: ProductsRepository) {}
+  constructor(
+    private productsRepository: ProductsRepository,
+    private categoriesRepository: CategoriesRepository,
+  ) {}
 
-  async execute(domainName: string, categoryName: string) {
+  async execute(categoryId: string, domainId: string) {
+    const category =
+      await this.categoriesRepository.findCategoryById(categoryId)
+
+    if (!category) {
+      throw new CategoryNotFoundError()
+    }
+
     const products = await this.productsRepository.listProducts(
-      domainName,
-      categoryName,
+      categoryId,
+      domainId,
     )
 
     return { products }

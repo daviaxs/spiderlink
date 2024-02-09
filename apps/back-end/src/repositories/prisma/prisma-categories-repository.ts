@@ -61,4 +61,14 @@ export class PrismaCategoriesRepository implements CategoriesRepository {
 
     return category
   }
+
+  findCategoryById(categoryId: string) {
+    const category = prismaClient.category.findUnique({
+      where: {
+        id: categoryId,
+      },
+    })
+
+    return category
+  }
 }
