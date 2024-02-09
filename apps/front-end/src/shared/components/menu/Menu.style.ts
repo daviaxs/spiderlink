@@ -15,6 +15,7 @@ export const Overlay = styled(Dialog.Overlay)`
   width: 100vw;
   height: 100vh;
   inset: 0;
+  z-index: 999;
 
   &[data-state='open'] {
     animation: ${AnimationFadeInOpacity} 0.2s ease-in-out;
@@ -59,6 +60,7 @@ export const Content = styled(Dialog.Content)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 999;
 
   background-color: ${(props) => props.theme.body};
   border: 1px solid ${(props) => props.theme.border};
