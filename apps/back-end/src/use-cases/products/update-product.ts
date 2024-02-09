@@ -6,8 +6,8 @@ export class UpdateProductUseCase {
   constructor(private productsRepository: ProductsRepository) {}
 
   async execute(
-    product: Prisma.ProductUpdateInput,
-    domainName: string,
+    { img, name, price, description }: Prisma.ProductUpdateInput,
+    domainId: string,
     productId: string,
   ) {
     const productNotFound =
@@ -18,8 +18,13 @@ export class UpdateProductUseCase {
     }
 
     const productUpdated = await this.productsRepository.updateProduct(
-      product,
-      domainName,
+      {
+        img,
+        name,
+        price,
+        description,
+      },
+      domainId,
       productId,
     )
 
