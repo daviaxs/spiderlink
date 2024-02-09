@@ -13,7 +13,7 @@ export interface SubsectionsRepository {
     domainId: string,
   ): Promise<Subsection | null>
 
-  deleteSubsection(id: string): Promise<void>
+  deleteSubsection(id: string, domainId: string): Promise<void>
 
   listSubsections(productId: string, domainId: string): Promise<Subsection[]>
 

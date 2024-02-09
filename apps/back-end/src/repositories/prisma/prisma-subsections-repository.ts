@@ -79,10 +79,13 @@ export class PrismaSubsectionsRepository implements SubsectionsRepository {
     return subSectionUpdated
   }
 
-  async deleteSubsection(id: string): Promise<void> {
+  async deleteSubsection(id: string, domainId: string) {
     const subSection = await prismaClient.subsection.findUnique({
       where: {
         id,
+        Domain: {
+          id: domainId,
+        },
       },
     })
 
