@@ -14,20 +14,10 @@ export class AddProductUseCase {
     categoryId: string,
     domainId: string,
   ) {
-    const productExists = await this.productsRepository.findProductByName(
-      name,
-      categoryId,
-      domainId,
-    )
-
     const categoryExists = await this.categoriesRepository.findCategoryByName(
       name,
       domainId,
     )
-
-    if (productExists) {
-      throw new Error(`Product already exists`)
-    }
 
     if (categoryExists) {
       throw new CategoryAlreadyExists()

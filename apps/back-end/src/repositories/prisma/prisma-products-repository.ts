@@ -93,19 +93,12 @@ export class PrismaProductsRepository implements ProductsRepository {
     return products
   }
 
-  async findProductByName(
-    productName: string,
-    categoryId: string,
-    domainId: string,
-  ) {
+  async findProductByName(productName: string, domainId: string) {
     const product = prismaClient.product.findFirst({
       where: {
         name: productName,
-        Category: {
-          id: categoryId,
-          Domain: {
-            id: domainId,
-          },
+        Domain: {
+          id: domainId,
         },
       },
     })

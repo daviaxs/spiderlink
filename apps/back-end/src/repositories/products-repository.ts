@@ -19,7 +19,6 @@ export interface ProductsRepository {
 
   findProductByName(
     productName: string,
-    categoryId: string,
     domainId: string,
   ): Promise<Product | null>
 
