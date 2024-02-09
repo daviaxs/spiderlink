@@ -14,7 +14,7 @@ export async function domainsRoutes(app: FastifyInstance) {
   app.post('/domains', createDomain)
 
   app.patch(
-    '/domains/:id',
+    '/domains/:domainId',
     { onRequest: [CheckUserDomainAccess] },
     updateDomain,
   )
