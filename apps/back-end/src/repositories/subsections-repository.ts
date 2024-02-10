@@ -9,7 +9,7 @@ export interface SubsectionsRepository {
 
   updateSubsection(
     subSection: Prisma.SubsectionUpdateInput,
-    productId: string,
+    subSectionId: string,
     domainId: string,
   ): Promise<Subsection | null>
 
