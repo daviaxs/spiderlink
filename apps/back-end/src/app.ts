@@ -7,6 +7,7 @@ import { userRoutes } from './http/controllers/users/routes'
 import { domainsRoutes } from './http/controllers/domains/routes'
 import { categoriesRoutes } from './http/controllers/categories/routes'
 import { productsRoutes } from './http/controllers/products/routes'
+import { subsectionsRoutes } from './http/controllers/subsections/routes'
 
 export const app = fastify()
 
@@ -30,3 +31,4 @@ app.register(userRoutes)
 app.register(domainsRoutes)
 app.register(categoriesRoutes)
 app.register(productsRoutes)
+app.register(subsectionsRoutes)
