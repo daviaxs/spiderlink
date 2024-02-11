@@ -113,4 +113,14 @@ export class PrismaOptionsRepository implements OptionsRepository {
 
     return options
   }
+
+  async findOptionById(optionId: string) {
+    const option = await prismaClient.option.findUnique({
+      where: {
+        id: optionId,
+      },
+    })
+
+    return option
+  }
 }
