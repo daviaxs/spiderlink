@@ -14,4 +14,6 @@ export interface OptionsRepository {
   ): Promise<Option | null>
 
   deleteOption(id: string, domainId: string): Promise<void>
+
+  listOptions(subsectionId: string, domainId: string): Promise<Option[]>
 }

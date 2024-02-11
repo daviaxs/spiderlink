@@ -95,4 +95,22 @@ export class PrismaOptionsRepository implements OptionsRepository {
 
     await prismaClient.option.delete({ where: { id } })
   }
+
+  async listOptions(subsectionId: string, domainId: string) {
+    const domainVerification = new FindDomainIdVerification(domainId)
+    await domainVerification.execute()
+
+    const options = await prismaClient.option.findMany({
+      where: {
+        Subsection: {
+          id: subsectionId,
+          Domain: {
+            id: domainId,
+          },
+        },
+      },
+    })
+
+    return options
+  }
 }
