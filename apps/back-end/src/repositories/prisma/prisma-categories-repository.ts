@@ -1,18 +1,12 @@
 import { Prisma } from '@prisma/client'
 import { CategoriesRepository } from '../categories-repository'
 import { prismaClient } from '@/lib/prisma'
+import { FindDomainIdVerification } from '../verifications/find-domain-id'
 
 export class PrismaCategoriesRepository implements CategoriesRepository {
   async addCategory(category: Prisma.CategoryCreateInput, domainId: string) {
-    const domain = await prismaClient.domain.findUnique({
-      where: {
-        id: domainId,
-      },
-    })
-
-    if (!domain) {
-      throw new Error(`Domain not found`)
-    }
+    const domainVerification = new FindDomainIdVerification(domainId)
+    await domainVerification.execute()
 
     const newCategory = await prismaClient.category.create({
       data: {
@@ -29,6 +23,9 @@ export class PrismaCategoriesRepository implements CategoriesRepository {
   }
 
   async deleteCategory(id: string, domainId: string): Promise<void> {
+    const domainVerification = new FindDomainIdVerification(domainId)
+    await domainVerification.execute()
+
     await prismaClient.category.delete({
       where: {
         id,
@@ -38,6 +35,9 @@ export class PrismaCategoriesRepository implements CategoriesRepository {
   }
 
   async listCategories(domainId: string) {
+    const domainVerification = new FindDomainIdVerification(domainId)
+    await domainVerification.execute()
+
     const categories = prismaClient.category.findMany({
       where: {
         Domain: {
@@ -49,7 +49,10 @@ export class PrismaCategoriesRepository implements CategoriesRepository {
     return categories
   }
 
-  findCategoryByName(categoryName: string, domainId: string) {
+  async findCategoryByName(categoryName: string, domainId: string) {
+    const domainVerification = new FindDomainIdVerification(domainId)
+    await domainVerification.execute()
+
     const category = prismaClient.category.findFirst({
       where: {
         name: categoryName,

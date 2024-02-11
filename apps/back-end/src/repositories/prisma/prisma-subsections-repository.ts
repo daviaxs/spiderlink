@@ -1,6 +1,7 @@
 import { Prisma } from '@prisma/client'
 import { SubsectionsRepository } from '../subsections-repository'
 import { prismaClient } from '@/lib/prisma'
+import { FindDomainIdVerification } from '../verifications/find-domain-id'
 
 export class PrismaSubsectionsRepository implements SubsectionsRepository {
   async addSubsection(
@@ -8,15 +9,8 @@ export class PrismaSubsectionsRepository implements SubsectionsRepository {
     productId: string,
     domainId: string,
   ) {
-    const domain = await prismaClient.domain.findUnique({
-      where: {
-        id: domainId,
-      },
-    })
-
-    if (!domain) {
-      throw new Error(`Domain not found`)
-    }
+    const domainVerification = new FindDomainIdVerification(domainId)
+    await domainVerification.execute()
 
     const product = await prismaClient.product.findUnique({
       where: {
@@ -52,6 +46,9 @@ export class PrismaSubsectionsRepository implements SubsectionsRepository {
     subSectionId: string,
     domainId: string,
   ) {
+    const domainVerification = new FindDomainIdVerification(domainId)
+    await domainVerification.execute()
+
     const subSection = await prismaClient.subsection.findUnique({
       where: {
         id: subSectionId,
@@ -80,6 +77,9 @@ export class PrismaSubsectionsRepository implements SubsectionsRepository {
   }
 
   async deleteSubsection(id: string, domainId: string) {
+    const domainVerification = new FindDomainIdVerification(domainId)
+    await domainVerification.execute()
+
     const subSection = await prismaClient.subsection.findUnique({
       where: {
         id,
@@ -101,6 +101,9 @@ export class PrismaSubsectionsRepository implements SubsectionsRepository {
   }
 
   async listSubsections(productId: string, domainId: string) {
+    const domainVerification = new FindDomainIdVerification(domainId)
+    await domainVerification.execute()
+
     const subSections = await prismaClient.subsection.findMany({
       where: {
         Product: {

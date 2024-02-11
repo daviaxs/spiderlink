@@ -1,6 +1,7 @@
 import { Prisma } from '@prisma/client'
 import { OptionsRepository } from '../options-repository'
 import { prismaClient } from '@/lib/prisma'
+import { FindDomainIdVerification } from '../verifications/find-domain-id'
 
 export class PrismaOptionsRepository implements OptionsRepository {
   async addOption(
@@ -8,21 +9,14 @@ export class PrismaOptionsRepository implements OptionsRepository {
     subsectionId: string,
     domainId: string,
   ) {
-    const domain = await prismaClient.domain.findUnique({
-      where: {
-        id: domainId,
-      },
-    })
+    const domainVerification = new FindDomainIdVerification(domainId)
+    await domainVerification.execute()
 
     const subsection = await prismaClient.subsection.findUnique({
       where: {
         id: subsectionId,
       },
     })
-
-    if (!domain) {
-      throw new Error(`Domain not found`)
-    }
 
     if (!subsection) {
       throw new Error(`Subsection not found`)
@@ -52,21 +46,14 @@ export class PrismaOptionsRepository implements OptionsRepository {
     optionId: string,
     domainId: string,
   ) {
-    const domain = await prismaClient.domain.findUnique({
-      where: {
-        id: domainId,
-      },
-    })
+    const domainVerification = new FindDomainIdVerification(domainId)
+    await domainVerification.execute()
 
     const option = await prismaClient.option.findUnique({
       where: {
         id: optionId,
       },
     })
-
-    if (!domain) {
-      throw new Error(`Domain not found`)
-    }
 
     if (!option) {
       throw new Error(`Option not found`)
@@ -90,6 +77,9 @@ export class PrismaOptionsRepository implements OptionsRepository {
   }
 
   async deleteOption(id: string, domainId: string) {
+    const domainVerification = new FindDomainIdVerification(domainId)
+    await domainVerification.execute()
+
     const option = await prismaClient.option.findUnique({
       where: {
         id,

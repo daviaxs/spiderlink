@@ -1,6 +1,7 @@
 import { Prisma } from '@prisma/client'
 import { ProductsRepository } from '../products-repository'
 import { prismaClient } from '@/lib/prisma'
+import { FindDomainIdVerification } from '../verifications/find-domain-id'
 
 export class PrismaProductsRepository implements ProductsRepository {
   async addProduct(
@@ -8,15 +9,8 @@ export class PrismaProductsRepository implements ProductsRepository {
     categoryId: string,
     domainId: string,
   ) {
-    const domain = await prismaClient.domain.findUnique({
-      where: {
-        id: domainId,
-      },
-    })
-
-    if (!domain) {
-      throw new Error(`Domain not found`)
-    }
+    const domainVerification = new FindDomainIdVerification(domainId)
+    await domainVerification.execute()
 
     const category = await prismaClient.category.findUnique({
       where: {
@@ -52,6 +46,9 @@ export class PrismaProductsRepository implements ProductsRepository {
     domainId: string,
     productId: string,
   ) {
+    const domainVerification = new FindDomainIdVerification(domainId)
+    await domainVerification.execute()
+
     const product = await prismaClient.product.update({
       where: {
         id: productId,
@@ -70,6 +67,9 @@ export class PrismaProductsRepository implements ProductsRepository {
   }
 
   async deleteProduct(productId: string, domainId: string) {
+    const domainVerification = new FindDomainIdVerification(domainId)
+    await domainVerification.execute()
+
     await prismaClient.product.delete({
       where: {
         id: productId,
@@ -79,6 +79,9 @@ export class PrismaProductsRepository implements ProductsRepository {
   }
 
   async listProducts(categoryId: string, domainId: string) {
+    const domainVerification = new FindDomainIdVerification(domainId)
+    await domainVerification.execute()
+
     const products = prismaClient.product.findMany({
       where: {
         Category: {
@@ -94,6 +97,9 @@ export class PrismaProductsRepository implements ProductsRepository {
   }
 
   async findProductByName(productName: string, domainId: string) {
+    const domainVerification = new FindDomainIdVerification(domainId)
+    await domainVerification.execute()
+
     const product = prismaClient.product.findFirst({
       where: {
         name: productName,

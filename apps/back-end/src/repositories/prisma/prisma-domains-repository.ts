@@ -1,6 +1,7 @@
 import { Prisma } from '@prisma/client'
 import { DomainsRepository } from '../domains-repository'
 import { prismaClient } from '@/lib/prisma'
+import { FindDomainIdVerification } from '../verifications/find-domain-id'
 
 export class PrismaDomainsRepository implements DomainsRepository {
   async addDomain(domain: Prisma.DomainCreateInput) {
@@ -12,6 +13,9 @@ export class PrismaDomainsRepository implements DomainsRepository {
   }
 
   async updateDomain(domain: Prisma.DomainUpdateInput, domainId: string) {
+    const domainVerification = new FindDomainIdVerification(domainId)
+    await domainVerification.execute()
+
     const updatedDomain = await prismaClient.domain.update({
       where: {
         id: domainId,
@@ -44,7 +48,10 @@ export class PrismaDomainsRepository implements DomainsRepository {
     })
   }
 
-  findDomainById(domainId: string) {
+  async findDomainById(domainId: string) {
+    const domainVerification = new FindDomainIdVerification(domainId)
+    await domainVerification.execute()
+
     const domain = prismaClient.domain.findUnique({
       where: {
         id: domainId,
