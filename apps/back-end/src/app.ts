@@ -21,6 +21,9 @@ app.register(fastifyCors, {
 
 app.register(multipart, {
   sharedSchemaId: 'MultipartfileType',
+  limits: {
+    fileSize: 5 * 1024 * 1024, // 5MB
+  },
 })
 
 cloudinary.config({

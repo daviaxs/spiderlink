@@ -17,10 +17,20 @@ export async function uploadImage(req: FastifyRequest, reply: FastifyReply) {
     return reply.status(400).send({ message: 'Request is not multipart' })
   }
 
+  const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg']
+
+  if (!allowedTypes.includes(data.mimetype)) {
+    return reply.status(400).send({ message: 'File type not allowed' })
+  }
+
   try {
     const result = await cloudinary.uploader.upload(
       'data:image/png;base64,' + fileContent.toString('base64'),
-      { resource_type: 'image', folder: 'images' },
+      {
+        resource_type: 'image',
+        folder: 'images',
+        transformation: { height: 200, crop: 'scale', quality: 'auto' },
+      },
     )
 
     return reply.status(201).send({ message: 'Image uploaded', data: result })
