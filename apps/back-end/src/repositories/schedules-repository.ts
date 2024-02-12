@@ -1,13 +1,18 @@
-import { Prisma, Schedules } from '@prisma/client'
+import { Prisma, Schedule } from '@prisma/client'
 
 export interface SchedulesRepository {
-  addSchedule(schedule: Prisma.SchedulesCreateInput): Promise<Schedules | null>
+  addSchedule(
+    schedule: Prisma.ScheduleCreateInput,
+    domainId: string,
+  ): Promise<Schedule | null>
 
   updateSchedule(
-    schedule: Prisma.SchedulesUpdateInput,
-  ): Promise<Schedules | null>
+    schedule: Prisma.ScheduleUpdateInput,
+    scheduleId: string,
+    domainId: string,
+  ): Promise<Schedule | null>
 
-  findScheduleByUserId(userId: number): Promise<Schedules | null>
+  findSchedule(scheduleId: string, domainId: string): Promise<Schedule | null>
 
-  deleteSchedule(id: string): Promise<void>
+  deleteSchedule(scheduleId: string, domainId: string): Promise<void>
 }
