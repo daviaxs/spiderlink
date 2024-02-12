@@ -1,7 +1,7 @@
 import { makeDeleteCategoryUseCase } from '@/use-cases/factories/categories/make-delete-category-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { handleError } from '../handleError'
+import { handleError } from '../../utils/handleError'
 
 export async function deleteCategory(req: FastifyRequest, reply: FastifyReply) {
   const deleteCategoryBodySchema = z.object({

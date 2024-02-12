@@ -1,7 +1,7 @@
 import { makeUpdateProductUseCase } from '@/use-cases/factories/products/make-update-product-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { handleError } from '../handleError'
+import { handleError } from '../../utils/handleError'
 
 export async function updateProdut(req: FastifyRequest, reply: FastifyReply) {
   const paramsBodySchema = z.object({

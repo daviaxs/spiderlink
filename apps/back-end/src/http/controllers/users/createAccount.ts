@@ -1,7 +1,7 @@
 import { makeCreateAccountUseCase } from '@/use-cases/factories/users/make-create-account-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { handleError } from '../handleError'
+import { handleError } from '../../utils/handleError'
 
 export async function createAccount(req: FastifyRequest, reply: FastifyReply) {
   const createAccountBodySchema = z.object({

@@ -1,7 +1,7 @@
 import { makeUpdateDomainUseCase } from '@/use-cases/factories/domains/make-update-domain-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { handleError } from '../handleError'
+import { handleError } from '../../utils/handleError'
 
 export async function updateDomain(req: FastifyRequest, reply: FastifyReply) {
   const domainIdBodySchema = z.object({

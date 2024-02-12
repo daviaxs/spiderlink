@@ -1,7 +1,7 @@
 import { makeDeleteSubsectionUseCase } from '@/use-cases/factories/subsections/make-delete-subsection-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { handleError } from '../handleError'
+import { handleError } from '../../utils/handleError'
 
 export async function deleteSubsection(
   req: FastifyRequest,

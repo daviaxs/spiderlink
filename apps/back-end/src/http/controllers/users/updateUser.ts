@@ -1,7 +1,7 @@
 import { makeUpdateUserUseCase } from '@/use-cases/factories/users/make-update-user-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { handleError } from '../handleError'
+import { handleError } from '../../utils/handleError'
 
 export async function updateUser(req: FastifyRequest, reply: FastifyReply) {
   const userIdBodySchema = z.object({

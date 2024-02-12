@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { handleError } from '../handleError'
+import { handleError } from '../../utils/handleError'
 import { makeAddOptionUseCase } from '@/use-cases/factories/options/make-add-option-use-case'
 
 export async function addOption(req: FastifyRequest, reply: FastifyReply) {

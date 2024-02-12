@@ -2,7 +2,7 @@ import { env } from '@/env'
 import { makeAuthenticateUseCase } from '@/use-cases/factories/users/make-authenticate-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { handleError } from '../handleError'
+import { handleError } from '../../utils/handleError'
 
 export async function authenticate(req: FastifyRequest, reply: FastifyReply) {
   const authenticateBodySchema = z.object({

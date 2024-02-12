@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { handleError } from '../handleError'
+import { handleError } from '../../utils/handleError'
 import { makeListProductsUseCase } from '@/use-cases/factories/products/make-list-products-use-case'
 
 export async function listProducts(req: FastifyRequest, reply: FastifyReply) {

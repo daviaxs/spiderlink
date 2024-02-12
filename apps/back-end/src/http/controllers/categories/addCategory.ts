@@ -1,7 +1,7 @@
 import { makeAddCategoryUseCase } from '@/use-cases/factories/categories/make-add-category-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { handleError } from '../handleError'
+import { handleError } from '../../utils/handleError'
 
 export async function addCategory(req: FastifyRequest, reply: FastifyReply) {
   const domainBodySchema = z.object({

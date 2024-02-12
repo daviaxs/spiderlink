@@ -1,7 +1,7 @@
 import { makeListCategoriesUseCase } from '@/use-cases/factories/categories/make-list-categories-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { handleError } from '../handleError'
+import { handleError } from '../../utils/handleError'
 
 export async function listCategories(req: FastifyRequest, reply: FastifyReply) {
   const listCategoriesBodySchema = z.object({

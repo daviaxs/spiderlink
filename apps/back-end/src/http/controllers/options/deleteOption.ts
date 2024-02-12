@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { handleError } from '../handleError'
+import { handleError } from '../../utils/handleError'
 import { makeDeleteOptionUseCase } from '@/use-cases/factories/options/make-delete-option-use-case'
 
 export async function deleteOption(req: FastifyRequest, reply: FastifyReply) {

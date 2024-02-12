@@ -1,7 +1,7 @@
 import { makeAddSubsectionUseCase } from '@/use-cases/factories/subsections/make-add-subsection-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { handleError } from '../handleError'
+import { handleError } from '../../utils/handleError'
 
 export async function addSubsection(req: FastifyRequest, reply: FastifyReply) {
   const paramsBodySchema = z.object({

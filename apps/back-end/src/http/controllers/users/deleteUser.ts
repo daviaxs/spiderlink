@@ -1,7 +1,7 @@
 import { makeDeleteUserUseCase } from '@/use-cases/factories/users/make-delete-user-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { handleError } from '../handleError'
+import { handleError } from '../../utils/handleError'
 
 export async function deleteUser(req: FastifyRequest, reply: FastifyReply) {
   const deleteUserBodySchema = z.object({

@@ -1,7 +1,7 @@
 import { makeCreateDomainUseCase } from '@/use-cases/factories/domains/make-create-domain-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { handleError } from '../handleError'
+import { handleError } from '../../utils/handleError'
 
 export async function createDomain(req: FastifyRequest, reply: FastifyReply) {
   const createDomainBodySchema = z.object({

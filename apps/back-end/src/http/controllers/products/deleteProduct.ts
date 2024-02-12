@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { handleError } from '../handleError'
+import { handleError } from '../../utils/handleError'
 import { makeDeleteProductUseCase } from '@/use-cases/factories/products/make-delete-product-use-case'
 
 export async function deleteProduct(req: FastifyRequest, reply: FastifyReply) {

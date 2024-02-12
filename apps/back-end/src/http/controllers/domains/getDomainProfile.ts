@@ -1,7 +1,7 @@
 import { makeGetDomainProfileUseCase } from '@/use-cases/factories/domains/make-get-domain-profile-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { handleError } from '../handleError'
+import { handleError } from '../../utils/handleError'
 
 export async function getDomainProfile(
   req: FastifyRequest,

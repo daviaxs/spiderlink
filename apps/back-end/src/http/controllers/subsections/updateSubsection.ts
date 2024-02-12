@@ -1,7 +1,7 @@
 import { makeUpdateSubsectionUseCase } from '@/use-cases/factories/subsections/make-update-subsection-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
-import { handleError } from '../handleError'
+import { handleError } from '../../utils/handleError'
 
 export async function updateSubsection(
   req: FastifyRequest,
