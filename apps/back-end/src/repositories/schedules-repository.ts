@@ -12,7 +12,7 @@ export interface SchedulesRepository {
     domainId: string,
   ): Promise<Schedule | null>
 
-  findSchedule(scheduleId: string, domainId: string): Promise<Schedule | null>
+  findSchedule(domainId: string): Promise<Schedule | null>
 
   deleteSchedule(scheduleId: string, domainId: string): Promise<void>
 }

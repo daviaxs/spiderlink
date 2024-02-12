@@ -33,22 +33,29 @@ export class PrismaSchedulesRepository implements SchedulesRepository {
     const updatedSchedule = await prismaClient.schedule.update({
       where: {
         id: scheduleId,
+        Domain: {
+          id: domainId,
+        },
       },
       data: {
         ...schedule,
+        Domain: {
+          connect: {
+            id: domainId,
+          },
+        },
       },
     })
 
     return updatedSchedule
   }
 
-  async findSchedule(scheduleId: string, domainId: string) {
+  async findSchedule(domainId: string) {
     const domainVerification = new FindDomainIdVerification(domainId)
     await domainVerification.execute()
 
-    const schedule = await prismaClient.schedule.findUnique({
+    const schedule = await prismaClient.schedule.findFirst({
       where: {
-        id: scheduleId,
         Domain: {
           id: domainId,
         },
