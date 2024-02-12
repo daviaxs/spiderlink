@@ -12,12 +12,14 @@ export async function updateSubsection(
     subsectionId: z.string(),
   })
 
-  const subsectionBodySchema = z.object({
-    name: z.string(),
-    multipleChoice: z.boolean(),
-    limit: z.number(),
-    required: z.boolean(),
-  })
+  const subsectionBodySchema = z
+    .object({
+      name: z.string(),
+      multipleChoice: z.boolean(),
+      limit: z.number(),
+      required: z.boolean(),
+    })
+    .partial()
 
   const parsed = paramsBodySchema.safeParse(req.params)
   const parsedBody = subsectionBodySchema.safeParse(req.body)
