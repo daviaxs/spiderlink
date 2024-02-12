@@ -7,40 +7,32 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Role {
-  OWNER
-  ADMIN
-}
-
 model Domain {
-  id         String @id @default(uuid())
-  domainName String @unique
-
+  id           String       @id @default(uuid())
+  domainName   String       @unique
   name         String
   phone        String
   cep          String
   address      String
   cnpj         String?
   deliveryTime String
-
-  User        User[]
-  Categories  Category[]
-  Products    Product[]
-  Subsections Subsection[]
-  Options     Option[]
-  Schedules   Schedule[]
+  Categories   Category[]
+  Options      Option[]
+  Products     Product[]
+  Schedules    Schedule?
+  Subsections  Subsection[]
+  User         User[]
 
   @@map("domains")
 }
 
 model User {
-  id            String @id @default(uuid())
-  email         String @unique
+  id            String  @id @default(uuid())
+  email         String  @unique
   password_hash String
-  role          Role   @default(ADMIN)
-
-  domainId String?
-  Domain   Domain? @relation(fields: [domainId], references: [id], onDelete: Cascade)
+  role          Role    @default(ADMIN)
+  domainId      String?
+  Domain        Domain? @relation(fields: [domainId], references: [id], onDelete: Cascade)
 
   @@map("users")
 }
@@ -48,78 +40,72 @@ model User {
 model Category {
   id       String    @id @default(uuid())
   name     String
-  Products Product[]
-
   domainId String
-  Domain   Domain @relation(fields: [domainId], references: [id], onDelete: Cascade)
+  Domain   Domain    @relation(fields: [domainId], references: [id], onDelete: Cascade)
+  Products Product[]
 
   @@map("categories")
 }
 
 model Product {
-  id String @id @default(uuid())
-
+  id          String       @id @default(uuid())
   img         String
   name        String
   price       Float
   description String
-
+  domainId    String
+  categoryId  String
+  Category    Category     @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  Domain      Domain       @relation(fields: [domainId], references: [id], onDelete: Cascade)
   Subsections Subsection[]
-
-  categoryId String
-  Category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-
-  domainId String
-  Domain   Domain @relation(fields: [domainId], references: [id], onDelete: Cascade)
 
   @@map("products")
 }
 
 model Subsection {
-  id   String @id @default(uuid())
-  name String
-
+  id             String   @id @default(uuid())
+  name           String
   multipleChoice Boolean
   limit          Int
   required       Boolean
-
-  ProductId String
-  Product   Product  @relation(fields: [ProductId], references: [id], onDelete: Cascade)
-  Options   Option[]
-
-  domainId String
-  Domain   Domain @relation(fields: [domainId], references: [id], onDelete: Cascade)
+  domainId       String
+  ProductId      String
+  Options        Option[]
+  Product        Product  @relation(fields: [ProductId], references: [id], onDelete: Cascade)
+  Domain         Domain   @relation(fields: [domainId], references: [id], onDelete: Cascade)
 
   @@map("subsections")
 }
 
 model Option {
-  id          String  @id @default(uuid())
-  name        String
-  description String?
-  price       Float
-
+  id           String     @id @default(uuid())
+  name         String
+  description  String?
+  price        Float
+  domainId     String
   SubsectionId String
   Subsection   Subsection @relation(fields: [SubsectionId], references: [id], onDelete: Cascade)
-
-  domainId String
-  Domain   Domain @relation(fields: [domainId], references: [id], onDelete: Cascade)
+  Domain       Domain     @relation(fields: [domainId], references: [id], onDelete: Cascade)
 
   @@map("options")
 }
 
 model Schedule {
-  id  String @id @default(uuid())
-  seg Json
-  ter Json
-  qua Json
-  qui Json
-  sex Json
-  sab Json
-  dom Json
-
+  id       String @id @default(uuid())
+  seg      Json
+  ter      Json
+  qua      Json
+  qui      Json
+  sex      Json
+  sab      Json
+  dom      Json
   domainId String @unique
   Domain   Domain @relation(fields: [domainId], references: [id], onDelete: Cascade)
 
   @@map("schedules")
+}
+
+enum Role {
+  OWNER
+  ADMIN
 }

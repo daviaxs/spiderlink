@@ -8,7 +8,7 @@
     "start": "node public/server.js",
     "prebuild": "rimraf public",
     "build": "tsc --project tsconfig.build.json && tsc-alias --project tsconfig.build.json",
-    "postinstall": "prisma generate"
+    "postbuild": "prisma generate"
   },
   "keywords": [],
   "author": "",
