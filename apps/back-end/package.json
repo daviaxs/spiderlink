@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "start": "node public/server.js",
-    "build": "tsc src --out-dir public",
+    "prebuild": "rimraf public",
+    "build": "tsc --project tsconfig.build.json && tsc-alias --project tsconfig.build.json",
     "postinstall": "prisma generate"
   },
   "keywords": [],
@@ -33,7 +34,8 @@
     "dotenv": "^16.4.1",
     "eslint": "8.56.0",
     "prisma": "5.9.0",
-    "tsup": "^8.0.1",
+    "rimraf": "5.0.5",
+    "tsc-alias": "1.8.8",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3"
   }
