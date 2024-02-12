@@ -31,8 +31,8 @@ app.register(multipart, {
 
 cloudinary.config({
   cloud_name: env.CLOUDINARY_CLOUD_NAME,
-  api_key: env.CLOUDINARY_API_KET,
-  api_secret: env.CLOUDINARY_SECRET_KET,
+  api_key: env.CLOUDINARY_API_KEY,
+  api_secret: env.CLOUDINARY_SECRET_KEY,
 })
 
 app.register(fastifyJwt, {
