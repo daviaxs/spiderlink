@@ -7,5 +7,4 @@
       "destination": "src/server.ts"
     }
   ],
-  "redirects": [{ "source": "/", "destination": "/src", "permanent": false }]
 }
