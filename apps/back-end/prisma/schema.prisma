@@ -118,7 +118,7 @@ model Schedule {
   sab Json
   dom Json
 
-  domainId String
+  domainId String @unique
   Domain   Domain @relation(fields: [domainId], references: [id], onDelete: Cascade)
 
   @@map("schedules")
