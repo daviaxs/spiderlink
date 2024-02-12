@@ -13,11 +13,12 @@ import { subsectionsRoutes } from './http/controllers/subsections/routes'
 import { uploadsRoutes } from './http/controllers/uploads/routes'
 import { optionsRoutes } from './http/controllers/options/routes'
 import { schedulesRoutes } from './http/controllers/schedules/routes'
+import { domains } from './domains'
 
 export const app = fastify()
 
 app.register(fastifyCors, {
-  origin: env.FRONT_END_URL,
+  origin: domains,
   credentials: true,
 })
 
