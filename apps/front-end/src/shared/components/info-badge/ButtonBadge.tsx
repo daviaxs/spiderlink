@@ -6,5 +6,9 @@ interface ButtonBadgeProps extends React.HTMLAttributes<HTMLButtonElement> {
 }
 
 export function ButtonBadge({ children }: ButtonBadgeProps) {
-  return <ButtonBadgeStyle>{children}</ButtonBadgeStyle>
+  return (
+    <ButtonBadgeStyle>
+      <span>{children}</span>
+    </ButtonBadgeStyle>
+  )
 }

@@ -9,7 +9,13 @@ export function TitleBadge({ children }: { children: ReactNode }) {
   const theme = useTheme()
 
   return (
-    <Text as="h6" size={16} color={theme.title} className={inter.className}>
+    <Text
+      as="h6"
+      size={16}
+      color={theme.title}
+      className={inter.className}
+      $whiteSpace="nowrap"
+    >
       {children}
     </Text>
   )
