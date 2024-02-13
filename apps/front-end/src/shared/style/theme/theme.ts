@@ -14,6 +14,9 @@ export const lightTheme = {
 
   icon: themeColors['dark-blue-800'],
   iconContainer: themeColors['dark-blue-100'],
+
+  button: themeColors['primary-500'],
+  hoverButton: '#00000010',
 }
 
 export const darkTheme = {
@@ -30,4 +33,7 @@ export const darkTheme = {
 
   icon: themeColors['dark-blue-50'],
   iconContainer: themeColors['dark-blue-500'],
+
+  button: themeColors['primary-200'],
+  hoverButton: '#ffffff10',
 }
