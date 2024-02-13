@@ -12,8 +12,8 @@ export const themeColors = {
   'primary-800': '#290062',
   'primary-900': '#1f004b',
 
-  'dark-blue-50': '#eae9ea',
-  'dark-blue-100': '#bcbcbf',
+  'dark-blue-50': '#F1F1F1',
+  'dark-blue-100': '#D7D7D7',
   'dark-blue-200': '#9c9c9f',
   'dark-blue-300': '#6f6e74',
   'dark-blue-400': '#535259',
