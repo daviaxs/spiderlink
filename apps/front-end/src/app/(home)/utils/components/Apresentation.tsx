@@ -1,18 +1,11 @@
 'use client'
 
 import Image from 'next/image'
-import { Apresentation, Banner, Infos, Texts } from '../../HomePage.style'
+import { Apresentation, Banner, Infos, Texts } from './Apresentation.style'
 import { Text } from '@/shared/components/text/Text'
 import { inter } from '@/shared/style/theme/fonts'
-import { api } from '@/lib/axios'
 
 export function ApresentationRoot() {
-  const data = api.get('/domains/cf7e8ad4-b7ac-4274-9f6a-cd6c85dcac70')
-
-  data.then((res) => {
-    console.log(res.data.domain.name)
-  })
-
   return (
     <Apresentation>
       <Banner>
@@ -37,8 +30,13 @@ export function ApresentationRoot() {
         />
 
         <Texts>
-          <Text as="h1" size={32} $weight="800" className={inter.className}>
-            {}
+          <Text
+            as="h1"
+            size={32}
+            $weight="800"
+            className={`${inter.className} ecommerceName`}
+          >
+            Spiderlink
           </Text>
 
           <Text
