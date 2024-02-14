@@ -7,6 +7,9 @@ import { roboto } from '@/shared/style/theme/fonts'
 import { ThemeProvider } from 'styled-components'
 import { useTheme } from '@/shared/hooks/useTheme'
 import { darkTheme, lightTheme } from '@/shared/style/theme/theme'
+import { DomainInfosProvider } from '@/shared/contexts/DomainInfos'
+import Head from 'next/head'
+import { SchedulesProvider } from '@/shared/contexts/Schedules'
 
 export default function RootLayout({
   children,
@@ -17,15 +20,19 @@ export default function RootLayout({
 
   return (
     <html lang="pt-br">
-      <head>
+      <Head>
         <title>SpiderLink</title>
-      </head>
+      </Head>
       <body className={roboto.className}>
         <StyledComponentsRegistry>
           <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-            <GlobalStyle />
-            <Header toggleTheme={toggleTheme} />
-            {children}
+            <DomainInfosProvider>
+              <SchedulesProvider>
+                <GlobalStyle />
+                <Header toggleTheme={toggleTheme} />
+                {children}
+              </SchedulesProvider>
+            </DomainInfosProvider>
           </ThemeProvider>
         </StyledComponentsRegistry>
       </body>
