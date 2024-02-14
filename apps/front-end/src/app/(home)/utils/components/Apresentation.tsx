@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { Apresentation, Banner, Infos, Texts } from './Apresentation.style'
 import { Text } from '@/shared/components/text/Text'
 import { inter } from '@/shared/style/theme/fonts'
+import { ViewMoreMenu } from '@/shared/components/view-more-menu/ViewMoreMenu'
 
 export function ApresentationRoot() {
   return (
@@ -39,14 +40,7 @@ export function ApresentationRoot() {
             Spiderlink
           </Text>
 
-          <Text
-            size={20}
-            $weight="700"
-            className={inter.className}
-            $whiteSpace="nowrap"
-          >
-            Ver mais
-          </Text>
+          <ViewMoreMenu />
         </Texts>
       </Infos>
     </Apresentation>
