@@ -2,10 +2,12 @@
 
 import { Motorcycle } from '@/shared/assets/svgs'
 import { InfoBadge } from '@/shared/components/info-badge'
+import { useGetDomainInfos } from '@/shared/hooks/useGetDomainInfos'
 import { useTheme } from 'styled-components'
 
 export function DeliveryTime() {
   const theme = useTheme()
+  const { deliveryTime } = useGetDomainInfos()
 
   return (
     <InfoBadge.Root>
@@ -15,7 +17,7 @@ export function DeliveryTime() {
 
       <InfoBadge.TextsBadge>
         <InfoBadge.TitleBadge>Entrega</InfoBadge.TitleBadge>
-        <InfoBadge.DescriptionBadge>50m a 1h</InfoBadge.DescriptionBadge>
+        <InfoBadge.DescriptionBadge>{deliveryTime}</InfoBadge.DescriptionBadge>
       </InfoBadge.TextsBadge>
     </InfoBadge.Root>
   )
