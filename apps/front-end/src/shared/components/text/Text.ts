@@ -6,7 +6,7 @@ interface TextProps {
   as: keyof JSX.IntrinsicElements
   size: number
   color?: string
-  $weight?: '200' | '300' | '400' | '500' | '700' | '800' | '900'
+  $weight?: '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900'
   $textalign?: 'center' | 'left' | 'right'
   $lineheight?: string
   $whiteSpace?: 'normal' | 'nowrap'
