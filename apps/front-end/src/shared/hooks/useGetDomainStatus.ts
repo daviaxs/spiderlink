@@ -2,25 +2,10 @@ import { useState, useEffect } from 'react'
 import { format, setHours, setMinutes } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { api } from '@/lib/axios'
-
-type Schedule = {
-  inicio: string
-  termino: string
-  fechado: boolean
-}
-
-type WeekSchedule = {
-  seg: Schedule
-  ter: Schedule
-  qua: Schedule
-  qui: Schedule
-  sex: Schedule
-  sab: Schedule
-  dom: Schedule
-}
+import { DaysWeek } from '../contexts/Schedules'
 
 type DayOfWeekMap = {
-  [key: string]: keyof WeekSchedule
+  [key: string]: keyof DaysWeek
 }
 
 export function useGetDomainStatus(): string {
@@ -29,7 +14,7 @@ export function useGetDomainStatus(): string {
   )
 
   useEffect(() => {
-    const fetchSchedule = async (): Promise<WeekSchedule> => {
+    const fetchSchedule = async (): Promise<DaysWeek> => {
       const response = await api.get(
         `/schedules/${process.env.NEXT_PUBLIC_DOMAIN_ID}`,
       )
@@ -37,7 +22,7 @@ export function useGetDomainStatus(): string {
       return response.data.schedule
     }
 
-    const isEstablishmentOpen = (schedule: WeekSchedule): boolean => {
+    const isEstablishmentOpen = (schedule: DaysWeek): boolean => {
       const now = new Date()
       const currentDay = format(now, 'eee', { locale: ptBR })
         .slice(0, 3)
