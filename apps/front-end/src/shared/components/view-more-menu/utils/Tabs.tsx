@@ -5,6 +5,7 @@ import { useTheme } from 'styled-components'
 import { useGetDomainInfos } from '@/shared/hooks/useGetDomainInfos'
 import { convertToCep } from '@/shared/functions/convertToCep'
 import { convertToCnpj } from '@/shared/functions/convertToCnpj'
+import { Schedules } from '../../schedules/Schedules'
 
 export function TabsComponent() {
   const theme = useTheme()
@@ -84,9 +85,7 @@ export function TabsComponent() {
       </Content>
 
       <Content className="TabsContent" value="schedule">
-        <Text size={20} $weight="700" className={inter.className}>
-          Horários
-        </Text>
+        <Schedules />
       </Content>
     </Root>
   )
