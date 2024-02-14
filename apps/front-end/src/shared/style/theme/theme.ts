@@ -7,7 +7,7 @@ export const lightTheme = {
   bodySecondary: themeColors['dark-blue-50'],
 
   border: themeColors['dark-blue-100'],
-  borderSecondary: themeColors['dark-blue-100'],
+  borderSecondary: themeColors['dark-blue-200'],
 
   title: themeColors['dark-blue-800'],
   text: themeColors['dark-blue-800'],
