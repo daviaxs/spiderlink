@@ -23,8 +23,10 @@ type DayOfWeekMap = {
   [key: string]: keyof WeekSchedule
 }
 
-export function useGetDomainStatus(): string | null {
-  const [status, setStatus] = useState<string | null>('carregando')
+export function useGetDomainStatus(): string {
+  const [status, setStatus] = useState<'aberto' | 'fechado' | 'carregando'>(
+    'carregando',
+  )
 
   useEffect(() => {
     const fetchSchedule = async (): Promise<WeekSchedule> => {
