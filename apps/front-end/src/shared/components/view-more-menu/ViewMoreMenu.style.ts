@@ -50,7 +50,7 @@ export const Content = styled(Dialog.Content)`
   z-index: 999;
 
   background-color: ${(props) => props.theme.body};
-  border: 1px solid ${(props) => props.theme.border};
+  border-left: 1px solid ${(props) => props.theme.border};
 
   @media (max-width: 500px) {
     width: 100%;
