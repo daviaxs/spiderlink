@@ -15,8 +15,10 @@ export const lightTheme = {
 
   icon: themeColors['dark-blue-800'],
   iconSecondary: themeColors['dark-blue-300'],
-  iconTertiary: themeColors['primary-500'],
   iconContainer: themeColors['dark-blue-100'],
+
+  statusOpen: themeColors['primary-500'],
+  statusClosed: themeColors['red-400'],
 
   button: themeColors['primary-500'],
   hoverButton: '#00000010',
@@ -37,8 +39,10 @@ export const darkTheme = {
 
   icon: themeColors['dark-blue-50'],
   iconSecondary: themeColors['dark-blue-200'],
-  iconTertiary: themeColors['primary-200'],
   iconContainer: themeColors['dark-blue-500'],
+
+  statusOpen: themeColors['primary-200'],
+  statusClosed: themeColors['red-500'],
 
   button: themeColors['primary-200'],
   hoverButton: '#ffffff10',
