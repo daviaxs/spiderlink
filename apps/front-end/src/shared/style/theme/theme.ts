@@ -8,6 +8,7 @@ export const lightTheme = {
 
   border: themeColors['dark-blue-100'],
   borderSecondary: themeColors['dark-blue-200'],
+  borderTertiary: themeColors['dark-blue-300'],
 
   title: themeColors['dark-blue-800'],
   text: themeColors['dark-blue-800'],
@@ -16,6 +17,7 @@ export const lightTheme = {
 
   icon: themeColors['dark-blue-800'],
   iconSecondary: themeColors['dark-blue-300'],
+  iconTertiary: themeColors['dark-blue-200'],
   iconContainer: themeColors['dark-blue-100'],
 
   statusOpen: themeColors['primary-500'],
@@ -30,6 +32,7 @@ export const darkTheme = {
 
   body: themeColors['dark-blue-900'],
   bodySecondary: themeColors['dark-blue-800'],
+  bodyTertiary: themeColors['dark-blue-700'],
 
   border: themeColors['dark-blue-500'],
   borderSecondary: themeColors['dark-blue-400'],
@@ -41,6 +44,7 @@ export const darkTheme = {
 
   icon: themeColors['dark-blue-50'],
   iconSecondary: themeColors['dark-blue-200'],
+  iconTertiary: themeColors['dark-blue-500'],
   iconContainer: themeColors['dark-blue-500'],
 
   statusOpen: themeColors['primary-200'],
