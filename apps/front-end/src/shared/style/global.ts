@@ -9,8 +9,6 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
-    transition: background-color 200ms, color 100ms;
   }
 
   input:-webkit-autofill,
