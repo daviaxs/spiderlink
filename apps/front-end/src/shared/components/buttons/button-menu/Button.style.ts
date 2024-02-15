@@ -2,7 +2,11 @@
 
 import styled from 'styled-components'
 
-export const ButtonStyle = styled.button`
+interface ButtonStyleProps {
+  as: keyof JSX.IntrinsicElements
+}
+
+export const ButtonStyle = styled.button<ButtonStyleProps>`
   border: none;
   cursor: pointer;
   outline: none;

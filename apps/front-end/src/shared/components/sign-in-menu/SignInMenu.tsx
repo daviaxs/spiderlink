@@ -20,7 +20,7 @@ export function SignInMenu() {
   return (
     <Dialog.Root>
       <Trigger>
-        <ButtonMenu.Root>
+        <ButtonMenu.Root as="div">
           <ButtonMenu.ButtonIcon>
             <UserRound size={25} color={theme.icon} />
           </ButtonMenu.ButtonIcon>
@@ -49,6 +49,7 @@ export function SignInMenu() {
                 <Form.Input
                   type="email"
                   placeholder="Email"
+                  autoComplete="current-email"
                   register={methods.register('email')}
                 />
                 <ErrorMessage name="email" />
@@ -58,6 +59,7 @@ export function SignInMenu() {
                 <Form.Input
                   type="password"
                   placeholder="Senha"
+                  autoComplete="current-password"
                   register={methods.register('password')}
                 />
 
