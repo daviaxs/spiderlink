@@ -2,6 +2,7 @@ import { api } from '@/lib/axios'
 import { ReactNode, createContext, useEffect, useState } from 'react'
 
 interface DomainInfos {
+  domainName: string
   name: string
   phone: string
   cep: string
@@ -20,6 +21,7 @@ export function DomainInfosProvider({ children }: { children: ReactNode }) {
     address: 'carregando',
     cnpj: '00.000.000/0000-00',
     deliveryTime: 'carregando',
+    domainName: 'carregando',
   })
 
   useEffect(() => {
@@ -35,6 +37,7 @@ export function DomainInfosProvider({ children }: { children: ReactNode }) {
           address: data.address,
           cnpj: data.cnpj,
           deliveryTime: data.deliveryTime,
+          domainName: data.domainName,
         })
       })
   }, [])
