@@ -3,6 +3,9 @@ import { Content, Overlay, Trigger } from './SignInMenu.style'
 import { ButtonMenu } from '../buttons/button-menu'
 import { UserRound } from 'lucide-react'
 import { useTheme } from 'styled-components'
+import { Form } from '../form'
+import { Text } from '../text/Text'
+import { ButtonForm } from '../buttons/button-form/ButtonForm'
 
 export function SignInMenu() {
   const theme = useTheme()
@@ -24,7 +27,20 @@ export function SignInMenu() {
       <Dialog.Portal>
         <Overlay />
 
-        <Content>Hello word</Content>
+        <Content>
+          <Text size={32} $weight="600">
+            Entrar
+          </Text>
+
+          <Form.Content>
+            <Form.Input type="email" placeholder="Email" />
+            <Form.Input type="password" placeholder="Senha" />
+
+            <ButtonForm type="submit" size="full">
+              Entrar
+            </ButtonForm>
+          </Form.Content>
+        </Content>
       </Dialog.Portal>
     </Dialog.Root>
   )
