@@ -6,21 +6,27 @@ export const CategorysRoot = styled.div`
   display: flex;
   align-items: start;
   justify-content: start;
-  padding: 0rem 2rem;
-  gap: 0.75rem;
   flex-direction: column;
+
+  width: 100%;
+  gap: 0.75rem;
+
+  h2 {
+    padding: 0 2rem;
+  }
 `
 
 export const CategoryListRoot = styled.div`
   display: flex;
   width: 100%;
   position: relative;
+  overflow-x: hidden;
 `
 
 export const CategoryScroll = styled.ul`
   display: flex;
   gap: 2rem;
-  padding: 0 0 1rem 0;
+  padding: 0 2rem 1rem 2rem;
   overflow-x: auto;
 
   & {
