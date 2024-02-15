@@ -8,7 +8,7 @@ export const signIpSchema = z.object({
     .min(6, 'A senha precisa de no mínimo 6 caracteres')
     .max(30, 'Limite de 30 caracteres excedido'),
 
-  domainName: z.string(),
+  domainName: z.string().optional(),
 })
 
 export type signInUserData = z.infer<typeof signIpSchema>
