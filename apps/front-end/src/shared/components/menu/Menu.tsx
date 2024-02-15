@@ -11,9 +11,10 @@ import {
   Trigger,
 } from './Menu.style'
 import { Text } from '@/shared/components/text/Text'
-import { Palette, UserRound, X } from 'lucide-react'
-import { ButtonMenu } from '../header/utils/button'
+import { Palette, X } from 'lucide-react'
+import { ButtonMenu } from '../buttons/button-menu'
 import { useTheme } from 'styled-components'
+import { SignInMenu } from '../sign-in-menu/SignInMenu'
 
 export function Menu({ toggleTheme }: { toggleTheme?: () => void }) {
   const theme = useTheme()
@@ -52,17 +53,7 @@ export function Menu({ toggleTheme }: { toggleTheme?: () => void }) {
               </ButtonMenu.ButtonTexts>
             </ButtonMenu.Root>
 
-            <ButtonMenu.Root>
-              <ButtonMenu.ButtonIcon>
-                <UserRound size={25} color={theme.icon} />
-              </ButtonMenu.ButtonIcon>
-
-              <ButtonMenu.ButtonTexts>
-                <ButtonMenu.ButtonTitle>
-                  Entrar como admin
-                </ButtonMenu.ButtonTitle>
-              </ButtonMenu.ButtonTexts>
-            </ButtonMenu.Root>
+            <SignInMenu />
           </MenuContent>
         </Content>
       </Dialog.Portal>
