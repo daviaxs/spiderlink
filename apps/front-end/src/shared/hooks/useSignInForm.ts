@@ -40,7 +40,7 @@ export function useSignInForm() {
           },
         )
         setSuccessMessage(true)
-        window.location.href = '/'
+        window.location.href = '/admin'
       })
       .catch((e) => {
         setErrorMessage(e.response.data.message)
