@@ -5,10 +5,10 @@ export const lightTheme = {
 
   body: themeColors.white,
   bodySecondary: themeColors['dark-blue-50'],
+  bodyTertiary: themeColors['dark-blue-200'] + '40',
 
   border: themeColors['dark-blue-100'],
   borderSecondary: themeColors['dark-blue-200'],
-  borderTertiary: themeColors['dark-blue-300'],
 
   title: themeColors['dark-blue-800'],
   text: themeColors['dark-blue-800'],
