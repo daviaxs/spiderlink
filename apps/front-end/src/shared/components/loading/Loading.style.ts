@@ -7,7 +7,7 @@ export const LoadingStyle = styled.span`
 
   .loader {
     border: 2px solid;
-    border-color: transparent #fff;
+    border-color: transparent ${(props) => props.theme.icon};
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -23,7 +23,7 @@ export const LoadingStyle = styled.span`
     left: 50%;
     top: 50%;
     border: 14px solid;
-    border-color: transparent rgba(255, 255, 255, 0.15);
+    border-color: transparent ${(props) => props.theme.iconTertiary};
     border-radius: 50%;
     transform: translate(-50%, -50%);
   }
