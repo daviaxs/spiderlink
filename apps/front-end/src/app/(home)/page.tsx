@@ -1,49 +1,16 @@
-import Image from 'next/image'
-import { Apresentation, Banner, Infos, Root, Texts } from './HomePage.style'
-import { Text } from '@/shared/components/text/Text'
-import { inter } from '@/shared/style/theme/fonts'
+import { Categorys } from '@/shared/components/categorys/Categorys'
+import { Root } from './HomePage.style'
+import { ApresentationRoot } from './utils/components/Apresentation'
+import { InfosBadges } from './utils/infos-badges/InfosBadges'
 
 export default function Home() {
   return (
     <Root>
-      <Apresentation>
-        <Banner>
-          <Image
-            src="/banner.png"
-            alt="banner"
-            className="image"
-            width={1800}
-            height={300}
-            priority
-          />
-        </Banner>
+      <ApresentationRoot />
 
-        <Infos>
-          <Image
-            src="/avatar.png"
-            alt="perfil"
-            width={150}
-            height={150}
-            className="avatar"
-            priority
-          />
+      <InfosBadges />
 
-          <Texts>
-            <Text as="h1" size={32} $weight="800" className={inter.className}>
-              SpiderLink - Asa - Avenida Rede dos Sites (asa)
-            </Text>
-
-            <Text
-              size={20}
-              $weight="700"
-              className={inter.className}
-              $whiteSpace="nowrap"
-            >
-              Ver mais
-            </Text>
-          </Texts>
-        </Infos>
-      </Apresentation>
+      <Categorys />
     </Root>
   )
 }
