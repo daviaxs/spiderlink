@@ -30,10 +30,15 @@ export function useSignInForm() {
       })
       .then((response) => {
         setErrorMessage(null)
-        setCookie(undefined, SPIDER_LINK_ACCESS_TOKEN, response.data.token, {
-          maxAge: 60 * 60 * 24 * 7, // 7 days
-          path: '/',
-        })
+        setCookie(
+          undefined,
+          SPIDER_LINK_ACCESS_TOKEN,
+          response.data.data.token,
+          {
+            maxAge: 60 * 60 * 24 * 7, // 7 days
+            path: '/',
+          },
+        )
         setSuccessMessage(true)
         window.location.href = '/'
       })
