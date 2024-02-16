@@ -11,7 +11,7 @@ import { verifyToken } from './verifyToken'
 
 export async function userRoutes(app: FastifyInstance) {
   app.get('/users/profile', { onRequest: [VerifyJWT] }, getUserProfile)
-  app.get('/token/verify', verifyToken)
+  app.get('/token/verify/:id', verifyToken)
 
   app.post('/users', createAccount)
   app.post('/users/authenticate', authenticate)
