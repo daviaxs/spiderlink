@@ -10,6 +10,7 @@ interface TextProps {
   $textalign?: 'center' | 'left' | 'right'
   $lineheight?: string
   $whiteSpace?: 'normal' | 'nowrap'
+  $letterSpacing?: string
   fontVariant?:
     | 'small-caps'
     | 'all-small-caps'
@@ -26,5 +27,6 @@ export const Text = styled.p<TextProps>`
   line-height: ${({ $lineheight }) => $lineheight || '100%'};
   text-align: ${({ $textalign }) => $textalign};
   white-space: ${({ $whiteSpace }) => $whiteSpace || 'normal'};
+  letter-spacing: ${({ $letterSpacing }) => $letterSpacing || 'normal'};
   font-variant: ${({ fontVariant }) => fontVariant};
 `
