@@ -86,7 +86,7 @@ export function Menu({ toggleTheme }: { toggleTheme?: () => void }) {
               <SignInMenu />
             ) : (
               <>
-                {window.location.pathname !== '/admin' && (
+                {!window.location.pathname.startsWith('/admin') && (
                   <Link
                     href="/admin"
                     style={{ width: '100%' }}
