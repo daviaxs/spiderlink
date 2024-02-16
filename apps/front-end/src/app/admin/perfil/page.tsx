@@ -10,9 +10,11 @@ import { Cnpj } from './utils/inputs/Cnpj'
 import { Phone } from './utils/inputs/Phone'
 import { DeliveryTime } from './utils/inputs/DeliveryTime'
 import { Name } from './utils/inputs/Name'
-import { ChevronLeft } from 'lucide-react'
+import { ChevronLeft, Pencil } from 'lucide-react'
 import { useTheme } from 'styled-components'
 import Link from 'next/link'
+import { Schedules } from '@/shared/components/schedules'
+import { Card } from './utils/components/card'
 
 export default function ProfilePage() {
   const theme = useTheme()
@@ -54,6 +56,18 @@ export default function ProfilePage() {
           <Phone />
           <DeliveryTime />
         </ProfileInputs>
+
+        <Schedules.Root>
+          <Schedules.Header>
+            <Schedules.Title />
+
+            <Card.Button>
+              <Pencil />
+            </Card.Button>
+          </Schedules.Header>
+
+          <Schedules.Days />
+        </Schedules.Root>
       </ProfileContent>
     </AdminRoot>
   )
