@@ -11,7 +11,7 @@ import {
   Trigger,
 } from './Menu.style'
 import { Text } from '@/shared/components/text/Text'
-import { LogOut, Palette, SlidersHorizontal, X } from 'lucide-react'
+import { Home, LogOut, Palette, SlidersHorizontal, X } from 'lucide-react'
 import { ButtonMenu } from '../buttons/button-menu'
 import { useTheme } from 'styled-components'
 import { SignInMenu } from '../sign-in-menu/SignInMenu'
@@ -66,25 +66,43 @@ export function Menu({ toggleTheme }: { toggleTheme?: () => void }) {
               </ButtonMenu.ButtonTexts>
             </ButtonMenu.Root>
 
+            {window.location.pathname !== '/' && (
+              <Link href="/" style={{ width: '100%' }} onClick={closeMenu}>
+                <ButtonMenu.Root>
+                  <ButtonMenu.ButtonIcon>
+                    <Home size={25} color={theme.icon} />
+                  </ButtonMenu.ButtonIcon>
+
+                  <ButtonMenu.ButtonTexts>
+                    <ButtonMenu.ButtonTitle>
+                      Página inicial
+                    </ButtonMenu.ButtonTitle>
+                  </ButtonMenu.ButtonTexts>
+                </ButtonMenu.Root>
+              </Link>
+            )}
+
             {!token ? (
               <SignInMenu />
             ) : (
               <>
-                <Link
-                  href="/admin"
-                  style={{ width: '100%' }}
-                  onClick={closeMenu}
-                >
-                  <ButtonMenu.Root>
-                    <ButtonMenu.ButtonIcon>
-                      <SlidersHorizontal size={25} color={theme.icon} />
-                    </ButtonMenu.ButtonIcon>
+                {window.location.pathname !== '/admin' && (
+                  <Link
+                    href="/admin"
+                    style={{ width: '100%' }}
+                    onClick={closeMenu}
+                  >
+                    <ButtonMenu.Root>
+                      <ButtonMenu.ButtonIcon>
+                        <SlidersHorizontal size={25} color={theme.icon} />
+                      </ButtonMenu.ButtonIcon>
 
-                    <ButtonMenu.ButtonTexts>
-                      <ButtonMenu.ButtonTitle>Painel</ButtonMenu.ButtonTitle>
-                    </ButtonMenu.ButtonTexts>
-                  </ButtonMenu.Root>
-                </Link>
+                      <ButtonMenu.ButtonTexts>
+                        <ButtonMenu.ButtonTitle>Painel</ButtonMenu.ButtonTitle>
+                      </ButtonMenu.ButtonTexts>
+                    </ButtonMenu.Root>
+                  </Link>
+                )}
 
                 <ButtonMenu.Root onClick={handleLogout}>
                   <ButtonMenu.ButtonIcon>
