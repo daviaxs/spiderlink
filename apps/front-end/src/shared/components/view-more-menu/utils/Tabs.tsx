@@ -4,9 +4,9 @@ import { Content, InfosWrapper, List, Root, Trigger } from './Tabs.style'
 import { useTheme } from 'styled-components'
 import { convertToCep } from '@/shared/functions/convertToCep'
 import { convertToCnpj } from '@/shared/functions/convertToCnpj'
-import { Schedules } from '../../schedules/Schedules'
 import { useContext } from 'react'
 import { DomainInfosContext } from '@/shared/contexts/DomainInfos'
+import { Schedules } from '../../schedules'
 
 export function TabsComponent() {
   const theme = useTheme()
@@ -86,7 +86,13 @@ export function TabsComponent() {
       </Content>
 
       <Content className="TabsContent" value="schedule">
-        <Schedules />
+        <Schedules.Root>
+          <Schedules.Header>
+            <Schedules.Title />
+          </Schedules.Header>
+
+          <Schedules.Days />
+        </Schedules.Root>
       </Content>
     </Root>
   )
