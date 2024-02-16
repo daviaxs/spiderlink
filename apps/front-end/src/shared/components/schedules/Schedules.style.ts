@@ -17,7 +17,7 @@ export const SchedulesRoot = styled.div`
 export const SchedulesHeader = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
   width: 100%;
   padding: 0.75rem;
