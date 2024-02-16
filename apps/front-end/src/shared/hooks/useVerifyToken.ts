@@ -11,7 +11,7 @@ export function useVerifyToken() {
     // eslint-disable-next-line prettier/prettier
     (async () => {
       api
-        .get('/token/verify', {
+        .get(`/token/verify/${process.env.NEXT_PUBLIC_DOMAIN_ID}`, {
           headers: {
             Authorization: `Bearer ${userAccesToken}`,
           },
