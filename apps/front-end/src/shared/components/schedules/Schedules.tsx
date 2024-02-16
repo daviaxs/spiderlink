@@ -7,11 +7,12 @@ import {
   SchedulesRoot,
   Separator,
 } from './Schedules.style'
-import { useGetSchedules } from '@/shared/hooks/useGetSchedules'
 import { formatHour } from '@/shared/functions/formatHour'
+import { useContext } from 'react'
+import { SchedulesContext } from '@/shared/contexts/Schedules'
 
 export function Schedules() {
-  const { seg, ter, qua, qui, sex, sab, dom } = useGetSchedules()
+  const { seg, ter, qua, qui, sex, sab, dom } = useContext(SchedulesContext)
 
   return (
     <SchedulesRoot>

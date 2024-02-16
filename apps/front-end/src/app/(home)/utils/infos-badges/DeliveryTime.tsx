@@ -2,12 +2,13 @@
 
 import { Motorcycle } from '@/shared/assets/svgs'
 import { InfoBadge } from '@/shared/components/info-badge'
-import { useGetDomainInfos } from '@/shared/hooks/useGetDomainInfos'
+import { DomainInfosContext } from '@/shared/contexts/DomainInfos'
+import { useContext } from 'react'
 import { useTheme } from 'styled-components'
 
 export function DeliveryTime() {
   const theme = useTheme()
-  const { deliveryTime } = useGetDomainInfos()
+  const { deliveryTime } = useContext(DomainInfosContext)
 
   return (
     <InfoBadge.Root>

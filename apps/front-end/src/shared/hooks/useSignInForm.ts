@@ -3,15 +3,15 @@ import { signInUserData, signIpSchema } from '../schemas/SignInSchema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { api } from '@/lib/axios'
 import { setCookie } from 'nookies'
-import { useState } from 'react'
-import { useGetDomainInfos } from './useGetDomainInfos'
+import { useContext, useState } from 'react'
 import { SPIDER_LINK_ACCESS_TOKEN } from '../constants/cookiesNames'
+import { DomainInfosContext } from '../contexts/DomainInfos'
 
 export function useSignInForm() {
   const [errorMessage, setErrorMessage] = useState<string | null>()
   const [successMessage, setSuccessMessage] = useState(false)
   const [loading, setLoading] = useState(false)
-  const { domainName } = useGetDomainInfos()
+  const { domainName } = useContext(DomainInfosContext)
 
   const methods = useForm<signInUserData>({
     resolver: zodResolver(signIpSchema),

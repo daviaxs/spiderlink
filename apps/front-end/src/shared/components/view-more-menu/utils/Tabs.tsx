@@ -2,14 +2,15 @@ import { Text } from '../../text/Text'
 import { inter } from '@/shared/style/theme/fonts'
 import { Content, InfosWrapper, List, Root, Trigger } from './Tabs.style'
 import { useTheme } from 'styled-components'
-import { useGetDomainInfos } from '@/shared/hooks/useGetDomainInfos'
 import { convertToCep } from '@/shared/functions/convertToCep'
 import { convertToCnpj } from '@/shared/functions/convertToCnpj'
 import { Schedules } from '../../schedules/Schedules'
+import { useContext } from 'react'
+import { DomainInfosContext } from '@/shared/contexts/DomainInfos'
 
 export function TabsComponent() {
   const theme = useTheme()
-  const { address, cep, cnpj } = useGetDomainInfos()
+  const { address, cep, cnpj } = useContext(DomainInfosContext)
 
   return (
     <Root defaultValue="about">
