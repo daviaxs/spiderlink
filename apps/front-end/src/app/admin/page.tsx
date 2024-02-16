@@ -1,18 +1,16 @@
 'use client'
 
-import { useVerifyToken } from '@/shared/hooks/useVerifyToken'
-import { LoadingPage } from './utils/loadingPage/LoadingPage'
 import { AdminContent, AdminRoot } from './Admin.style'
 import { Text } from '@/shared/components/text/Text'
 import { ButtonAdmin } from './utils/components/button'
 import { PanelsLeftBottom, Settings } from 'lucide-react'
 import { useTheme } from 'styled-components'
+import Link from 'next/link'
 
 export default function AdminPage() {
-  const { success } = useVerifyToken()
   const theme = useTheme()
 
-  return success ? (
+  return (
     <AdminRoot>
       <Text
         size={28}
@@ -24,11 +22,13 @@ export default function AdminPage() {
       </Text>
 
       <AdminContent>
-        <ButtonAdmin.Root>
-          <Settings size={75} color={theme.icon} />
+        <Link href="/admin/perfil">
+          <ButtonAdmin.Root>
+            <Settings size={75} color={theme.icon} />
 
-          <ButtonAdmin.Title>Editar perfil</ButtonAdmin.Title>
-        </ButtonAdmin.Root>
+            <ButtonAdmin.Title>Editar perfil</ButtonAdmin.Title>
+          </ButtonAdmin.Root>
+        </Link>
 
         <ButtonAdmin.Root>
           <PanelsLeftBottom size={75} color={theme.icon} />
@@ -37,7 +37,5 @@ export default function AdminPage() {
         </ButtonAdmin.Root>
       </AdminContent>
     </AdminRoot>
-  ) : (
-    <LoadingPage />
   )
 }
