@@ -31,6 +31,15 @@ export const CardHeaderStyle = styled.div`
   width: 100%;
 
   .cardButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: ${({ theme }) => theme.icon};
+
+    outline: none;
+    border: none;
+    background-color: transparent;
     cursor: pointer;
   }
 `
