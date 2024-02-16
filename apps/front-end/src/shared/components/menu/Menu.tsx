@@ -11,16 +11,29 @@ import {
   Trigger,
 } from './Menu.style'
 import { Text } from '@/shared/components/text/Text'
-import { Palette, X } from 'lucide-react'
+import { LogOut, Palette, SlidersHorizontal, X } from 'lucide-react'
 import { ButtonMenu } from '../buttons/button-menu'
 import { useTheme } from 'styled-components'
 import { SignInMenu } from '../sign-in-menu/SignInMenu'
+import { parseCookies } from 'nookies'
+import { SPIDER_LINK_ACCESS_TOKEN } from '@/shared/constants/cookiesNames'
+import Link from 'next/link'
+import { useState } from 'react'
+import { handleLogout } from '@/shared/functions/handleLogout'
 
 export function Menu({ toggleTheme }: { toggleTheme?: () => void }) {
+  const [open, setOpen] = useState(false)
+
   const theme = useTheme()
+  const cookies = parseCookies()
+  const token = cookies[SPIDER_LINK_ACCESS_TOKEN]
+
+  function closeMenu() {
+    setOpen(false)
+  }
 
   return (
-    <Dialog.Root>
+    <Dialog.Root open={open} onOpenChange={setOpen}>
       <Trigger>
         <MenuIcon color={theme.icon} />
       </Trigger>
@@ -40,7 +53,7 @@ export function Menu({ toggleTheme }: { toggleTheme?: () => void }) {
           </MenuHeader>
 
           <MenuContent>
-            <ButtonMenu.Root toggleTheme={toggleTheme}>
+            <ButtonMenu.Root onClick={toggleTheme}>
               <ButtonMenu.ButtonIcon>
                 <Palette size={25} color={theme.icon} />
               </ButtonMenu.ButtonIcon>
@@ -53,7 +66,37 @@ export function Menu({ toggleTheme }: { toggleTheme?: () => void }) {
               </ButtonMenu.ButtonTexts>
             </ButtonMenu.Root>
 
-            <SignInMenu />
+            {!token ? (
+              <SignInMenu />
+            ) : (
+              <>
+                <Link
+                  href="/admin"
+                  style={{ width: '100%' }}
+                  onClick={closeMenu}
+                >
+                  <ButtonMenu.Root>
+                    <ButtonMenu.ButtonIcon>
+                      <SlidersHorizontal size={25} color={theme.icon} />
+                    </ButtonMenu.ButtonIcon>
+
+                    <ButtonMenu.ButtonTexts>
+                      <ButtonMenu.ButtonTitle>Painel</ButtonMenu.ButtonTitle>
+                    </ButtonMenu.ButtonTexts>
+                  </ButtonMenu.Root>
+                </Link>
+
+                <ButtonMenu.Root onClick={handleLogout}>
+                  <ButtonMenu.ButtonIcon>
+                    <LogOut size={25} color={theme.icon} />
+                  </ButtonMenu.ButtonIcon>
+
+                  <ButtonMenu.ButtonTexts>
+                    <ButtonMenu.ButtonTitle>Sair</ButtonMenu.ButtonTitle>
+                  </ButtonMenu.ButtonTexts>
+                </ButtonMenu.Root>
+              </>
+            )}
           </MenuContent>
         </Content>
       </Dialog.Portal>

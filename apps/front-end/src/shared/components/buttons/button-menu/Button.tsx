@@ -4,12 +4,12 @@ import { ButtonStyle } from './Button.style'
 export interface ButtonProps {
   children: ReactNode
   as?: keyof JSX.IntrinsicElements
-  toggleTheme?: () => void
+  onClick?: () => void
 }
 
-export function Button({ children, toggleTheme, as }: ButtonProps) {
+export function Button({ children, onClick, as }: ButtonProps) {
   return (
-    <ButtonStyle onClick={toggleTheme} as={as}>
+    <ButtonStyle onClick={onClick} as={as}>
       {children}
     </ButtonStyle>
   )
