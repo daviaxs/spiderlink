@@ -3,6 +3,8 @@
 import styled from 'styled-components'
 
 export const AdminRoot = styled.main`
+  position: relative;
+
   display: flex;
   align-items: center;
   justify-content: start;
@@ -11,6 +13,25 @@ export const AdminRoot = styled.main`
   width: 100%;
   padding: 2rem 0;
   gap: 2rem;
+
+  .backLink {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+      color: ${({ theme }) => theme.description};
+    }
+  }
 `
 
 export const AdminContent = styled.div`
