@@ -8,6 +8,7 @@ import { updateUser } from './updateUser'
 import { VerifyJWTRule } from '@/http/middlewares/verify-jwt-rule'
 import { refresh } from './refresh'
 import { verifyToken } from './verifyToken'
+import { logout } from './logout'
 
 export async function userRoutes(app: FastifyInstance) {
   app.get('/users/profile', { onRequest: [VerifyJWT] }, getUserProfile)
@@ -16,6 +17,8 @@ export async function userRoutes(app: FastifyInstance) {
   app.post('/users', createAccount)
   app.post('/users/authenticate', authenticate)
   app.post('/token/refresh', { onRequest: [VerifyJWT] }, refresh)
+
+  app.post('/users/logout', logout)
 
   app.patch('/users/:id', { onRequest: [VerifyJWTRule('OWNER')] }, updateUser)
 
