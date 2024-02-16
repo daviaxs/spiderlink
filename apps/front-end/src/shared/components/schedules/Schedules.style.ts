@@ -22,6 +22,14 @@ export const SchedulesHeader = styled.div`
   width: 100%;
   padding: 0.75rem;
   border-bottom: 1px solid ${(props) => props.theme.borderSecondary};
+
+  button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: ${(props) => props.theme.icon};
+  }
 `
 
 export const SchedulesDays = styled.div`
