@@ -1,10 +1,10 @@
 'use client'
 
-import { Pencil } from 'lucide-react'
 import { Card } from '../components/card'
 import { useContext } from 'react'
 import { DomainInfosContext } from '@/shared/contexts/DomainInfos'
 import { convertToCep } from '@/shared/functions/convertToCep'
+import { CepForm } from '../components/forms/CepForm'
 
 export function Cep() {
   const { cep } = useContext(DomainInfosContext)
@@ -14,9 +14,7 @@ export function Cep() {
       <Card.Header>
         <Card.Title>cep</Card.Title>
 
-        <Card.Button>
-          <Pencil />
-        </Card.Button>
+        <CepForm />
       </Card.Header>
 
       <Card.Description>{convertToCep(cep)}</Card.Description>
