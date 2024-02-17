@@ -10,20 +10,17 @@ import { Phone } from './utils/inputs/Phone'
 import { DeliveryTime } from './utils/inputs/DeliveryTime'
 import { Name } from './utils/inputs/Name'
 import { ChevronLeft, Pencil } from 'lucide-react'
-import { useTheme } from 'styled-components'
 import Link from 'next/link'
 import { Schedules } from '@/shared/components/schedules'
 import { Card } from './utils/components/card'
 
 export default function ProfilePage() {
-  const theme = useTheme()
-
   return (
     <AdminRoot>
       <Link href="/admin" className="backLink">
         <div>
-          <ChevronLeft color={theme.description} />
-          <Text size={16} color={theme.description}>
+          <ChevronLeft className="icon" />
+          <Text size={16} className="text">
             Voltar
           </Text>
         </div>

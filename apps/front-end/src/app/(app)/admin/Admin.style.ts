@@ -24,6 +24,14 @@ export const AdminRoot = styled.main`
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
+
+      .icon {
+        color: ${({ theme }) => theme.description};
+      }
+
+      .text {
+        color: ${({ theme }) => theme.description};
+      }
     }
 
     &:hover {
