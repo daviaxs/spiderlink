@@ -1,10 +1,10 @@
 'use client'
 
-import { Pencil } from 'lucide-react'
 import { Card } from '../components/card'
 import { useContext } from 'react'
 import { DomainInfosContext } from '@/shared/contexts/DomainInfos'
 import { convertToPhoneBRFormat } from '@/shared/functions/convertToPhoneBRFormat'
+import { PhoneForm } from '../components/forms/PhoneForm'
 
 export function Phone() {
   const { phone } = useContext(DomainInfosContext)
@@ -14,9 +14,7 @@ export function Phone() {
       <Card.Header>
         <Card.Title>telefone</Card.Title>
 
-        <Card.Button>
-          <Pencil />
-        </Card.Button>
+        <PhoneForm />
       </Card.Header>
 
       <Card.Description>{convertToPhoneBRFormat(phone)}</Card.Description>
