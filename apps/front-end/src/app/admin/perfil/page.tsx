@@ -6,7 +6,6 @@ import { ProfileContent, ProfileInputs } from './Profile.style'
 import Image from 'next/image'
 import { Address } from './utils/inputs/Address'
 import { Cep } from './utils/inputs/Cep'
-import { Cnpj } from './utils/inputs/Cnpj'
 import { Phone } from './utils/inputs/Phone'
 import { DeliveryTime } from './utils/inputs/DeliveryTime'
 import { Name } from './utils/inputs/Name'
@@ -52,7 +51,6 @@ export default function ProfilePage() {
           <Name />
           <Address />
           <Cep />
-          <Cnpj />
           <Phone />
           <DeliveryTime />
         </ProfileInputs>

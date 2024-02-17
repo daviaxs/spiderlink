@@ -23,7 +23,7 @@ export const SchedulesHeader = styled.div`
   padding: 0.75rem;
   border-bottom: 1px solid ${(props) => props.theme.borderSecondary};
 
-  button {
+  div {
     outline: none;
     border: none;
     background-color: transparent;

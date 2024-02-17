@@ -5,5 +5,5 @@ interface CardButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
 }
 
 export function CardButton({ children }: CardButtonProps) {
-  return <button className="cardButton">{children}</button>
+  return <div className="cardButton">{children}</div>
 }
