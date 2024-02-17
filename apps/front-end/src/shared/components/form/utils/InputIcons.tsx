@@ -1,9 +1,9 @@
-import { KeyRound, Mail, UserRound } from 'lucide-react'
+import { KeyRound, Mail } from 'lucide-react'
 
 export type InputType = 'text' | 'email' | 'password'
 
 export const InputIcons = {
-  text: <UserRound size={30} className="iconForm" />,
+  text: null,
   email: <Mail size={30} className="iconForm" />,
   password: <KeyRound size={30} className="iconForm" />,
   button: null,
