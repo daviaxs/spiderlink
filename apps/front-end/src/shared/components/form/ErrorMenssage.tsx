@@ -1,8 +1,7 @@
-import { signInUserData } from '@/shared/schemas/SignInSchema'
 import { useFormContext } from 'react-hook-form'
 import { Text } from '../text/Text'
 
-export function ErrorMessage({ name }: { name: keyof signInUserData }) {
+export function ErrorMessage({ name }: { name: string }) {
   const {
     formState: { errors },
   } = useFormContext()
