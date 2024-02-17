@@ -4,6 +4,8 @@ declare module 'styled-components' {
   export interface DefaultTheme {
     current: string
 
+    white: string
+
     body: string
     bodySecondary: string
     bodyTertiary: string
@@ -25,6 +27,8 @@ declare module 'styled-components' {
     statusClosed: string
 
     button: string
+    buttonSecondary: string
+    hoverButtonSecondary: string
     hoverButton: string
   }
 }

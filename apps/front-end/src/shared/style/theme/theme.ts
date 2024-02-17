@@ -3,6 +3,8 @@ import { themeColors } from './pallete'
 export const lightTheme = {
   current: 'claro',
 
+  white: themeColors.white,
+
   body: themeColors.white,
   bodySecondary: themeColors['dark-blue-50'],
   bodyTertiary: themeColors['dark-blue-200'] + '40',
@@ -24,11 +26,15 @@ export const lightTheme = {
   statusClosed: themeColors['red-400'],
 
   button: themeColors['primary-500'],
+  buttonSecondary: themeColors['primary-500'],
+  hoverButtonSecondary: themeColors['primary-600'],
   hoverButton: '#00000010',
 }
 
 export const darkTheme = {
   current: 'escuro',
+
+  white: themeColors['dark-blue-50'],
 
   body: themeColors['dark-blue-900'],
   bodySecondary: themeColors['dark-blue-800'],
@@ -51,5 +57,7 @@ export const darkTheme = {
   statusClosed: themeColors['red-500'],
 
   button: themeColors['primary-200'],
+  buttonSecondary: themeColors['primary-500'],
+  hoverButtonSecondary: themeColors['primary-400'],
   hoverButton: '#ffffff10',
 }

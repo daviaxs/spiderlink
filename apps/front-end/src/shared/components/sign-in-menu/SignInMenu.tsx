@@ -71,7 +71,7 @@ export function SignInMenu() {
               <ButtonForm
                 type="submit"
                 size="full"
-                color={successMessage ? 'green' : 'blue'}
+                color="primary"
                 disabled={
                   !methods.formState.isValid ||
                   methods.formState.isSubmitting ||

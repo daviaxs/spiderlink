@@ -3,7 +3,7 @@
 import styled from 'styled-components'
 
 export interface ButtonStyleProps {
-  color?: 'purple' | 'blue' | 'green' | 'red'
+  color?: 'primary' | 'secondary'
   size: 'normal' | 'large' | 'full'
 }
 export const ButtonStyle = styled.button<ButtonStyleProps>`
@@ -23,8 +23,12 @@ export const ButtonStyle = styled.button<ButtonStyleProps>`
   font-size: ${({ size }) => (size === 'normal' ? '1rem' : '1.5rem')};
   letter-spacing: 0.7px;
 
-  color: ${(props) => props.theme.title};
-  background-color: ${(props) => props.theme.bodySecondary};
+  color: ${(props) =>
+    props.color === 'primary' ? props.theme.title : props.theme.white};
+  background-color: ${(props) =>
+    props.color === 'primary'
+      ? props.theme.bodySecondary
+      : props.theme.buttonSecondary};
 
   border: 1px solid ${(props) => props.theme.border};
 
@@ -36,7 +40,10 @@ export const ButtonStyle = styled.button<ButtonStyleProps>`
   transition: 0.2s ease-in-out;
 
   &:hover {
-    background-color: ${(props) => props.theme.bodyTertiary};
+    background-color: ${(props) =>
+      props.color === 'primary'
+        ? props.theme.bodyTertiary
+        : props.theme.hoverButtonSecondary};
   }
 
   &:disabled {
