@@ -30,7 +30,7 @@ export function CepForm() {
         <Overlay />
 
         <Content>
-          <Text size={32} $weight="600">
+          <Text size={32} $weight="600" $textalign="center">
             Editar cep
           </Text>
 

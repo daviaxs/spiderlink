@@ -1,9 +1,9 @@
 'use client'
 
-import { Pencil } from 'lucide-react'
 import { Card } from '../components/card'
 import { useContext } from 'react'
 import { DomainInfosContext } from '@/shared/contexts/DomainInfos'
+import { DeliveryTimeForm } from '../components/forms/DeliveryTimeForm'
 
 export function DeliveryTime() {
   const { deliveryTime } = useContext(DomainInfosContext)
@@ -13,9 +13,7 @@ export function DeliveryTime() {
       <Card.Header>
         <Card.Title>entrega</Card.Title>
 
-        <Card.Button>
-          <Pencil />
-        </Card.Button>
+        <DeliveryTimeForm />
       </Card.Header>
 
       <Card.Description>{deliveryTime}</Card.Description>
