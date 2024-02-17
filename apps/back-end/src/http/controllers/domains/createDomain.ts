@@ -5,12 +5,15 @@ import { handleError } from '../../utils/handleError'
 
 export async function createDomain(req: FastifyRequest, reply: FastifyReply) {
   const createDomainBodySchema = z.object({
-    address: z.string(),
+    address: z.string().min(5, 'Endereço muito curto'),
     cep: z.string().min(8).max(8),
     deliveryTime: z.string(),
     domainName: z.string(),
-    name: z.string(),
-    phone: z.string().min(8).max(12),
+    name: z.string().min(2, 'Nome muito curto'),
+    phone: z
+      .string()
+      .min(8, 'Número de telefone muito curto')
+      .max(12, 'Número de telefone muito longo'),
     cnpj: z.string().min(14).max(14),
   })
 

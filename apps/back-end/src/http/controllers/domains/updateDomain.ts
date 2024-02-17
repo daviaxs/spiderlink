@@ -11,11 +11,14 @@ export async function updateDomain(req: FastifyRequest, reply: FastifyReply) {
   const updateDomainBodySchema = z
     .object({
       domainName: z.string(),
-      name: z.string(),
-      address: z.string(),
+      name: z.string().min(2, 'Nome muito curto'),
+      address: z.string().min(5, 'Endereço muito curto'),
       cep: z.string().min(8).max(8),
       deliveryTime: z.string(),
-      phone: z.string().min(8).max(12),
+      phone: z
+        .string()
+        .min(8, 'Número de telefone muito curto')
+        .max(12, 'Número de telefone muito longo'),
       cnpj: z.string().min(14).max(14),
     })
     .partial()
