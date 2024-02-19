@@ -8,6 +8,7 @@ export const lightTheme = {
   body: themeColors.white,
   bodySecondary: themeColors['dark-blue-50'],
   bodyTertiary: themeColors['dark-blue-200'] + '40',
+  bodyQuaternary: themeColors['dark-blue-100'] + '50',
 
   border: themeColors['dark-blue-100'],
   borderSecondary: themeColors['dark-blue-200'],
@@ -27,6 +28,7 @@ export const lightTheme = {
 
   button: themeColors['primary-500'],
   buttonSecondary: themeColors['primary-500'],
+  buttonTertiary: themeColors['dark-blue-100'],
   hoverButtonSecondary: themeColors['primary-600'],
   hoverButton: '#00000010',
 }
@@ -39,6 +41,7 @@ export const darkTheme = {
   body: themeColors['dark-blue-900'],
   bodySecondary: themeColors['dark-blue-800'],
   bodyTertiary: themeColors['dark-blue-700'],
+  bodyQuaternary: themeColors['dark-blue-600'],
 
   border: themeColors['dark-blue-500'],
   borderSecondary: themeColors['dark-blue-400'],
@@ -58,6 +61,7 @@ export const darkTheme = {
 
   button: themeColors['primary-200'],
   buttonSecondary: themeColors['primary-500'],
+  buttonTertiary: themeColors['dark-blue-500'],
   hoverButtonSecondary: themeColors['primary-400'],
   hoverButton: '#ffffff10',
 }

@@ -9,6 +9,7 @@ declare module 'styled-components' {
     body: string
     bodySecondary: string
     bodyTertiary: string
+    bodyQuaternary: string
 
     border: string
     borderSecondary: string
@@ -28,6 +29,7 @@ declare module 'styled-components' {
 
     button: string
     buttonSecondary: string
+    buttonTertiary: string
     hoverButtonSecondary: string
     hoverButton: string
   }
