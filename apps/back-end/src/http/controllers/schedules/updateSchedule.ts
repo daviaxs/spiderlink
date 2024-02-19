@@ -16,25 +16,27 @@ export async function updateSchedule(req: FastifyRequest, reply: FastifyReply) {
     Object.fromEntries(
       daysWeek.map((day) => [
         day,
-        z.object({
-          inicio: z
-            .string()
-            .min(4)
-            .max(4)
-            .refine((value) => validateSchedule(value), {
-              message:
-                'Horário de início inválido. Por favor, verifique os campos.',
-            }),
-          termino: z
-            .string()
-            .min(4)
-            .max(4)
-            .refine((value) => validateSchedule(value), {
-              message:
-                'Horário de término inválido. Por favor, verifique os campos.',
-            }),
-          fechado: z.boolean(),
-        }),
+        z
+          .object({
+            inicio: z
+              .string()
+              .min(4)
+              .max(4)
+              .refine((value) => validateSchedule(value), {
+                message:
+                  'Horário de início inválido. Por favor, verifique os campos.',
+              }),
+            termino: z
+              .string()
+              .min(4)
+              .max(4)
+              .refine((value) => validateSchedule(value), {
+                message:
+                  'Horário de término inválido. Por favor, verifique os campos.',
+              }),
+            fechado: z.boolean(),
+          })
+          .optional(),
       ]),
     ),
   )
@@ -60,13 +62,7 @@ export async function updateSchedule(req: FastifyRequest, reply: FastifyReply) {
 
     const updatedSchedule = await updateScheduleUseCase.execute(
       {
-        seg: schedule.seg,
-        ter: schedule.ter,
-        qua: schedule.qua,
-        qui: schedule.qui,
-        sex: schedule.sex,
-        sab: schedule.sab,
-        dom: schedule.dom,
+        ...schedule,
         Domain: {
           connect: {
             id: domainId,
