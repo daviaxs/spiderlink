@@ -12,6 +12,7 @@ import {
 import { useContext } from 'react'
 import { Text } from '@/shared/components/text/Text'
 import { DayScheduleForm } from './utils/components/update-schedule-form/UpdateScheduleForm'
+import { formatHour } from '@/shared/functions/formatHour'
 
 export default function HorariosPage() {
   const { dom, qua, qui, sab, seg, sex, ter } = useContext(SchedulesContext)
@@ -51,7 +52,9 @@ export default function HorariosPage() {
                     Inicio
                   </Text>
 
-                  <DayWeekTimeInput>{day.schedule.inicio}</DayWeekTimeInput>
+                  <DayWeekTimeInput>
+                    {formatHour(day.schedule.inicio)}
+                  </DayWeekTimeInput>
                 </DayWeekTime>
 
                 <span className="separator">-</span>
@@ -61,7 +64,9 @@ export default function HorariosPage() {
                     Termino
                   </Text>
 
-                  <DayWeekTimeInput>{day.schedule.termino}</DayWeekTimeInput>
+                  <DayWeekTimeInput>
+                    {formatHour(day.schedule.termino)}
+                  </DayWeekTimeInput>
                 </DayWeekTime>
               </DayWeekTimes>
             )}
