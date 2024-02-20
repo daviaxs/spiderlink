@@ -18,18 +18,18 @@ export function StartInput({ register, name, type, day }: StartInputProps) {
   useEffect(() => {
     const schedule =
       day === 'seg'
-        ? seg.termino
+        ? seg.inicio
         : day === 'ter'
-          ? ter.termino
+          ? ter.inicio
           : day === 'qua'
-            ? qua.termino
+            ? qua.inicio
             : day === 'qui'
-              ? qui.termino
+              ? qui.inicio
               : day === 'sex'
-                ? sex.termino
+                ? sex.inicio
                 : day === 'sab'
-                  ? sab.termino
-                  : dom.termino
+                  ? sab.inicio
+                  : dom.inicio
     setInputValue(schedule)
   }, [day, dom, qua, qui, sab, seg, sex, ter])
 
