@@ -1,8 +1,7 @@
 'use client'
 
 import { Text } from '@/shared/components/text/Text'
-import { AdminRoot } from '../Admin.style'
-import { ProfileContent, ProfileInputs } from './Profile.style'
+import { ProfileContent, ProfileInputs, ProfileRoot } from './Profile.style'
 import Image from 'next/image'
 import { Address } from './utils/inputs/Address'
 import { Cep } from './utils/inputs/Cep'
@@ -16,7 +15,7 @@ import { Card } from './utils/components/card'
 
 export default function ProfilePage() {
   return (
-    <AdminRoot>
+    <ProfileRoot>
       <Link href="/admin" className="backLink">
         <div>
           <ChevronLeft className="icon" />
@@ -56,14 +55,16 @@ export default function ProfilePage() {
           <Schedules.Header>
             <Schedules.Title />
 
-            <Card.Button>
-              <Pencil />
-            </Card.Button>
+            <Link href="/admin/perfil/horarios">
+              <Card.Button>
+                <Pencil />
+              </Card.Button>
+            </Link>
           </Schedules.Header>
 
           <Schedules.Days />
         </Schedules.Root>
       </ProfileContent>
-    </AdminRoot>
+    </ProfileRoot>
   )
 }
