@@ -81,5 +81,5 @@ export const DayWeekEditButton = styled.div`
   padding: 0.75rem;
   gap: 0.75rem;
 
-  background-color: ${({ theme }) => theme.buttonTertiary};
+  background-color: ${({ theme }) => theme.body};
 `
