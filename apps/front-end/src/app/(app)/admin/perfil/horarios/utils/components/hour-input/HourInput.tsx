@@ -1,16 +1,17 @@
 'use client'
 
 import { InputMask } from '@react-input/mask'
-import { HourInputStyle } from './HourInput.style'
+import { HourInputStyle } from '../hour-input/HourInput.style'
 import { useState } from 'react'
 
 interface HourInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name?: string
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   register?: any
+  type: string
 }
 
-export function HourInput({ name, register, ...props }: HourInputProps) {
+export function HourInput({ name, register, type, ...props }: HourInputProps) {
   const [inputValue, setInputValue] = useState('')
 
   const modify = (value: string) => {
@@ -25,10 +26,6 @@ export function HourInput({ name, register, ...props }: HourInputProps) {
       value = primary + '59'
     }
 
-    if (value.length > 2) {
-      value = value.slice(0, 2) + ':' + value.slice(2)
-    }
-
     setInputValue(value)
     return value
   }
@@ -40,12 +37,14 @@ export function HourInput({ name, register, ...props }: HourInputProps) {
   return (
     <HourInputStyle>
       <InputMask
-        mask="__:__"
+        mask="____"
         replacement={{ _: /\d/ }}
+        type={type}
         name={name}
         value={inputValue}
         onChange={handleChange}
         modify={modify}
+        placeholder="00:00"
         {...register}
         {...props}
       />
