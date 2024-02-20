@@ -2,7 +2,7 @@
 
 import styled from 'styled-components'
 
-export const SchedulesRoot = styled.div`
+export const SchedulesRoot = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
