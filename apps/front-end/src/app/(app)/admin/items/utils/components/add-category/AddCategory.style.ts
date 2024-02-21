@@ -100,7 +100,7 @@ export const SubTrigger = styled(DropdownMenu.SubTrigger)`
   padding: 0.75rem;
 
   border-radius: 0.375rem;
-  background-color: ${({ theme }) => theme.bodySecondary};
+  background-color: ${({ theme }) => theme.body};
 
   font-weight: 600;
   font-size: 18px;
