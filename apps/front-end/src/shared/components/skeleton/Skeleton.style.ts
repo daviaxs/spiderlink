@@ -5,14 +5,14 @@ import styled from 'styled-components'
 export interface SkeletonProps {
   width: string
   height: string
-  borderRadius?: number
+  $borderRadius?: number
 }
 
 export const SkeletonStyle = styled.div<SkeletonProps>`
   width: ${({ width }) => width};
   height: ${({ height }) => height};
 
-  border-radius: ${({ borderRadius }) => borderRadius || '0'}rem;
+  border-radius: ${({ $borderRadius }) => $borderRadius || '0'}rem;
   background-color: ${({ theme }) => theme.bodyTertiary};
 
   animation: loading 1.5s infinite;
