@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Bebidas",
+    "subcategories": ["Vinhos", "Bebidas", "Sucos"]
+  },
+  {
+    "name": "Brasileira",
+    "subcategories": []
+  },
+  {
+    "name": "Lanches",
+    "subcategories": []
+  },
+  {
+    "name": "Pizza",
+    "subcategories": []
+  },
+  {
+    "name": "Esfirra",
+    "subcategories": []
+  },
+  {
+    "name": "Açai",
+    "subcategories": []
+  },
+  {
+    "name": "Francesa",
+    "subcategories": []
+  },
+  {
+    "name": "Café",
+    "subcategories": []
+  },
+  {
+    "name": "Saudável",
+    "subcategories": []
+  },
+  {
+    "name": "Asiática",
+    "subcategories": ["Japonesa", "Chinesa"]
+  },
+  {
+    "name": "Doces",
+    "subcategories": []
+  },
+  {
+    "name": "Italiana",
+    "subcategories": []
+  },
+  {
+    "name": "Sorvetes",
+    "subcategories": []
+  },
+  {
+    "name": "Churros",
+    "subcategories": []
+  },
+  {
+    "name": "Pastel",
+    "subcategories": []
+  }
+]
