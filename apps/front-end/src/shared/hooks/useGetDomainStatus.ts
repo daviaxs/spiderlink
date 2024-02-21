@@ -1,27 +1,20 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { format, setHours, setMinutes } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
-import { api } from '@/lib/axios'
-import { DaysWeek } from '../contexts/Schedules'
+import { DaysWeek, SchedulesContext } from '../contexts/Schedules'
 
 type DayOfWeekMap = {
   [key: string]: keyof DaysWeek
 }
 
 export function useGetDomainStatus(): string {
+  const { dom, qua, qui, sab, seg, sex, ter } = useContext(SchedulesContext)
+
   const [status, setStatus] = useState<'aberto' | 'fechado' | 'carregando'>(
     'carregando',
   )
 
   useEffect(() => {
-    const fetchSchedule = async (): Promise<DaysWeek> => {
-      const response = await api.get(
-        `/schedules/${process.env.NEXT_PUBLIC_DOMAIN_ID}`,
-      )
-
-      return response.data.schedule
-    }
-
     const isEstablishmentOpen = (schedule: DaysWeek): boolean => {
       const now = new Date()
       const currentDay = format(now, 'eee', { locale: ptBR })
@@ -64,13 +57,13 @@ export function useGetDomainStatus(): string {
     }
 
     const checkEstablishmentStatus = async () => {
-      const schedule = await fetchSchedule()
+      const schedule = { dom, qua, qui, sab, seg, sex, ter }
       const isOpen = isEstablishmentOpen(schedule)
       setStatus(isOpen ? 'aberto' : 'fechado')
     }
 
     checkEstablishmentStatus()
-  }, [])
+  }, [dom, qua, qui, sab, seg, sex, ter])
 
   return status
 }
