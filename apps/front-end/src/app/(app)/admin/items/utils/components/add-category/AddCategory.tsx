@@ -72,7 +72,8 @@ export function AddCategory() {
                     <DropdownMenu.Portal>
                       <SubContent
                         className="DropdownMenuSubContent"
-                        sideOffset={25}
+                        sideOffset={-200}
+                        alignOffset={30}
                       >
                         {category.subcategories.map(
                           (subcategory) =>
