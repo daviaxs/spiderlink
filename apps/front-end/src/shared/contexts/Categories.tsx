@@ -32,7 +32,7 @@ export const CategoriesProvider = ({ children }: { children: ReactNode }) => {
     const response = await api.get(
       `/categories/${process.env.NEXT_PUBLIC_DOMAIN_ID}`,
     )
-    setCategories(response.data.categories) // Ajuste aqui
+    setCategories(response.data.categories)
     setLoading(false)
   }
 
