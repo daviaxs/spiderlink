@@ -33,8 +33,8 @@ export const Content = styled(DropdownMenu.Content)`
   padding: 0.75rem 0.35rem;
   gap: 0.375rem;
 
-  background-color: ${({ theme }) => theme.bodyTertiary};
-  border: 1px solid ${({ theme }) => theme.border};
+  background-color: ${({ theme }) => theme.bodyQuinary};
+  border: 1px solid ${({ theme }) => theme.borderTertiary};
   border-radius: 0.375rem;
 
   width: 15rem;
@@ -100,7 +100,7 @@ export const SubTrigger = styled(DropdownMenu.SubTrigger)`
   padding: 0.75rem;
 
   border-radius: 0.375rem;
-  background-color: ${({ theme }) => theme.body};
+  background-color: ${({ theme }) => theme.bodySecondary};
 
   font-weight: 600;
   font-size: 18px;
@@ -122,9 +122,10 @@ export const SubContent = styled(DropdownMenu.SubContent)`
   padding: 0.75rem 0.35rem;
   gap: 0.375rem;
 
-  background-color: ${({ theme }) => theme.bodyTertiary};
+  background-color: ${({ theme }) => theme.bodyQuinary};
   border: 1px solid ${({ theme }) => theme.border};
   border-radius: 0.375rem;
+  box-shadow: 0 5px 10px -2px ${({ theme }) => theme.body};
 
   width: 15rem;
   max-height: 15rem;
