@@ -39,7 +39,7 @@ export function AddCategory() {
         <AddCategoryButtonRoot>
           {loading ? (
             <Text size={20} $weight="700">
-              Salvando categoria...
+              Atualizando categorias...
             </Text>
           ) : (
             <>
