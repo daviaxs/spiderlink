@@ -13,6 +13,7 @@ import { ButtonForm } from '@/shared/components/buttons/button-form/ButtonForm'
 import { Loading } from '@/shared/components/loading/Loading'
 import { DaySchedule } from '../day-schedule'
 import { useUpdateSchedules } from '@/shared/hooks/domainValues/useUpdateSchedules'
+import { Separator } from '@/shared/components/separator/Separator.style'
 
 interface DayScheduleFormProps {
   dayName: 'seg' | 'ter' | 'qua' | 'qui' | 'sex' | 'sab' | 'dom'
@@ -89,7 +90,7 @@ export function DayScheduleForm({ dayName, schedule }: DayScheduleFormProps) {
                   />
                 </DaySchedule.Inputs>
 
-                <DaySchedule.Separator />
+                <Separator direction="vertical" height="2rem" />
 
                 <DaySchedule.Closed
                   name={`${dayName}.fechado`}

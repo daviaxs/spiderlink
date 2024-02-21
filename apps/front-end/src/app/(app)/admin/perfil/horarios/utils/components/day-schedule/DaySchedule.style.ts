@@ -74,15 +74,3 @@ export const ClosedIndicator = styled.div`
     color: ${({ theme }) => theme.description}70;
   }
 `
-
-export const Separator = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  height: 2.5rem;
-  width: 2px;
-  border-radius: 9px;
-  color: transparent;
-  background-color: ${({ theme }) => theme.border};
-`
