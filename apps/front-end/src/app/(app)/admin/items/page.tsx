@@ -14,6 +14,7 @@ import { ExternalLink } from 'lucide-react'
 import { useContext } from 'react'
 import { CategoriesContext } from '@/shared/contexts/Categories'
 import { DeleteCategory } from './utils/components/delete-category/DeleteCategory'
+import Link from 'next/link'
 
 const skeletonArray = Array.from({ length: 10 })
 
@@ -49,9 +50,11 @@ export default function ItemsPage() {
                 <Separator direction="vertical" />
 
                 <CategoryItem.Actions>
-                  <CategoryItem.Button>
-                    <ExternalLink />
-                  </CategoryItem.Button>
+                  <Link href={`/admin/items/categorias/${category.id}`}>
+                    <CategoryItem.Button>
+                      <ExternalLink />
+                    </CategoryItem.Button>
+                  </Link>
 
                   <DeleteCategory id={category.id} name={category.name} />
                 </CategoryItem.Actions>
