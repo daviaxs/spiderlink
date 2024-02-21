@@ -10,9 +10,10 @@ import { AddCategory } from './utils/components/add-category/AddCategory'
 import { Skeleton } from '@/shared/components/skeleton/Skeleton'
 import { CategoryItem } from './utils/components/category-item'
 import { Separator } from '@/shared/components/separator/Separator.style'
-import { ExternalLink, Trash2 } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
 import { useContext } from 'react'
 import { CategoriesContext } from '@/shared/contexts/Categories'
+import { DeleteCategory } from './utils/components/delete-category/DeleteCategory'
 
 const skeletonArray = Array.from({ length: 10 })
 
@@ -52,9 +53,7 @@ export default function ItemsPage() {
                     <ExternalLink />
                   </CategoryItem.Button>
 
-                  <CategoryItem.Button>
-                    <Trash2 />
-                  </CategoryItem.Button>
+                  <DeleteCategory id={category.id} name={category.name} />
                 </CategoryItem.Actions>
               </CategoryItem.Root>
             ))}
