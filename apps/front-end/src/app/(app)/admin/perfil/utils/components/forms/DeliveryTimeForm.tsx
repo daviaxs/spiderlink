@@ -1,6 +1,11 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { Check, Pencil, X } from 'lucide-react'
-import { Close, Content, Overlay, Trigger } from './Form.style'
+import {
+  Close,
+  Content,
+  Overlay,
+  Trigger,
+} from '@/shared/components/DialogBase.style'
 import { useTheme } from 'styled-components'
 import { Card } from '../card'
 import { Text } from '@/shared/components/text/Text'
