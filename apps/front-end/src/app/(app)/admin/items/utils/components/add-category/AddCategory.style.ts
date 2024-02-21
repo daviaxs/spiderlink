@@ -87,7 +87,7 @@ export const Item = styled(DropdownMenu.Item)`
   font-size: 18px;
 
   &:hover {
-    background-color: ${({ theme }) => theme.bodySecondary};
+    background-color: ${({ theme }) => theme.bodyTertiary};
   }
 `
 
@@ -109,7 +109,7 @@ export const SubTrigger = styled(DropdownMenu.SubTrigger)`
   transition: background 150ms ease-in-out;
 
   &:hover {
-    background-color: ${({ theme }) => theme.bodySecondary};
+    background-color: ${({ theme }) => theme.bodyTertiary};
   }
 `
 
