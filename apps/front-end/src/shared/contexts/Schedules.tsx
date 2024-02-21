@@ -1,5 +1,4 @@
-import { api } from '@/lib/axios'
-import { ReactNode, createContext, useEffect, useState } from 'react'
+import { ReactNode, createContext, useEffect, useMemo, useState } from 'react'
 
 export type Schedule = {
   inicio: string
@@ -17,92 +16,57 @@ export type DaysWeek = {
   dom: Schedule
 }
 
+type Day = keyof DaysWeek
+
 export const SchedulesContext = createContext({} as DaysWeek)
 
 export function SchedulesProvider({ children }: { children: ReactNode }) {
-  const [schedules, setSchedules] = useState({
-    seg: {
-      inicio: '0000',
-      termino: '0000',
-      fechado: false,
-    },
-    ter: {
-      inicio: '0000',
-      termino: '0000',
-      fechado: false,
-    },
-    qua: {
-      inicio: '0000',
-      termino: '0000',
-      fechado: false,
-    },
-    qui: {
-      inicio: '0000',
-      termino: '0000',
-      fechado: false,
-    },
-    sex: {
-      inicio: '0000',
-      termino: '0000',
-      fechado: false,
-    },
-    sab: {
-      inicio: '0000',
-      termino: '0000',
-      fechado: false,
-    },
-    dom: {
-      inicio: '0000',
-      termino: '0000',
-      fechado: false,
-    },
-  })
+  const defaultDays = {
+    inicio: '0000',
+    termino: '0000',
+    fechado: false,
+  }
+
+  const days: Day[] = useMemo(
+    () => ['seg', 'ter', 'qua', 'qui', 'sex', 'sab', 'dom'],
+    [],
+  )
+
+  const [schedules, setSchedules] = useState(
+    days.reduce(
+      (acc, day) => ({
+        ...acc,
+        [day]: defaultDays,
+      }),
+      {} as DaysWeek,
+    ),
+  )
 
   useEffect(() => {
-    api
-      .get(`/schedules/${process.env.NEXT_PUBLIC_DOMAIN_ID}`)
-      .then((response) => {
-        const data = response.data.schedule
+    fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/schedules/${process.env.NEXT_PUBLIC_DOMAIN_ID}`,
+      {
+        next: {
+          revalidate: 1800, // 30 minutes
+        },
+      },
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        const scheduleData = data.schedule
+        const newSchedules: DaysWeek = {} as DaysWeek
 
-        setSchedules({
-          seg: {
-            inicio: data.seg.inicio,
-            termino: data.seg.termino,
-            fechado: data.seg.fechado,
-          },
-          ter: {
-            inicio: data.ter.inicio,
-            termino: data.ter.termino,
-            fechado: data.ter.fechado,
-          },
-          qua: {
-            inicio: data.qua.inicio,
-            termino: data.qua.termino,
-            fechado: data.qua.fechado,
-          },
-          qui: {
-            inicio: data.qui.inicio,
-            termino: data.qui.termino,
-            fechado: data.qui.fechado,
-          },
-          sex: {
-            inicio: data.sex.inicio,
-            termino: data.sex.termino,
-            fechado: data.sex.fechado,
-          },
-          sab: {
-            inicio: data.sab.inicio,
-            termino: data.sab.termino,
-            fechado: data.sab.fechado,
-          },
-          dom: {
-            inicio: data.dom.inicio,
-            termino: data.dom.termino,
-            fechado: data.dom.fechado,
-          },
-        })
+        for (const day of days) {
+          newSchedules[day] = {
+            inicio: scheduleData[day].inicio,
+            termino: scheduleData[day].termino,
+            fechado: scheduleData[day].fechado,
+          }
+        }
+
+        setSchedules(newSchedules)
       })
-  }, [])
+  }, [days])
 
   return (
     <SchedulesContext.Provider value={schedules}>
