@@ -7,19 +7,17 @@ import {
   SeparatorCategories,
 } from './ItemsPage.style'
 import { AddCategory } from './utils/components/add-category/AddCategory'
-import { useGetCategories } from '@/shared/hooks/useGetCategories'
 import { Skeleton } from '@/shared/components/skeleton/Skeleton'
 import { CategoryItem } from './utils/components/category-item'
 import { Separator } from '@/shared/components/separator/Separator.style'
 import { ExternalLink, Trash2 } from 'lucide-react'
+import { useContext } from 'react'
+import { CategoriesContext } from '@/shared/contexts/Categories'
 
 const skeletonArray = Array.from({ length: 10 })
 
 export default function ItemsPage() {
-  const categories = useGetCategories()
-
-  const categoriesData = categories.categories
-  const loadingCategories = categories.loading
+  const { categories, loading } = useContext(CategoriesContext)
 
   return (
     <ItemsPageRoot>
@@ -34,7 +32,7 @@ export default function ItemsPage() {
       </SeparatorCategories>
 
       <CategoriesListRoot>
-        {loadingCategories
+        {loading
           ? skeletonArray.map((_, index) => (
               <Skeleton
                 key={index}
@@ -43,7 +41,7 @@ export default function ItemsPage() {
                 $borderRadius={0.375}
               />
             ))
-          : categoriesData.map((category) => (
+          : categories.map((category) => (
               <CategoryItem.Root key={category.id}>
                 <CategoryItem.Name>{category.name}</CategoryItem.Name>
 

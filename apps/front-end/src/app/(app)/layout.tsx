@@ -10,6 +10,7 @@ import { darkTheme, lightTheme } from '@/shared/style/theme/theme'
 import { DomainInfosProvider } from '@/shared/contexts/DomainInfos'
 import { SchedulesProvider } from '@/shared/contexts/Schedules'
 import Head from 'next/head'
+import { CategoriesProvider } from '@/shared/contexts/Categories'
 
 export default function RootLayout({
   children,
@@ -27,11 +28,13 @@ export default function RootLayout({
         <StyledComponentsRegistry>
           <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
             <DomainInfosProvider>
-              <SchedulesProvider>
-                <GlobalStyle />
-                <Header toggleTheme={toggleTheme} />
-                {children}
-              </SchedulesProvider>
+              <CategoriesProvider>
+                <SchedulesProvider>
+                  <GlobalStyle />
+                  <Header toggleTheme={toggleTheme} />
+                  {children}
+                </SchedulesProvider>
+              </CategoriesProvider>
             </DomainInfosProvider>
           </ThemeProvider>
         </StyledComponentsRegistry>

@@ -12,9 +12,8 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { Text } from '@/shared/components/text/Text'
 import { useTheme } from 'styled-components'
 import categories from './categories.json'
-import { Fragment } from 'react'
-import { useAddCategory } from '@/shared/hooks/useAddCategory'
-import { useGetCategories } from '@/shared/hooks/useGetCategories'
+import { Fragment, useContext } from 'react'
+import { CategoriesContext } from '@/shared/contexts/Categories'
 
 interface Category {
   name: string
@@ -22,18 +21,21 @@ interface Category {
 
 export function AddCategory() {
   const theme = useTheme()
-  const { addCategory, loading } = useAddCategory()
-  const existingCategories = useGetCategories()
+  const {
+    addCategory,
+    categories: existingCategories,
+    loading,
+  } = useContext(CategoriesContext)
 
-  const existingCategoryNames = existingCategories.categories.map(
+  const existingCategoryNames = existingCategories.map(
     (category: Category) => category.name,
   )
 
-  const loadingCategories = existingCategories.loading
+  // const loadingCategories = existingCategories.loading
 
   return (
     <DropdownMenu.Root>
-      <DropdownMenu.Trigger asChild>
+      <DropdownMenu.Trigger asChild disabled={loading}>
         <AddCategoryButtonRoot>
           {loading ? (
             <Text size={20} $weight="700">
@@ -51,7 +53,7 @@ export function AddCategory() {
       </DropdownMenu.Trigger>
 
       <DropdownMenu.Portal>
-        {loadingCategories ? (
+        {loading ? (
           <Content>
             <Text size={14} $weight="500">
               Carregando...
