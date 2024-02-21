@@ -1,11 +1,6 @@
 'use client'
 
-import { Text } from '@/shared/components/text/Text'
-import {
-  CategoriesListRoot,
-  ItemsPageRoot,
-  SeparatorCategories,
-} from './ItemsPage.style'
+import { CategoriesListRoot, ItemsPageRoot } from './ItemsPage.style'
 import { AddCategory } from './utils/components/add-category/AddCategory'
 import { Skeleton } from '@/shared/components/skeleton/Skeleton'
 import { CategoryItem } from './utils/components/category-item'
@@ -15,6 +10,7 @@ import { useContext } from 'react'
 import { CategoriesContext } from '@/shared/contexts/Categories'
 import { DeleteCategory } from './utils/components/delete-category/DeleteCategory'
 import Link from 'next/link'
+import { SeparatorWithName } from '@/shared/components/separator/SeparatorWithName'
 
 const skeletonArray = Array.from({ length: 10 })
 
@@ -25,13 +21,7 @@ export default function ItemsPage() {
     <ItemsPageRoot>
       <AddCategory />
 
-      <SeparatorCategories>
-        <span className="line" />
-        <Text size={18} $weight="700" className="text">
-          Categorias
-        </Text>
-        <span className="line" />
-      </SeparatorCategories>
+      <SeparatorWithName name="Categorias" />
 
       <CategoriesListRoot>
         {loading
