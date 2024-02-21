@@ -1,4 +1,3 @@
-import { api } from '@/lib/axios'
 import { ReactNode, createContext, useEffect, useState } from 'react'
 
 interface DomainInfos {
@@ -25,19 +24,26 @@ export function DomainInfosProvider({ children }: { children: ReactNode }) {
   })
 
   useEffect(() => {
-    api
-      .get(`/domains/${process.env.NEXT_PUBLIC_DOMAIN_ID}`)
-      .then((response) => {
-        const data = response.data.domain
+    fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/domains/${process.env.NEXT_PUBLIC_DOMAIN_ID}`,
+      {
+        next: {
+          revalidate: 1800, // 30 minutes
+        },
+      },
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        const domainData = data.domain
 
         setDomainInfos({
-          name: data.name,
-          phone: data.phone,
-          cep: data.cep,
-          address: data.address,
-          cnpj: data.cnpj,
-          deliveryTime: data.deliveryTime,
-          domainName: data.domainName,
+          name: domainData.name,
+          phone: domainData.phone,
+          cep: domainData.cep,
+          address: domainData.address,
+          cnpj: domainData.cnpj,
+          deliveryTime: domainData.deliveryTime,
+          domainName: domainData.domainName,
         })
       })
   }, [])
