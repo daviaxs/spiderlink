@@ -13,6 +13,8 @@ declare module 'styled-components' {
 
     border: string
     borderSecondary: string
+    borderTertiary: string
+    bodyQuinary: string
 
     title: string
     text: string

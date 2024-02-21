@@ -9,9 +9,11 @@ export const lightTheme = {
   bodySecondary: themeColors['dark-blue-50'],
   bodyTertiary: themeColors['dark-blue-200'] + '40',
   bodyQuaternary: themeColors['dark-blue-100'] + '50',
+  bodyQuinary: themeColors['dark-blue-50'],
 
   border: themeColors['dark-blue-100'],
   borderSecondary: themeColors['dark-blue-200'],
+  borderTertiary: themeColors['dark-blue-100'],
 
   title: themeColors['dark-blue-800'],
   text: themeColors['dark-blue-800'],
@@ -42,9 +44,11 @@ export const darkTheme = {
   bodySecondary: themeColors['dark-blue-800'],
   bodyTertiary: themeColors['dark-blue-700'],
   bodyQuaternary: themeColors['dark-blue-600'],
+  bodyQuinary: themeColors['dark-blue-600'],
 
   border: themeColors['dark-blue-500'],
   borderSecondary: themeColors['dark-blue-400'],
+  borderTertiary: themeColors['dark-blue-800'],
 
   title: themeColors.white,
   text: themeColors['dark-blue-50'],
