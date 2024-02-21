@@ -25,7 +25,7 @@ export function DeleteCategory({ id, name }: DeleteCategoryProps) {
   return (
     <Dialog.Root>
       <Trigger>
-        <CategoryItem.Button>
+        <CategoryItem.Button as="div">
           <Trash2 />
         </CategoryItem.Button>
       </Trigger>

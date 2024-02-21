@@ -32,7 +32,11 @@ export const CategoryItemActionsStyle = styled.div`
   gap: 0.75rem;
 `
 
-export const CategoryItemButtonStyle = styled.button`
+interface CategoryItemButtonProps {
+  as: keyof JSX.IntrinsicElements
+}
+
+export const CategoryItemButtonStyle = styled.button<CategoryItemButtonProps>`
   outline: none;
   cursor: pointer;
 
