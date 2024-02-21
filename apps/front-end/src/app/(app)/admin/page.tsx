@@ -25,11 +25,13 @@ export default function AdminPage() {
           </ButtonAdmin.Root>
         </Link>
 
-        <ButtonAdmin.Root>
-          <PanelsLeftBottom size={75} className="icon" />
+        <Link href="/admin/items">
+          <ButtonAdmin.Root>
+            <PanelsLeftBottom size={75} className="icon" />
 
-          <ButtonAdmin.Title>Editar items</ButtonAdmin.Title>
-        </ButtonAdmin.Root>
+            <ButtonAdmin.Title>Editar items</ButtonAdmin.Title>
+          </ButtonAdmin.Root>
+        </Link>
       </AdminContent>
     </AdminRoot>
   )
