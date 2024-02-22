@@ -21,7 +21,7 @@ export const ToolbarActionsStyle = styled.div`
   justify-content: center;
 `
 
-export const ToolbarButtonStyle = styled.button`
+export const ToolbarButtonStyle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;

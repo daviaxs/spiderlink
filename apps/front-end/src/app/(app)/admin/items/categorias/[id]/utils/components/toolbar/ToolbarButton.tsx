@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import { ToolbarButtonStyle } from './Toolbar.style'
 
-interface ToolbarButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+interface ToolbarButtonProps {
   children: ReactNode
 }
 
