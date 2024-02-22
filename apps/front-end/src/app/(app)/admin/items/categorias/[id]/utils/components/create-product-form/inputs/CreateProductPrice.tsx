@@ -6,15 +6,12 @@ interface CreateProductPriceProps {
   title: string
   name: string
   placeholder?: string
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register?: any
 }
 
 export function CreateProductPrice({
   title,
   name,
   placeholder,
-  register,
 }: CreateProductPriceProps) {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     let numericValue = event.target.value.replace(/[^0-9]/g, '')
@@ -43,9 +40,9 @@ export function CreateProductPrice({
       <input
         type="text"
         name={name}
+        id={name}
         placeholder={placeholder}
         onChange={handleChange}
-        {...register}
       />
     </InputRoot>
   )

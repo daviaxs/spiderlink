@@ -9,8 +9,12 @@ import { Toolbar } from './utils/components/toolbar'
 import { CreateProductForm } from './utils/components/create-product-form/CreateProductForm'
 
 export default function CategoryPage() {
-  const { id } = useParams()
+  let { id } = useParams()
   const { categories } = useContext(CategoriesContext)
+
+  if (Array.isArray(id)) {
+    id = id[0]
+  }
 
   const category = categories.find((category) => category.id === id)
   const categoryName = category?.name || 'Carregando...'
@@ -21,7 +25,7 @@ export default function CategoryPage() {
         <Toolbar.Title>{categoryName}</Toolbar.Title>
 
         <Toolbar.Actions>
-          <CreateProductForm />
+          <CreateProductForm categoryId={id} />
         </Toolbar.Actions>
       </Toolbar.Root>
 

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 export const FormRoot = styled.form`
   display: flex;
-  align-items: start;
+  align-items: center;
   justify-content: start;
   flex-direction: column;
 

@@ -3,12 +3,7 @@
 import { ChangeEvent, useState } from 'react'
 import { MediaPickerStyle } from '../ProductForm.style'
 
-interface MediaPickerProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register?: any
-}
-
-export function MediaPicker({ register }: MediaPickerProps) {
+export function MediaPicker() {
   const [preview, setPreview] = useState<string | null>(null)
 
   function onFileSelected(event: ChangeEvent<HTMLInputElement>) {
@@ -27,12 +22,11 @@ export function MediaPicker({ register }: MediaPickerProps) {
     <>
       <input
         onChange={onFileSelected}
-        name="coverUrl"
-        id="coverUrl"
+        name="img"
+        id="img"
         type="file"
         accept="image/*"
         style={{ display: 'none' }}
-        {...register}
       />
 
       {preview && <MediaPickerStyle src={preview} alt="" />}

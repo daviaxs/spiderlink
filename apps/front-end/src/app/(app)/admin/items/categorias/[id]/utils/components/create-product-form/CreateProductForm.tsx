@@ -22,8 +22,13 @@ import { CreateProductInput } from './inputs/CreateProductInput'
 import { CreateProductTextarea } from './inputs/CreateProductTextarea'
 import { CreateProductPrice } from './inputs/CreateProductPrice'
 import { ButtonForm } from '@/shared/components/buttons/button-form/ButtonForm'
+import { useCreateProduct } from '@/shared/hooks/useCreateProduct'
+import { Loading } from '@/shared/components/loading/Loading'
 
-export function CreateProductForm() {
+export function CreateProductForm({ categoryId }: { categoryId: string }) {
+  const { createProduct, errorMessage, loading, successMessage } =
+    useCreateProduct({ categoryId })
+
   const theme = useTheme()
 
   return (
@@ -45,14 +50,14 @@ export function CreateProductForm() {
             Criar Produto
           </Text>
 
-          <FormRoot>
+          <FormRoot onSubmit={createProduct}>
             <FormContent>
               <div>
                 <MediaPicker />
 
                 <AddProductimageButton>
                   <label
-                    htmlFor="coverUrl"
+                    htmlFor="img"
                     style={{
                       display: 'flex',
                       alignItems: 'center',
@@ -70,23 +75,32 @@ export function CreateProductForm() {
               <InputsRoot>
                 <CreateProductInput
                   title="Nome"
-                  name="productName"
+                  name="name"
                   placeholder="Nome do produto"
                 />
                 <CreateProductPrice
                   title="Preço"
-                  name="productPrice"
+                  name="price"
                   placeholder="Preço do produto"
                 />
                 <CreateProductTextarea
                   title="Descrição"
-                  name="productDescription"
+                  name="description"
                   placeholder="Descrição do produto"
                 />
               </InputsRoot>
             </FormContent>
 
-            <ButtonForm size="full">Salvar</ButtonForm>
+            {errorMessage && <Text size={16}>{errorMessage}</Text>}
+
+            <ButtonForm
+              type="submit"
+              size="full"
+              disabled={successMessage || loading}
+              color="primary"
+            >
+              {loading ? <Loading /> : 'Criar'}
+            </ButtonForm>
           </FormRoot>
 
           <Close>
