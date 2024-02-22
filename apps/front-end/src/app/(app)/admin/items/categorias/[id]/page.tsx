@@ -26,7 +26,7 @@ export default function CategoryPage() {
         <Toolbar.Actions>
           <Toolbar.Button>
             <Plus color={theme.iconSecondary} />
-            <Text size={16} $weight="600">
+            <Text size={16} $weight="600" className="textButton">
               Criar produto
             </Text>
           </Toolbar.Button>

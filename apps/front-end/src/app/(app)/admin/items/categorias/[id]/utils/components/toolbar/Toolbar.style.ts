@@ -38,4 +38,10 @@ export const ToolbarButtonStyle = styled.button`
     transition: background 150ms ease-in-out;
     background-color: ${({ theme }) => theme.bodyTertiary};
   }
+
+  @media (max-width: 500px) {
+    .textButton {
+      display: none;
+    }
+  }
 `
