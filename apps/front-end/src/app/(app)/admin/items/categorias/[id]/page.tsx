@@ -6,12 +6,9 @@ import { useContext } from 'react'
 import { CategoriesContext } from '@/shared/contexts/Categories'
 import { SeparatorWithName } from '@/shared/components/separator/SeparatorWithName'
 import { Toolbar } from './utils/components/toolbar'
-import { Plus } from 'lucide-react'
-import { Text } from '@/shared/components/text/Text'
-import { useTheme } from 'styled-components'
+import { CreateProductForm } from './utils/components/create-product-form/CreateProductForm'
 
 export default function CategoryPage() {
-  const theme = useTheme()
   const { id } = useParams()
   const { categories } = useContext(CategoriesContext)
 
@@ -24,12 +21,7 @@ export default function CategoryPage() {
         <Toolbar.Title>{categoryName}</Toolbar.Title>
 
         <Toolbar.Actions>
-          <Toolbar.Button>
-            <Plus color={theme.iconSecondary} />
-            <Text size={16} $weight="600" className="textButton">
-              Criar produto
-            </Text>
-          </Toolbar.Button>
+          <CreateProductForm />
         </Toolbar.Actions>
       </Toolbar.Root>
 
