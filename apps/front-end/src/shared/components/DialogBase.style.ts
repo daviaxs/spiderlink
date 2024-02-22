@@ -43,10 +43,14 @@ export const Content = styled(Dialog.Content)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   outline: none;
 
   width: 80%;
+  max-height: 80%;
+
+  overflow-y: auto;
+
   padding: 5rem 2rem;
   gap: 2rem;
 
@@ -60,9 +64,29 @@ export const Content = styled(Dialog.Content)`
   border: 1px solid ${(props) => props.theme.border};
   border-radius: 0.5rem;
 
+  & {
+    scrollbar-width: none;
+    scrollbar-color: ${({ theme }) => theme.border} transparent;
+  }
+
+  &::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.border};
+    border-radius: 10px;
+    border: 0px none;
+  }
+
   @media (max-width: 450px) {
     width: 100%;
     height: 100%;
+    max-height: 100%;
     justify-content: start;
     border-radius: 0;
     border: none;
