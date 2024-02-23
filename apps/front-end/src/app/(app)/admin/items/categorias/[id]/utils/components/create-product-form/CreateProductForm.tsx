@@ -1,7 +1,7 @@
 'use client'
 
 import * as Dialog from '@radix-ui/react-dialog'
-import { Plus, X } from 'lucide-react'
+import { Check, Plus, X } from 'lucide-react'
 import { Text } from '@/shared/components/text/Text'
 import {
   Close,
@@ -99,7 +99,7 @@ export function CreateProductForm({ categoryId }: { categoryId: string }) {
               disabled={successMessage || loading}
               color="primary"
             >
-              {loading ? <Loading /> : 'Criar'}
+              {loading ? <Loading /> : successMessage ? <Check /> : 'Criar'}
             </ButtonForm>
           </FormRoot>
 
