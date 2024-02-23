@@ -34,8 +34,9 @@ export const ProductCardAdmin = styled.div`
   }
 
   @media (max-width: 400px) {
-    min-width: 270px;
-    max-width: 320px;
+    min-width: 100%;
+    max-width: 100%;
+    height: 420px;
   }
 `
 
@@ -75,6 +76,11 @@ export const ProductFooter = styled.div<ProductFooter>`
     width: ${({ $buttonWidth }) => $buttonWidth || 'fit-content'};
     height: fit-content;
     padding: 0.75rem 1rem;
+  }
+
+  @media (max-width: 400px) {
+    flex-direction: column;
+    height: fit-content;
   }
 `
 
