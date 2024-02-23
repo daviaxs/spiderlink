@@ -14,6 +14,7 @@ import { Separator } from '@/shared/components/separator/Separator.style'
 import { convertPriceToBRFormat } from '@/shared/functions/convertPriceToBRFormat'
 import { ButtonForm } from '@/shared/components/buttons/button-form/ButtonForm'
 import { ExternalLink, Pencil } from 'lucide-react'
+import { DeleteProductForm } from './utils/DeleteProductForm'
 
 export function ListProductsAdmin() {
   const { products, loading } = useContext(ProductsContext)
@@ -45,6 +46,7 @@ export function ListProductsAdmin() {
                 width={150}
                 height={137}
                 className="product-image"
+                priority
               />
 
               <ProductInfo>
@@ -60,7 +62,7 @@ export function ListProductsAdmin() {
               <Separator direction="horizontal" />
 
               <ProductFooter
-                buttonWidth={product.price === 0 ? '100%' : 'fit-content'}
+                $buttonWidth={product.price === 0 ? '100%' : 'fit-content'}
               >
                 {product.price !== 0 && (
                   <Text size={24} $weight="600">
@@ -77,6 +79,8 @@ export function ListProductsAdmin() {
                   </ButtonForm>
                 </ProductActions>
               </ProductFooter>
+
+              <DeleteProductForm name={product.name} productId={product.id} />
             </ProductCardAdmin>
           ))}
     </ListProductsAdminRoot>

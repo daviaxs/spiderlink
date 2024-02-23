@@ -39,8 +39,8 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
   async function deleteProduct(productId: string) {
     setLoading(true)
     await api
-      .delete(`/products/${process.env.NEXT_PUBLIC_DOMAIN_ID}/`, {
-        data: productId,
+      .delete(`/products/${process.env.NEXT_PUBLIC_DOMAIN_ID}`, {
+        data: { productId },
         headers: {
           Authorization: `Bearer ${userAccesToken}`,
         },
