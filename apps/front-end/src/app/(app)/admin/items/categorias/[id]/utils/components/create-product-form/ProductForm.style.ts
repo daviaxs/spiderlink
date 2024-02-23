@@ -18,6 +18,12 @@ export const FormContent = styled.div`
   justify-content: start;
   width: 100%;
   gap: 1rem;
+
+  @media (max-width: 600px) {
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+  }
 `
 
 export const AddProductimageButton = styled.div`
@@ -59,6 +65,10 @@ export const InputsRoot = styled.div`
   flex-direction: column;
   gap: 1rem;
   flex: 1;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `
 
 export const InputRoot = styled.div`
