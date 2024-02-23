@@ -11,6 +11,7 @@ import { DomainInfosProvider } from '@/shared/contexts/DomainInfos'
 import { SchedulesProvider } from '@/shared/contexts/Schedules'
 import Head from 'next/head'
 import { CategoriesProvider } from '@/shared/contexts/Categories'
+import { ProductsProvider } from '@/shared/contexts/Products'
 
 export default function RootLayout({
   children,
@@ -29,11 +30,13 @@ export default function RootLayout({
           <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
             <DomainInfosProvider>
               <CategoriesProvider>
-                <SchedulesProvider>
-                  <GlobalStyle />
-                  <Header toggleTheme={toggleTheme} />
-                  {children}
-                </SchedulesProvider>
+                <ProductsProvider>
+                  <SchedulesProvider>
+                    <GlobalStyle />
+                    <Header toggleTheme={toggleTheme} />
+                    {children}
+                  </SchedulesProvider>
+                </ProductsProvider>
               </CategoriesProvider>
             </DomainInfosProvider>
           </ThemeProvider>
