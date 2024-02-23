@@ -27,6 +27,14 @@ export function ListProductsAdmin() {
     return description
   }
 
+  function slicePrice(price: number) {
+    const priceString = price.toString()
+    if (priceString.length > 5) {
+      return parseFloat(priceString.slice(0, 5))
+    }
+    return price
+  }
+
   return (
     <ListProductsAdminRoot>
       {loading
@@ -66,7 +74,10 @@ export function ListProductsAdmin() {
               >
                 {product.price !== 0 && (
                   <Text size={24} $weight="600">
-                    {convertPriceToBRFormat(product.price as number)}
+                    {convertPriceToBRFormat(
+                      slicePrice(product.price as number),
+                    )}
+                    {product.price.toString().length > 5 && '...'}
                   </Text>
                 )}
 
