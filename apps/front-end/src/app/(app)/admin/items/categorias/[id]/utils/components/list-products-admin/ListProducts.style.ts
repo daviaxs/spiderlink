@@ -93,7 +93,7 @@ export const DeleteProduct = styled.div`
 
   right: 0;
 
-  background-color: ${({ theme }) => theme.bodyQuinary};
+  background-color: ${({ theme }) => theme.bodyTertiary};
   border-radius: 9rem 0 0 9rem;
   padding: 1rem;
 
