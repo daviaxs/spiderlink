@@ -39,19 +39,25 @@ export function useCreateProduct({ categoryId }: { categoryId: string }) {
       price = convertToNumber(getOnlyNumbers(priceBase as string))
     }
 
-    if (fileToUpload) {
-      const uploadData = new FormData()
-      uploadData.set('file', fileToUpload)
+    try {
+      if (fileToUpload) {
+        const uploadData = new FormData()
+        uploadData.set('file', fileToUpload)
 
-      const uploadResponse = await api.post('/upload', uploadData, {
-        headers: {
-          Authorization: `Bearer ${userAccesToken}`,
-        },
-      })
+        const uploadResponse = await api.post('/upload', uploadData, {
+          headers: {
+            Authorization: `Bearer ${userAccesToken}`,
+          },
+        })
 
-      console.log(uploadResponse)
+        console.log(uploadResponse)
 
-      img = uploadResponse.data.data.secure_url
+        img = uploadResponse.data.data.secure_url
+      }
+    } catch (err) {
+      setErrorMessage('Adicione uma imagem.')
+      setLoading(false)
+      return
     }
 
     api
