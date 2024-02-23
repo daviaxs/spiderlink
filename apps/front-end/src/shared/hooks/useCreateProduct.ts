@@ -18,6 +18,12 @@ export function useCreateProduct({ categoryId }: { categoryId: string }) {
     const description = formData.get('description')
     const priceBase = formData.get('price')
 
+    if (!name || !description || !priceBase) {
+      setErrorMessage('Preencha todos os campos')
+      setLoading(false)
+      return
+    }
+
     let img = ''
     let price: number | string = ''
 
