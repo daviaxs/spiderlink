@@ -8,13 +8,13 @@ import { SeparatorWithName } from '@/shared/components/separator/SeparatorWithNa
 import { Toolbar } from './utils/components/toolbar'
 import { CreateProductForm } from './utils/components/create-product-form/CreateProductForm'
 import { ProductsContext } from '@/shared/contexts/Products'
-import { Skeleton } from '@/shared/components/skeleton/Skeleton'
+import { ListProductsAdmin } from './utils/components/list-products-admin/ListProducts'
 
 export default function CategoryPage() {
   let { id } = useParams()
   const { categories } = useContext(CategoriesContext)
 
-  const { products, fetchProducts, loading } = useContext(ProductsContext)
+  const { fetchProducts } = useContext(ProductsContext)
 
   if (Array.isArray(id)) {
     id = id[0]
@@ -41,27 +41,7 @@ export default function CategoryPage() {
 
       <SeparatorWithName name="Produtos" />
 
-      <div
-        style={{
-          width: '100%',
-          gap: '1rem',
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
-        {loading
-          ? Array.from({ length: 10 }).map((_, index) => (
-              <Skeleton
-                key={index}
-                width="100%"
-                height="3rem"
-                $borderRadius={0.375}
-              />
-            ))
-          : products.map((product) => (
-              <div key={product.id}>{product.name}</div>
-            ))}
-      </div>
+      <ListProductsAdmin />
     </CategoryPageRoot>
   )
 }
