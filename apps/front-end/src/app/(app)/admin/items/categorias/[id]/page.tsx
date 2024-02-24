@@ -41,7 +41,7 @@ export default function CategoryPage() {
 
       <SeparatorWithName name="Produtos" />
 
-      <ListProductsAdmin />
+      <ListProductsAdmin categoryId={id} />
     </CategoryPageRoot>
   )
 }

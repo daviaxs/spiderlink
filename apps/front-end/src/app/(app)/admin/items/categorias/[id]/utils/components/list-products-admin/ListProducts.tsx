@@ -13,10 +13,11 @@ import { Text } from '@/shared/components/text/Text'
 import { Separator } from '@/shared/components/separator/Separator.style'
 import { convertPriceToBRFormat } from '@/shared/functions/convertPriceToBRFormat'
 import { ButtonForm } from '@/shared/components/buttons/button-form/ButtonForm'
-import { ExternalLink, Pencil } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
 import { DeleteProductForm } from './utils/DeleteProductForm'
+import { UpdateProductForm } from '../update-product-form/UpdateProductForm'
 
-export function ListProductsAdmin() {
+export function ListProductsAdmin({ categoryId }: { categoryId: string }) {
   const { products, loading } = useContext(ProductsContext)
 
   function formatDescription(description: string) {
@@ -27,12 +28,14 @@ export function ListProductsAdmin() {
     return description
   }
 
-  function slicePrice(price: number) {
-    const priceString = price.toString()
-    if (priceString.length > 5) {
-      return parseFloat(priceString.slice(0, 5))
+  function formatPrice(price: number) {
+    const formattedPrice = convertPriceToBRFormat(price)
+
+    if (formattedPrice.length > 10) {
+      return `${formattedPrice.slice(0, 10)}...`
     }
-    return price
+
+    return formattedPrice
   }
 
   return (
@@ -74,10 +77,7 @@ export function ListProductsAdmin() {
               >
                 {product.price !== 0 && (
                   <Text size={24} $weight="600">
-                    {convertPriceToBRFormat(
-                      slicePrice(product.price as number),
-                    )}
-                    {product.price.toString().length > 5 && '...'}
+                    {formatPrice(product.price as number)}
                   </Text>
                 )}
 
@@ -85,9 +85,11 @@ export function ListProductsAdmin() {
                   <ButtonForm size="full">
                     <ExternalLink />
                   </ButtonForm>
-                  <ButtonForm size="full">
-                    <Pencil />
-                  </ButtonForm>
+
+                  <UpdateProductForm
+                    productId={product.id}
+                    categoryId={categoryId}
+                  />
                 </ProductActions>
               </ProductFooter>
 
