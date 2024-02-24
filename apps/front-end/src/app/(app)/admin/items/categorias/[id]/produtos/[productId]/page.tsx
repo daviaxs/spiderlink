@@ -26,7 +26,10 @@ export default function ProductPage() {
         <Toolbar.Title>{product?.name || 'Carregando...'}</Toolbar.Title>
 
         <Toolbar.Actions>
-          <CreateSubsectionForm />
+          <CreateSubsectionForm
+            categoryId={id as string}
+            productId={productId as string}
+          />
         </Toolbar.Actions>
       </Toolbar.Root>
 

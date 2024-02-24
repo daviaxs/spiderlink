@@ -1,7 +1,7 @@
 'use client'
 
 import * as Dialog from '@radix-ui/react-dialog'
-import { Plus, X } from 'lucide-react'
+import { Check, Plus, X } from 'lucide-react'
 import { Text } from '@/shared/components/text/Text'
 import {
   Close,
@@ -21,8 +21,20 @@ import { CreateSubsectionCheckboxInput } from './inputs/CreateSubsectionCheckbox
 import { ButtonForm } from '@/shared/components/buttons/button-form/ButtonForm'
 import { CreateSubsectionLimitInput } from './inputs/CreateSubsectionLimitInput'
 import { SpanContainer } from '@/shared/components/spanContainer/SpanContainer.style'
+import { useCreateSubsection } from '@/shared/hooks/useCreateSubsection'
+import { Loading } from '@/shared/components/loading/Loading'
 
-export function CreateSubsectionForm() {
+interface CreateSubsectionFormProps {
+  categoryId: string
+  productId: string
+}
+
+export function CreateSubsectionForm({
+  categoryId,
+  productId,
+}: CreateSubsectionFormProps) {
+  const { createSubsection, errorMessage, loading, successMessage } =
+    useCreateSubsection({ categoryId, productId })
   const theme = useTheme()
 
   return (
@@ -44,7 +56,7 @@ export function CreateSubsectionForm() {
             Criar subseção
           </Text>
 
-          <CreateSubsectionFormRoot>
+          <CreateSubsectionFormRoot onSubmit={createSubsection}>
             <Inputs>
               <CreateSubsectionInput
                 title="Nome"
@@ -78,8 +90,14 @@ export function CreateSubsectionForm() {
               </InputsOptions>
             </Inputs>
 
-            <ButtonForm size="full" color="primary">
-              Salvar
+            {errorMessage && <Text size={16}>{errorMessage}</Text>}
+
+            <ButtonForm
+              size="full"
+              color="primary"
+              disabled={loading || successMessage}
+            >
+              {loading ? <Loading /> : successMessage ? <Check /> : 'Criar'}
             </ButtonForm>
           </CreateSubsectionFormRoot>
 
