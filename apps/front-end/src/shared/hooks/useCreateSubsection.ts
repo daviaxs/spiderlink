@@ -34,8 +34,14 @@ export function useCreateSubsection({
       limit = Number(limitBase)
     }
 
-    if (!name || !limit) {
+    if (!name) {
       setErrorMessage('Preencha todos os campos')
+      setLoading(false)
+      return
+    }
+
+    if (limit === 0) {
+      setErrorMessage('Defina um limite de 1 até 99')
       setLoading(false)
       return
     }
