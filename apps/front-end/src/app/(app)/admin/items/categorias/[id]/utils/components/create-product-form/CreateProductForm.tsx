@@ -10,7 +10,7 @@ import {
   Trigger,
 } from '@/shared/components/DialogBase.style'
 import { useTheme } from 'styled-components'
-import { Toolbar } from '../toolbar'
+import { Toolbar } from '@/shared/components/toolbar'
 import { MediaPicker } from './inputs/MediaPicker'
 import {
   AddProductimageButton,

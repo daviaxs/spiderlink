@@ -5,7 +5,7 @@ import { CategoryPageRoot } from './CategoryPage.style'
 import { useContext } from 'react'
 import { CategoriesContext } from '@/shared/contexts/Categories'
 import { SeparatorWithName } from '@/shared/components/separator/SeparatorWithName'
-import { Toolbar } from './utils/components/toolbar'
+import { Toolbar } from '@/shared/components/toolbar'
 import { CreateProductForm } from './utils/components/create-product-form/CreateProductForm'
 import { ListProductsAdmin } from './utils/components/list-products-admin/ListProducts'
 
