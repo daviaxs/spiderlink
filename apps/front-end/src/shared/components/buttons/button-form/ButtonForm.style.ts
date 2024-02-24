@@ -3,6 +3,7 @@
 import styled from 'styled-components'
 
 export interface ButtonStyleProps {
+  as?: keyof JSX.IntrinsicElements
   color?: 'primary' | 'secondary'
   size: 'normal' | 'large' | 'full'
 }
