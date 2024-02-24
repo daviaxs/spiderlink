@@ -1,6 +1,6 @@
 import { Skeleton } from '@/shared/components/skeleton/Skeleton'
 import { ProductsContext } from '@/shared/contexts/Products'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import {
   ListProductsAdminRoot,
   ProductActions,
@@ -16,9 +16,18 @@ import { ButtonForm } from '@/shared/components/buttons/button-form/ButtonForm'
 import { ExternalLink } from 'lucide-react'
 import { DeleteProductForm } from './utils/DeleteProductForm'
 import { UpdateProductForm } from '../update-product-form/UpdateProductForm'
+import Link from 'next/link'
+import { useParams } from 'next/navigation'
 
-export function ListProductsAdmin({ categoryId }: { categoryId: string }) {
-  const { products, loading } = useContext(ProductsContext)
+export function ListProductsAdmin() {
+  const { products, loading, fetchProducts } = useContext(ProductsContext)
+  const { id } = useParams()
+
+  useEffect(() => {
+    if (id) {
+      fetchProducts(id as string)
+    }
+  }, [fetchProducts, id])
 
   function formatDescription(description: string) {
     if (description.length > 70) {
@@ -82,13 +91,22 @@ export function ListProductsAdmin({ categoryId }: { categoryId: string }) {
                 )}
 
                 <ProductActions>
-                  <ButtonForm size="full">
-                    <ExternalLink />
-                  </ButtonForm>
+                  <Link
+                    href={`/admin/items/categorias/${id}/products/${product.id}`}
+                    style={
+                      product.price === 0
+                        ? { width: '100%' }
+                        : { width: 'fit-content' }
+                    }
+                  >
+                    <ButtonForm size="full">
+                      <ExternalLink />
+                    </ButtonForm>
+                  </Link>
 
                   <UpdateProductForm
                     productId={product.id}
-                    categoryId={categoryId}
+                    categoryId={id as string}
                   />
                 </ProductActions>
               </ProductFooter>
