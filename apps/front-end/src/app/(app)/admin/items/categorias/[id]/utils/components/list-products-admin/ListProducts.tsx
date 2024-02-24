@@ -92,7 +92,7 @@ export function ListProductsAdmin() {
 
                 <ProductActions>
                   <Link
-                    href={`/admin/items/categorias/${id}/products/${product.id}`}
+                    href={`/admin/items/categorias/${id}/produtos/${product.id}`}
                     style={
                       product.price === 0
                         ? { width: '100%' }
