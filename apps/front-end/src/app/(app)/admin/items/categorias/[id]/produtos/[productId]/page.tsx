@@ -3,10 +3,14 @@
 import { ProductsContext } from '@/shared/contexts/Products'
 import { useParams } from 'next/navigation'
 import { useContext, useEffect } from 'react'
+import { ProductPageRoot } from './ProductPage,style'
+import { Toolbar } from '@/shared/components/toolbar'
+import { SeparatorWithName } from '@/shared/components/separator/SeparatorWithName'
+import { CreateSubsectionForm } from './utils/components/create-sebsection-form/CreateSubsectionForm'
 
 export default function ProductPage() {
   const { id, productId } = useParams()
-  const { fetchProducts, products } = useContext(ProductsContext)
+  const { fetchProducts, products, loading } = useContext(ProductsContext)
 
   useEffect(() => {
     if (id) {
@@ -17,10 +21,16 @@ export default function ProductPage() {
   const product = products.find((product) => product.id === productId)
 
   return (
-    <div>
-      <h1>{product?.name}</h1>
-      <p>{product?.description}</p>
-      <p>{product?.price}</p>
-    </div>
+    <ProductPageRoot>
+      <Toolbar.Root>
+        <Toolbar.Title>{product?.name || 'Carregando...'}</Toolbar.Title>
+
+        <Toolbar.Actions>
+          <CreateSubsectionForm />
+        </Toolbar.Actions>
+      </Toolbar.Root>
+
+      <SeparatorWithName name="Subseções" />
+    </ProductPageRoot>
   )
 }
