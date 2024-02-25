@@ -32,7 +32,7 @@ export const OptionItemAdmin = styled.li`
     flex-direction: column;
 
     padding: 1rem;
-    gap: 0.75rem;
+    gap: 1rem;
     height: fit-content;
   }
 `
