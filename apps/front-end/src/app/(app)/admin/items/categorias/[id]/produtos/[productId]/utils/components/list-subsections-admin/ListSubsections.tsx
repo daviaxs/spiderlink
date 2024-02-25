@@ -12,15 +12,14 @@ import { DeleteSubsectionForm } from './utils/DeleteSubsectionForm'
 import { UpdateSubsectionForm } from '../update-sebusection-form/UpdateSubsectionForm'
 
 export function ListSubsectionsAdmin() {
-  const { fetchSubsections, subsections, loading } =
-    useContext(SubsectionsContext)
+  const { subsections, loading, setProductId } = useContext(SubsectionsContext)
   const { id, productId } = useParams()
 
   useEffect(() => {
     if (productId) {
-      fetchSubsections(productId as string)
+      setProductId(productId as string)
     }
-  }, [fetchSubsections, productId])
+  }, [productId, setProductId])
 
   return (
     <ListSubsectionsAdminRoot>

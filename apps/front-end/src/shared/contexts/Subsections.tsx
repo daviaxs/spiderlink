@@ -1,4 +1,10 @@
-import React, { createContext, useState, useCallback, ReactNode } from 'react'
+import React, {
+  createContext,
+  useState,
+  useCallback,
+  ReactNode,
+  useEffect,
+} from 'react'
 import { api } from '@/lib/axios'
 import { userAccesToken } from '../constants/cookiesValues'
 
@@ -13,7 +19,7 @@ export interface Subsection {
 interface SubsectionsContextData {
   subsections: Subsection[]
   loading: boolean
-  fetchSubsections: (productId: string) => void
+  setProductId: (productId: string) => void
   deleteSubsection: (id: string) => void
 }
 
@@ -22,19 +28,38 @@ export const SubsectionsContext = createContext<SubsectionsContextData>(
 )
 
 export const SubsectionsProvider = ({ children }: { children: ReactNode }) => {
-  const [subsections, setSubsections] = useState<Subsection[]>([])
+  const [subsectionsByProduct, setSubsectionsByProduct] = useState<
+    Record<string, Subsection[]>
+  >({})
+
   const [productId, setProductId] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
 
-  const fetchSubsections = useCallback(async (productId: string) => {
-    setLoading(true)
-    const response = await api.get(
-      `/subsections/${process.env.NEXT_PUBLIC_DOMAIN_ID}/${productId}`,
-    )
-    setSubsections(response.data.subsections)
-    setProductId(productId)
-    setLoading(false)
-  }, [])
+  const fetchSubsections = useCallback(
+    async (productId: string) => {
+      if (!subsectionsByProduct[productId]) {
+        setLoading(true)
+
+        const response = await api.get(
+          `/subsections/${process.env.NEXT_PUBLIC_DOMAIN_ID}/${productId}`,
+        )
+
+        setSubsectionsByProduct((prev) => ({
+          ...prev,
+          [productId]: response.data.subsections,
+        }))
+
+        setLoading(false)
+      }
+    },
+    [subsectionsByProduct],
+  )
+
+  useEffect(() => {
+    if (productId) {
+      fetchSubsections(productId)
+    }
+  }, [fetchSubsections, productId])
 
   async function deleteSubsection(subsectionId: string) {
     setLoading(true)
@@ -49,18 +74,38 @@ export const SubsectionsProvider = ({ children }: { children: ReactNode }) => {
       )
       .then(() => {
         window.alert('Subseção deletada com sucesso')
+
+        setSubsectionsByProduct((prev) => {
+          const newSubsections = prev[productId as string].filter(
+            (subsection) => subsection.id !== subsectionId,
+          )
+
+          return {
+            ...prev,
+            [productId as string]: [...newSubsections],
+          }
+        })
       })
       .catch(() => {
         window.alert(
           'Erro ao deletar subseção. Por favor, atualize a página e tente novamente.',
         )
       })
+      .finally(() => {
+        setLoading(false)
+      })
+
     fetchSubsections(productId as string)
   }
 
   return (
     <SubsectionsContext.Provider
-      value={{ subsections, loading, deleteSubsection, fetchSubsections }}
+      value={{
+        subsections: subsectionsByProduct[productId as string] || [],
+        loading,
+        deleteSubsection,
+        setProductId,
+      }}
     >
       {children}
     </SubsectionsContext.Provider>
