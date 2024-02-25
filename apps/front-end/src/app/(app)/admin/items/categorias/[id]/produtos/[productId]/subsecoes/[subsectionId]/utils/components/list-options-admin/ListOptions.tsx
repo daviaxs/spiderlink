@@ -11,7 +11,8 @@ import { Text } from '@/shared/components/text/Text'
 import { useParams } from 'next/navigation'
 import { OptionsContext } from '@/shared/contexts/Options'
 import { convertPriceToBRFormat } from '@/shared/functions/convertPriceToBRFormat'
-import { Pencil, Trash2 } from 'lucide-react'
+import { Pencil } from 'lucide-react'
+import { DeleteOptionForm } from './utils/DeleteOptionForm'
 
 export function ListOptionsAdmin() {
   const { loading, options, setSubsectionId } = useContext(OptionsContext)
@@ -79,15 +80,13 @@ export function ListOptionsAdmin() {
               </OptionItemInfos>
 
               <OptionItemActions>
-                <button>
+                <button className="ActionButton">
                   <Pencil />
                 </button>
 
                 <span className="separator" />
 
-                <button>
-                  <Trash2 />
-                </button>
+                <DeleteOptionForm name={option.name} optionId={option.id} />
               </OptionItemActions>
             </OptionItemAdmin>
           ))}

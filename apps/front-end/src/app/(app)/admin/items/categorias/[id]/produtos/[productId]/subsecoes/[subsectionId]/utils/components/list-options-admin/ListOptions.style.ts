@@ -79,7 +79,7 @@ export const OptionItemActions = styled.div`
   min-width: 3rem;
   max-width: 3rem;
 
-  button {
+  .ActionButton {
     background-color: transparent;
     border: none;
     outline: none;
