@@ -17,7 +17,7 @@ export function UpdateSubsectionLimitInput({
   subsectionId,
 }: UpdateSubsectionLimitInputProps) {
   const { subsections } = useContext(SubsectionsContext)
-  const [defaultValue, setDefaultValue] = useState<number>()
+  const [defaultValue, setDefaultValue] = useState<number>(0)
 
   useEffect(() => {
     const subsection = subsections.find(
