@@ -7,7 +7,8 @@ import {
 import { useParams } from 'next/navigation'
 import { SubsectionsContext } from '@/shared/contexts/Subsections'
 import { SubsectionItem } from '../subsection-item'
-import { ExternalLink, Pencil, Trash2 } from 'lucide-react'
+import { ExternalLink, Pencil } from 'lucide-react'
+import { DeleteSubsectionForm } from './utils/DeleteSubsectionForm'
 
 export function ListSubsectionsAdmin() {
   const { fetchSubsections, subsections, loading } =
@@ -58,9 +59,10 @@ export function ListSubsectionsAdmin() {
                     <Pencil />
                   </SubsectionItem.Button>
 
-                  <SubsectionItem.Button>
-                    <Trash2 />
-                  </SubsectionItem.Button>
+                  <DeleteSubsectionForm
+                    name={subsection.name}
+                    subsectionId={subsection.id}
+                  />
                 </SubsectionItem.Actions>
               </SubsectionItem.Root>
             </ListSubsectionsItems>
