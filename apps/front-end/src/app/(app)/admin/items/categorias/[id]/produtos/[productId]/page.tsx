@@ -3,14 +3,15 @@
 import { ProductsContext } from '@/shared/contexts/Products'
 import { useParams } from 'next/navigation'
 import { useContext, useEffect } from 'react'
-import { ProductPageRoot } from './ProductPage,style'
+import { Glossary, GlossaryItem, ProductPageRoot } from './ProductPage.style'
 import { Toolbar } from '@/shared/components/toolbar'
 import { SeparatorWithName } from '@/shared/components/separator/SeparatorWithName'
 import { CreateSubsectionForm } from './utils/components/create-sebsection-form/CreateSubsectionForm'
+import { ListSubsectionsAdmin } from './utils/components/list-subsections-admin/ListSubsections'
 
 export default function ProductPage() {
   const { id, productId } = useParams()
-  const { fetchProducts, products, loading } = useContext(ProductsContext)
+  const { fetchProducts, products } = useContext(ProductsContext)
 
   useEffect(() => {
     if (id) {
@@ -34,6 +35,14 @@ export default function ProductPage() {
       </Toolbar.Root>
 
       <SeparatorWithName name="Subseções" />
+
+      <Glossary>
+        <GlossaryItem>LMT = Limite</GlossaryItem>
+        <GlossaryItem>OBGT = Obrigatório</GlossaryItem>
+        <GlossaryItem>MULT = Multipla escolha</GlossaryItem>
+      </Glossary>
+
+      <ListSubsectionsAdmin />
     </ProductPageRoot>
   )
 }
