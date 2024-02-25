@@ -37,17 +37,20 @@ export function ListSubsectionsAdmin() {
               <SubsectionItem.Root>
                 <SubsectionItem.Infos>
                   <SubsectionItem.Name>{subsection.name}</SubsectionItem.Name>
-                  <SubsectionItem.Badge
-                    title="LMT:"
-                    content={subsection.limit.toString()}
-                  />
-                  {subsection.required === true && (
-                    <SubsectionItem.Badge content="obgt" />
-                  )}
 
-                  {subsection.multipleChoice === true && (
-                    <SubsectionItem.Badge content="mult" />
-                  )}
+                  <div className="badges">
+                    <SubsectionItem.Badge
+                      title="LMT:"
+                      content={subsection.limit.toString()}
+                    />
+                    {subsection.required === true && (
+                      <SubsectionItem.Badge content="obgt" />
+                    )}
+
+                    {subsection.multipleChoice === true && (
+                      <SubsectionItem.Badge content="mult" />
+                    )}
+                  </div>
                 </SubsectionItem.Infos>
 
                 <SubsectionItem.Actions>
