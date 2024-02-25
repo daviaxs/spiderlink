@@ -41,7 +41,7 @@ export function DeleteSubsectionForm({
         <Content>
           <SpanContainer $align="center">
             <Text size={32} $weight="600" $textalign="center">
-              Apagar produto: {name}
+              Apagar subseção: {name}
             </Text>
 
             <Text size={16} $textalign="center" color={theme.description}>
