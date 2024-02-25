@@ -20,14 +20,14 @@ import Link from 'next/link'
 import { useParams } from 'next/navigation'
 
 export function ListProductsAdmin() {
-  const { products, loading, fetchProducts } = useContext(ProductsContext)
+  const { products, loading, setCategoryId } = useContext(ProductsContext)
   const { id } = useParams()
 
   useEffect(() => {
     if (id) {
-      fetchProducts(id as string)
+      setCategoryId(id as string)
     }
-  }, [fetchProducts, id])
+  }, [id, setCategoryId])
 
   function formatDescription(description: string) {
     if (description.length > 70) {

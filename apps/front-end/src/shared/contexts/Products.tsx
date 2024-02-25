@@ -1,4 +1,10 @@
-import React, { createContext, useState, useCallback, ReactNode } from 'react'
+import React, {
+  createContext,
+  useState,
+  useCallback,
+  ReactNode,
+  useEffect,
+} from 'react'
 import { api } from '@/lib/axios'
 import { userAccesToken } from '../constants/cookiesValues'
 
@@ -13,7 +19,7 @@ interface Product {
 interface ProductsContextData {
   products: Product[]
   loading: boolean
-  fetchProducts: (categoryId: string) => void
+  setCategoryId: (categoryId: string) => void
   deleteProduct: (id: string) => void
 }
 
@@ -22,19 +28,36 @@ export const ProductsContext = createContext<ProductsContextData>(
 )
 
 export const ProductsProvider = ({ children }: { children: ReactNode }) => {
-  const [products, setProducts] = useState<Product[]>([])
+  const [productsByCategory, setProductsByCategory] = useState<
+    Record<string, Product[]>
+  >({})
+
+  // const [products, setProducts] = useState<Product[]>([])
   const [categoryId, setCategoryId] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
 
-  const fetchProducts = useCallback(async (categoryId: string) => {
-    setLoading(true)
-    const response = await api.get(
-      `/products/${process.env.NEXT_PUBLIC_DOMAIN_ID}/${categoryId}`,
-    )
-    setProducts(response.data.products)
-    setCategoryId(categoryId)
-    setLoading(false)
-  }, [])
+  const fetchProducts = useCallback(
+    async (categoryId: string) => {
+      if (!productsByCategory[categoryId]) {
+        setLoading(true)
+        const response = await api.get(
+          `/products/${process.env.NEXT_PUBLIC_DOMAIN_ID}/${categoryId}`,
+        )
+        setProductsByCategory((prev) => ({
+          ...prev,
+          [categoryId]: response.data.products,
+        }))
+        setLoading(false)
+      }
+    },
+    [productsByCategory],
+  )
+
+  useEffect(() => {
+    if (categoryId) {
+      fetchProducts(categoryId)
+    }
+  }, [categoryId, fetchProducts])
 
   async function deleteProduct(productId: string) {
     setLoading(true)
@@ -47,18 +70,37 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
       })
       .then(() => {
         window.alert('Produto deletado com sucesso')
+
+        setProductsByCategory((prev) => {
+          const newProducts = prev[categoryId as string].filter(
+            (product) => product.id !== productId,
+          )
+
+          return {
+            ...prev,
+            [categoryId as string]: [...newProducts],
+          }
+        })
       })
       .catch(() => {
         window.alert(
           'Erro ao deletar produto. Por favor, atualize a página e tente novamente.',
         )
       })
+      .finally(() => {
+        setLoading(false)
+      })
     fetchProducts(categoryId as string)
   }
 
   return (
     <ProductsContext.Provider
-      value={{ products, loading, deleteProduct, fetchProducts }}
+      value={{
+        products: productsByCategory[categoryId as string] || [],
+        loading,
+        deleteProduct,
+        setCategoryId,
+      }}
     >
       {children}
     </ProductsContext.Provider>

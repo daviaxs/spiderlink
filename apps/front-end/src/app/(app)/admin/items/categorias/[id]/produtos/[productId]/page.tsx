@@ -11,13 +11,13 @@ import { ListSubsectionsAdmin } from './utils/components/list-subsections-admin/
 
 export default function ProductPage() {
   const { id, productId } = useParams()
-  const { fetchProducts, products } = useContext(ProductsContext)
+  const { products, setCategoryId } = useContext(ProductsContext)
 
   useEffect(() => {
     if (id) {
-      fetchProducts(id as string)
+      setCategoryId(id as string)
     }
-  }, [fetchProducts, id])
+  }, [id, setCategoryId])
 
   const product = products.find((product) => product.id === productId)
 
