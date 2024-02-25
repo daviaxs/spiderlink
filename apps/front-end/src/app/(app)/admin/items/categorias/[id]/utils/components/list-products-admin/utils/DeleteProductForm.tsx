@@ -26,7 +26,10 @@ export function DeleteProductForm({ name, productId }: DeleteProductFormProps) {
 
   return (
     <Dialog.Root>
-      <Trigger style={{ position: 'absolute', right: '0' }}>
+      <Trigger
+        style={{ position: 'absolute', right: '0' }}
+        name="deletar-produto"
+      >
         <DeleteProduct>
           <Trash2 color={theme.icon} />
         </DeleteProduct>

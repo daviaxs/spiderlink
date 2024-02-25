@@ -99,7 +99,7 @@ export function ListProductsAdmin() {
                         : { width: 'fit-content' }
                     }
                   >
-                    <ButtonForm size="full">
+                    <ButtonForm size="full" name="ir-para-produto">
                       <ExternalLink />
                     </ButtonForm>
                   </Link>

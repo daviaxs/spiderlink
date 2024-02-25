@@ -44,6 +44,7 @@ export function UpdateProductForm({
           size="full"
           as="div"
           style={{ padding: '1rem', height: '50px' }}
+          name="atualizar-produto"
         >
           <Pencil />
         </ButtonForm>

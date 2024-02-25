@@ -34,7 +34,7 @@ export function Menu({ toggleTheme }: { toggleTheme?: () => void }) {
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
-      <Trigger>
+      <Trigger name="menu">
         <MenuIcon color={theme.icon} />
       </Trigger>
 
