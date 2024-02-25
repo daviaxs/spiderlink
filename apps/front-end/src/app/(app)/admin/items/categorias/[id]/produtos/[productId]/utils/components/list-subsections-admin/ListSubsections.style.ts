@@ -2,7 +2,7 @@
 
 import styled from 'styled-components'
 
-export const ListSubsectionsAdminRoot = styled.div`
+export const ListSubsectionsAdminRoot = styled.ul`
   display: flex;
   align-items: center;
   justify-content: start;
@@ -12,7 +12,7 @@ export const ListSubsectionsAdminRoot = styled.div`
   gap: 1rem;
 `
 
-export const ListSubsectionsItems = styled.ul`
+export const ListSubsectionsItem = styled.li`
   display: flex;
   flex-direction: column;
 
