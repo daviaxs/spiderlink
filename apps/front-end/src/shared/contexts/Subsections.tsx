@@ -2,7 +2,7 @@ import React, { createContext, useState, useCallback, ReactNode } from 'react'
 import { api } from '@/lib/axios'
 import { userAccesToken } from '../constants/cookiesValues'
 
-interface Subsection {
+export interface Subsection {
   id: string
   name: string
   limit: number

@@ -1,20 +1,34 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { CheckboxRoot } from '../../Inputs.style'
+import { Subsection, SubsectionsContext } from '@/shared/contexts/Subsections'
 
-interface CreateSubsectionCheckboxInputProps {
+interface UpdateSubsectionCheckboxInputProps {
   title: string
   name: string
+  subsectionId: string
 }
 
-export function CreateSubsectionCheckboxInput({
+export function UpdateSubsectionCheckboxInput({
   name,
   title,
-}: CreateSubsectionCheckboxInputProps) {
+  subsectionId,
+}: UpdateSubsectionCheckboxInputProps) {
+  const { subsections } = useContext(SubsectionsContext)
   const [inputValue, setInputValue] = useState<boolean>(false)
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.checked)
   }
+
+  useEffect(() => {
+    const subsection = subsections.find(
+      (subsection) => subsection.id === subsectionId,
+    )
+
+    if (subsection) {
+      setInputValue(!!subsection[name as keyof Subsection])
+    }
+  }, [name, subsectionId, subsections])
 
   return (
     <CheckboxRoot>

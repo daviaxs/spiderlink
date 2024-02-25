@@ -1,5 +1,5 @@
 import { Text } from '@/shared/components/text/Text'
-import { InputRoot } from './Inputs.style'
+import { InputRoot } from '../../Inputs.style'
 
 interface CreateSubsectionInputProps {
   title: string

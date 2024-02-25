@@ -7,13 +7,14 @@ import {
 import { useParams } from 'next/navigation'
 import { SubsectionsContext } from '@/shared/contexts/Subsections'
 import { SubsectionItem } from '../subsection-item'
-import { ExternalLink, Pencil } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
 import { DeleteSubsectionForm } from './utils/DeleteSubsectionForm'
+import { UpdateSubsectionForm } from '../update-sebusection-form/UpdateSubsectionForm'
 
 export function ListSubsectionsAdmin() {
   const { fetchSubsections, subsections, loading } =
     useContext(SubsectionsContext)
-  const { productId } = useParams()
+  const { id, productId } = useParams()
 
   useEffect(() => {
     if (productId) {
@@ -58,9 +59,11 @@ export function ListSubsectionsAdmin() {
                     <ExternalLink />
                   </SubsectionItem.Button>
 
-                  <SubsectionItem.Button>
-                    <Pencil />
-                  </SubsectionItem.Button>
+                  <UpdateSubsectionForm
+                    categoryId={id as string}
+                    productId={productId as string}
+                    subsectionId={subsection.id}
+                  />
 
                   <DeleteSubsectionForm
                     name={subsection.name}

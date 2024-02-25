@@ -1,29 +1,43 @@
 import { Text } from '@/shared/components/text/Text'
 import { InputRoot } from '../../Inputs.style'
-import { KeyboardEvent, useState } from 'react'
+import { KeyboardEvent, useContext, useEffect, useState } from 'react'
+import { Subsection, SubsectionsContext } from '@/shared/contexts/Subsections'
 
-interface CreateSubsectionLimitInputProps {
+interface UpdateSubsectionLimitInputProps {
   title: string
   name: string
   placeholder?: string
+  subsectionId: string
 }
 
-export function CreateSubsectionLimitInput({
+export function UpdateSubsectionLimitInput({
   title,
   name,
   placeholder,
-}: CreateSubsectionLimitInputProps) {
-  const [inputValue, setInputValue] = useState(0)
+  subsectionId,
+}: UpdateSubsectionLimitInputProps) {
+  const { subsections } = useContext(SubsectionsContext)
+  const [defaultValue, setDefaultValue] = useState<number>()
+
+  useEffect(() => {
+    const subsection = subsections.find(
+      (subsection) => subsection.id === subsectionId,
+    )
+
+    if (subsection) {
+      setDefaultValue(subsection[name as keyof Subsection] as number)
+    }
+  }, [name, subsectionId, subsections])
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(event.target.value)
 
     if (value.toString().length > 2) {
-      setInputValue(99)
+      setDefaultValue(99)
       return
     }
 
-    setInputValue(Number(event.target.value))
+    setDefaultValue(Number(event.target.value))
   }
 
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -41,7 +55,7 @@ export function CreateSubsectionLimitInput({
       <input
         type="text"
         name={name}
-        value={inputValue}
+        value={defaultValue}
         onChange={handleChange}
         placeholder={placeholder}
         onKeyUp={handleKeyPress}
