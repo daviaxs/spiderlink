@@ -17,6 +17,7 @@ export const Glossary = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 
   width: 100%;
   gap: 1rem;
@@ -32,4 +33,9 @@ export const GlossaryItem = styled.div`
   border-radius: 0.375rem;
 
   padding: 0.375rem;
+  white-space: nowrap;
+
+  @media (max-width: 600px) {
+    font-size: 10px;
+  }
 `
