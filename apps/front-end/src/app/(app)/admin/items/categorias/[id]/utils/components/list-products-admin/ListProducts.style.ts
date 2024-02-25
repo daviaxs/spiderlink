@@ -2,7 +2,7 @@
 
 import styled from 'styled-components'
 
-export const ListProductsAdminRoot = styled.div`
+export const ListProductsAdminRoot = styled.ul`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -12,7 +12,7 @@ export const ListProductsAdminRoot = styled.div`
   gap: 3rem;
 `
 
-export const ProductCardAdmin = styled.div`
+export const ProductCardAdmin = styled.li`
   display: flex;
   align-items: center;
   justify-content: start;
