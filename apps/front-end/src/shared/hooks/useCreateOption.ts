@@ -27,8 +27,14 @@ export function useCreateOption({
     const description = formData.get('description')
     const priceBase = formData.get('price')
 
-    if (!name || !description || !priceBase) {
+    if (!name || !priceBase) {
       setErrorMessage('Preencha todos os campos')
+      setLoading(false)
+      return
+    }
+
+    if (description && description?.toString().length > 99) {
+      setErrorMessage('A descrição deve ter no máximo 99 caracteres')
       setLoading(false)
       return
     }
