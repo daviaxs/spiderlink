@@ -17,13 +17,31 @@ export const SubsectionItemRoot = styled.li`
   width: 100%;
   height: 3rem;
   padding: 0 1rem;
+
+  @media (max-width: 600px) {
+    align-items: start;
+    flex-direction: column;
+
+    padding: 1rem;
+    gap: 0.75rem;
+    height: fit-content;
+  }
 `
 
 export const SubsectionItemInfos = styled.div`
   display: flex;
   align-items: center;
   justify-content: start;
+  flex-wrap: wrap;
   gap: 1rem;
+
+  .badges {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
 `
 
 export const SubsectionItemNameStyle = styled.span`
@@ -58,7 +76,7 @@ export const SubsectionItemButtonStyle = styled.button<SubsectionItemButtonProps
   color: ${({ theme }) => theme.iconSecondary};
 
   padding: 0.375rem;
-  height: 100%;
+  height: fit-content;
 `
 
 export const SubsectionItemBadgeStyle = styled.div`
