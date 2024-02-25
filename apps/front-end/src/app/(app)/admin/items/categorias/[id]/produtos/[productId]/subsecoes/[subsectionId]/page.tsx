@@ -7,10 +7,11 @@ import { SubsectionPageRoot } from './SubsectionPage.style'
 import { Toolbar } from '@/shared/components/toolbar'
 import { CreateOptionForm } from './utils/components/create-option-form/CreateOptionForm'
 import { SeparatorWithName } from '@/shared/components/separator/SeparatorWithName'
+import { ListOptionsAdmin } from './utils/components/list-options-admin/ListOptions'
 
 export default function SubsectionPage() {
   const { id, productId, subsectionId } = useParams()
-  const { subsections, loading, setProductId } = useContext(SubsectionsContext)
+  const { subsections, setProductId } = useContext(SubsectionsContext)
 
   useEffect(() => {
     if (productId) {
@@ -39,6 +40,8 @@ export default function SubsectionPage() {
       </Toolbar.Root>
 
       <SeparatorWithName name="Opções" />
+
+      <ListOptionsAdmin />
     </SubsectionPageRoot>
   )
 }
