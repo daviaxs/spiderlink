@@ -32,7 +32,6 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
     Record<string, Product[]>
   >({})
 
-  // const [products, setProducts] = useState<Product[]>([])
   const [categoryId, setCategoryId] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
 
