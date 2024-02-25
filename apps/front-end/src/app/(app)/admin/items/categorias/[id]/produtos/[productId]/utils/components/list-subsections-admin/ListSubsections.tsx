@@ -10,6 +10,7 @@ import { SubsectionItem } from '../subsection-item'
 import { ExternalLink } from 'lucide-react'
 import { DeleteSubsectionForm } from './utils/DeleteSubsectionForm'
 import { UpdateSubsectionForm } from '../update-sebusection-form/UpdateSubsectionForm'
+import Link from 'next/link'
 
 export function ListSubsectionsAdmin() {
   const { subsections, loading, setProductId } = useContext(SubsectionsContext)
@@ -54,9 +55,14 @@ export function ListSubsectionsAdmin() {
                 </SubsectionItem.Infos>
 
                 <SubsectionItem.Actions>
-                  <SubsectionItem.Button>
-                    <ExternalLink />
-                  </SubsectionItem.Button>
+                  <Link
+                    href={`/admin/items/categorias/${id}/produtos/${productId}/subsecoes/${subsection.id}`}
+                    style={{ width: 'fit-content' }}
+                  >
+                    <SubsectionItem.Button>
+                      <ExternalLink />
+                    </SubsectionItem.Button>
+                  </Link>
 
                   <UpdateSubsectionForm
                     categoryId={id as string}
