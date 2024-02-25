@@ -1,23 +1,24 @@
 import { Text } from '@/shared/components/text/Text'
-import { InputRoot } from '../ProductForm.style'
+import { InputRoot } from './Inputs.style'
 
-interface CreateProductInputProps {
+interface InputTextareaProps {
   title: string
   name: string
   placeholder?: string
 }
 
-export function CreateProductInput({
+export function InputTextarea({
   title,
   name,
   placeholder,
-}: CreateProductInputProps) {
+}: InputTextareaProps) {
   return (
     <InputRoot>
       <Text as="h3" size={18}>
         {title}
       </Text>
-      <input type="text" name={name} placeholder={placeholder} />
+
+      <textarea name={name} placeholder={placeholder} />
     </InputRoot>
   )
 }

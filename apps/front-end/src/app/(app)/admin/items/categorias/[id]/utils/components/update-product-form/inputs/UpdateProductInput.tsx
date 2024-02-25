@@ -1,7 +1,7 @@
 import { Text } from '@/shared/components/text/Text'
-import { InputRoot } from '../../create-product-form/ProductForm.style'
 import { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { ProductsContext } from '@/shared/contexts/Products'
+import { InputRoot } from '@/shared/components/inputs/Inputs.style'
 
 interface UpdateProductInputProps {
   title: string

@@ -25,22 +25,3 @@ export const FormContent = styled.div`
     flex-direction: column;
   }
 `
-
-export const AddProductimageButton = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: fit-content;
-  height: fit-content;
-  padding: 0.75rem;
-  border-radius: 0.375rem;
-
-  text-decoration: underline;
-  cursor: pointer;
-
-  &:hover {
-    transition: background 150ms ease-in-out;
-    background-color: ${({ theme }) => theme.bodyTertiary};
-  }
-`

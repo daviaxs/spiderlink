@@ -11,23 +11,28 @@ import {
 } from '@/shared/components/DialogBase.style'
 import { useTheme } from 'styled-components'
 import { Toolbar } from '@/shared/components/toolbar'
-import { MediaPicker } from '@/shared/components/inputs/MediaPicker'
-import {
-  AddProductimageButton,
-  FormContent,
-  FormRoot,
-} from './ProductForm.style'
+import { FormContent, FormRoot } from './OptionForm.style'
 import { ButtonForm } from '@/shared/components/buttons/button-form/ButtonForm'
-import { useCreateProduct } from '@/shared/hooks/useCreateProduct'
 import { Loading } from '@/shared/components/loading/Loading'
-import { InputsRoot } from '@/shared/components/inputs/Inputs.style'
+import { useCreateOption } from '@/shared/hooks/useCreateOption'
 import { InputText } from '@/shared/components/inputs/InputText'
 import { InputPrice } from '@/shared/components/inputs/InputPrice'
 import { InputTextarea } from '@/shared/components/inputs/InputTextarea'
+import { InputsRoot } from '@/shared/components/inputs/Inputs.style'
 
-export function CreateProductForm({ categoryId }: { categoryId: string }) {
-  const { createProduct, errorMessage, loading, successMessage } =
-    useCreateProduct({ categoryId })
+interface CreateOptionFormProps {
+  subsectionId: string
+  categoryId: string
+  productId: string
+}
+
+export function CreateOptionForm({
+  categoryId,
+  productId,
+  subsectionId,
+}: CreateOptionFormProps) {
+  const { createOption, errorMessage, loading, successMessage } =
+    useCreateOption({ subsectionId, categoryId, productId })
 
   const theme = useTheme()
 
@@ -37,7 +42,7 @@ export function CreateProductForm({ categoryId }: { categoryId: string }) {
         <Toolbar.Button>
           <Plus color={theme.iconSecondary} />
           <Text size={16} $weight="600" className="textButton">
-            Criar produto
+            Criar opção
           </Text>
         </Toolbar.Button>
       </Trigger>
@@ -47,46 +52,26 @@ export function CreateProductForm({ categoryId }: { categoryId: string }) {
 
         <Content>
           <Text size={32} $weight="600" $textalign="center">
-            Criar Produto
+            Criar Opção
           </Text>
 
-          <FormRoot onSubmit={createProduct}>
+          <FormRoot onSubmit={createOption}>
             <FormContent>
-              <div>
-                <MediaPicker />
-
-                <AddProductimageButton>
-                  <label
-                    htmlFor="img"
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    <Text size={16} color={theme.description}>
-                      Adicionar imagem
-                    </Text>
-                  </label>
-                </AddProductimageButton>
-              </div>
-
               <InputsRoot>
                 <InputText
                   title="Nome"
                   name="name"
-                  placeholder="Nome do produto"
+                  placeholder="Nome da opção"
                 />
                 <InputPrice
                   title="Preço"
                   name="price"
-                  placeholder="Preço do produto"
+                  placeholder="Preço da opção"
                 />
                 <InputTextarea
                   title="Descrição"
                   name="description"
-                  placeholder="Descrição do produto"
+                  placeholder="Descrição da opção"
                 />
               </InputsRoot>
             </FormContent>

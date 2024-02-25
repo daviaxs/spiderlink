@@ -14,7 +14,6 @@ import {
   AddProductimageButton,
   FormContent,
   FormRoot,
-  InputsRoot,
 } from '../create-product-form/ProductForm.style'
 import { ButtonForm } from '@/shared/components/buttons/button-form/ButtonForm'
 import { UpdateProductMediaPicker } from './inputs/UpdateProductMediaPicker'
@@ -23,6 +22,7 @@ import { UpdateProductPrice } from './inputs/UpdateProductPrice'
 import { UpdateProductTextarea } from './inputs/UpdateProductTextarea'
 import { useUpdateProduct } from '@/shared/hooks/useUpdateProduct'
 import { Loading } from '@/shared/components/loading/Loading'
+import { InputsRoot } from '@/shared/components/inputs/Inputs.style'
 
 interface UpdateProductFormProps {
   categoryId: string

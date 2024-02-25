@@ -1,18 +1,14 @@
 import { ChangeEvent } from 'react'
 import { Text } from '@/shared/components/text/Text'
-import { InputRoot } from '../ProductForm.style'
+import { InputRoot } from './Inputs.style'
 
-interface CreateProductPriceProps {
+interface InputPriceProps {
   title: string
   name: string
   placeholder?: string
 }
 
-export function CreateProductPrice({
-  title,
-  name,
-  placeholder,
-}: CreateProductPriceProps) {
+export function InputPrice({ title, name, placeholder }: InputPriceProps) {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     let numericValue = event.target.value.replace(/[^0-9]/g, '')
 
@@ -37,6 +33,7 @@ export function CreateProductPrice({
       <Text as="h3" size={18}>
         {title}
       </Text>
+
       <input
         type="text"
         name={name}

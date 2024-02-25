@@ -1,8 +1,8 @@
 'use client'
 
 import { ChangeEvent, useContext, useEffect, useState } from 'react'
-import { MediaPickerStyle } from '../../create-product-form/ProductForm.style'
 import { ProductsContext } from '@/shared/contexts/Products'
+import { MediaPickerStyle } from '@/shared/components/inputs/Inputs.style'
 
 interface UpdateProductMediaPickerProps {
   productId: string

@@ -1,7 +1,7 @@
 'use client'
 
 import { ChangeEvent, useState } from 'react'
-import { MediaPickerStyle } from '../ProductForm.style'
+import { MediaPickerStyle } from './Inputs.style'
 
 export function MediaPicker() {
   const [preview, setPreview] = useState<string | null>(null)
