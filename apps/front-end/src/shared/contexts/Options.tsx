@@ -8,106 +8,103 @@ import React, {
 import { api } from '@/lib/axios'
 import { userAccesToken } from '../constants/cookiesValues'
 
-export interface Subsection {
+export interface Option {
   id: string
   name: string
-  limit: number
-  required: boolean
-  multipleChoice: boolean
+  price: number
+  description: string
 }
 
-interface SubsectionsContextData {
-  subsections: Subsection[]
+interface OptionsContextData {
+  options: Option[]
   loading: boolean
-  setProductId: (productId: string) => void
-  deleteSubsection: (id: string) => void
+  setSubsectionId: (subsectionId: string) => void
+  deleteOption: (id: string) => void
 }
 
-export const SubsectionsContext = createContext<SubsectionsContextData>(
-  {} as SubsectionsContextData,
+export const OptionsContext = createContext<OptionsContextData>(
+  {} as OptionsContextData,
 )
 
-export const SubsectionsProvider = ({ children }: { children: ReactNode }) => {
-  const [subsectionsByProduct, setSubsectionsByProduct] = useState<
-    Record<string, Subsection[]>
+export const OptionsProvider = ({ children }: { children: ReactNode }) => {
+  const [optionsBySubsection, setOptionsBySubsection] = useState<
+    Record<string, Option[]>
   >({})
 
-  const [productId, setProductId] = useState<string | null>(null)
+  const [subsectionId, setSubsectionId] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
 
-  const fetchSubsections = useCallback(
-    async (productId: string) => {
-      if (!subsectionsByProduct[productId]) {
+  const fetchOptions = useCallback(
+    async (subsectionId: string) => {
+      if (!optionsBySubsection[subsectionId]) {
         setLoading(true)
 
         const response = await api.get(
-          `/subsections/${process.env.NEXT_PUBLIC_DOMAIN_ID}/${productId}`,
+          `/options/${process.env.NEXT_PUBLIC_DOMAIN_ID}/${subsectionId}`,
         )
 
-        setSubsectionsByProduct((prev) => ({
+        setOptionsBySubsection((prev) => ({
           ...prev,
-          [productId]: response.data.subsections,
+          [subsectionId]: response.data.options,
         }))
 
         setLoading(false)
       }
     },
-    [subsectionsByProduct],
+    [optionsBySubsection],
   )
 
   useEffect(() => {
-    if (productId) {
-      fetchSubsections(productId)
+    if (subsectionId) {
+      fetchOptions(subsectionId)
     }
-  }, [fetchSubsections, productId])
+  }, [fetchOptions, subsectionId])
 
-  async function deleteSubsection(subsectionId: string) {
+  async function deleteOption(optionId: string) {
     setLoading(true)
-    await api
-      .delete(
-        `/subsections/${process.env.NEXT_PUBLIC_DOMAIN_ID}/${subsectionId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${userAccesToken}`,
-          },
-        },
-      )
-      .then(() => {
-        window.alert('Subseção deletada com sucesso')
 
-        setSubsectionsByProduct((prev) => {
-          const newSubsections = prev[productId as string].filter(
-            (subsection) => subsection.id !== subsectionId,
+    await api
+      .delete(`/options/${process.env.NEXT_PUBLIC_DOMAIN_ID}/${optionId}`, {
+        headers: {
+          Authorization: `Bearer ${userAccesToken}`,
+        },
+      })
+      .then(() => {
+        window.alert('opção deletada com sucesso')
+
+        setOptionsBySubsection((prev) => {
+          const newOptions = prev[subsectionId as string].filter(
+            (option) => option.id !== optionId,
           )
 
           return {
             ...prev,
-            [productId as string]: [...newSubsections],
+            [subsectionId as string]: [...newOptions],
           }
         })
       })
       .catch(() => {
         window.alert(
-          'Erro ao deletar subseção. Por favor, atualize a página e tente novamente.',
+          'Erro ao deletar opção. Por favor, atualize a página e tente novamente.',
         )
       })
       .finally(() => {
         setLoading(false)
       })
 
-    fetchSubsections(productId as string)
+    fetchOptions(subsectionId as string)
   }
 
   return (
-    <SubsectionsContext.Provider
+    <OptionsContext.Provider
       value={{
-        subsections: subsectionsByProduct[productId as string] || [],
+        options: optionsBySubsection[subsectionId as string] || [],
         loading,
-        deleteSubsection,
-        setProductId,
+        deleteOption,
+        setSubsectionId,
       }}
     >
       {children}
-    </SubsectionsContext.Provider>
+    </OptionsContext.Provider>
   )
 }

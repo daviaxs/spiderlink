@@ -13,6 +13,7 @@ import Head from 'next/head'
 import { CategoriesProvider } from '@/shared/contexts/Categories'
 import { ProductsProvider } from '@/shared/contexts/Products'
 import { SubsectionsProvider } from '@/shared/contexts/Subsections'
+import { OptionsProvider } from '@/shared/contexts/Options'
 
 export default function RootLayout({
   children,
@@ -33,11 +34,13 @@ export default function RootLayout({
               <CategoriesProvider>
                 <ProductsProvider>
                   <SubsectionsProvider>
-                    <SchedulesProvider>
-                      <GlobalStyle />
-                      <Header toggleTheme={toggleTheme} />
-                      {children}
-                    </SchedulesProvider>
+                    <OptionsProvider>
+                      <SchedulesProvider>
+                        <GlobalStyle />
+                        <Header toggleTheme={toggleTheme} />
+                        {children}
+                      </SchedulesProvider>
+                    </OptionsProvider>
                   </SubsectionsProvider>
                 </ProductsProvider>
               </CategoriesProvider>
