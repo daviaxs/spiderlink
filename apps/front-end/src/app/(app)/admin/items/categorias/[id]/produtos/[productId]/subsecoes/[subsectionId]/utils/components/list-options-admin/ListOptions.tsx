@@ -11,8 +11,8 @@ import { Text } from '@/shared/components/text/Text'
 import { useParams } from 'next/navigation'
 import { OptionsContext } from '@/shared/contexts/Options'
 import { convertPriceToBRFormat } from '@/shared/functions/convertPriceToBRFormat'
-import { Pencil } from 'lucide-react'
 import { DeleteOptionForm } from './utils/DeleteOptionForm'
+import { UpdateOptionForm } from '../update-option-form/UpdateOptionForm'
 
 export function ListOptionsAdmin() {
   const { loading, options, setSubsectionId } = useContext(OptionsContext)
@@ -80,9 +80,7 @@ export function ListOptionsAdmin() {
               </OptionItemInfos>
 
               <OptionItemActions>
-                <button className="ActionButton">
-                  <Pencil />
-                </button>
+                <UpdateOptionForm optionId={option.id} />
 
                 <span className="separator" />
 

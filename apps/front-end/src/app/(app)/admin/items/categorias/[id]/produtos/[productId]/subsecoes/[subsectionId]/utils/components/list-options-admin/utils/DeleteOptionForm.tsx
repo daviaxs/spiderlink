@@ -26,9 +26,9 @@ export function DeleteOptionForm({ name, optionId }: DeleteOptionFormProps) {
   return (
     <Dialog.Root>
       <Trigger name="deletar-opção" style={{ padding: '0' }}>
-        <button className="ActionButton">
+        <div className="ActionButton">
           <Trash2 />
-        </button>
+        </div>
       </Trigger>
 
       <Dialog.Portal>
