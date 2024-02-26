@@ -13,11 +13,17 @@ export function Address() {
         <MapPin color={theme.iconSecondary} />
       </InfoBadge.IconBadge>
 
-      <InfoBadge.TextsBadge>
-        <InfoBadge.TitleBadge>Endereço para entrega</InfoBadge.TitleBadge>
-        <InfoBadge.DescriptionBadge>
-          Rua SpiderLink, Jardim Sp...
-        </InfoBadge.DescriptionBadge>
+      <InfoBadge.TextsBadge className="padding-right">
+        <span className="desktop">
+          <InfoBadge.TitleBadge>Endereço para entrega</InfoBadge.TitleBadge>
+          <InfoBadge.DescriptionBadge>
+            Rua SpiderLink, Jardim Sp...
+          </InfoBadge.DescriptionBadge>
+        </span>
+
+        <span className="mobile">
+          <InfoBadge.DescriptionBadge>Endereço</InfoBadge.DescriptionBadge>
+        </span>
       </InfoBadge.TextsBadge>
 
       <InfoBadge.ButtonBadge>

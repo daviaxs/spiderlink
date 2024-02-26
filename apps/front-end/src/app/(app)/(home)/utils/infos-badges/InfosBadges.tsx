@@ -6,11 +6,11 @@ import { Address } from './Address'
 export function InfosBadges() {
   return (
     <InfosBadgesRoot>
-      <DeliveryTime />
-
       <Status />
 
       <Address />
+
+      <DeliveryTime />
     </InfosBadgesRoot>
   )
 }

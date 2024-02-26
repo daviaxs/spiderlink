@@ -17,7 +17,9 @@ export function DeliveryTime() {
       </InfoBadge.IconBadge>
 
       <InfoBadge.TextsBadge>
-        <InfoBadge.TitleBadge>Entrega</InfoBadge.TitleBadge>
+        <span className="desktop">
+          <InfoBadge.TitleBadge>Entrega</InfoBadge.TitleBadge>
+        </span>
         <InfoBadge.DescriptionBadge>{deliveryTime}</InfoBadge.DescriptionBadge>
       </InfoBadge.TextsBadge>
     </InfoBadge.Root>

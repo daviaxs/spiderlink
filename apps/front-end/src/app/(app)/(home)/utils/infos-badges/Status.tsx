@@ -12,13 +12,21 @@ export function Status() {
   return (
     <InfoBadge.Root>
       <InfoBadge.IconBadge>
-        <StatusIcon
-          color={status === 'fechado' ? theme.statusClosed : theme.statusOpen}
-        />
+        <span className="desktop">
+          <StatusIcon
+            color={status === 'fechado' ? theme.statusClosed : theme.statusOpen}
+          />
+        </span>
+
+        <span className="mobile">
+          <div className="status-mobile" />
+        </span>
       </InfoBadge.IconBadge>
 
       <InfoBadge.TextsBadge>
-        <InfoBadge.TitleBadge>Status</InfoBadge.TitleBadge>
+        <span className="desktop">
+          <InfoBadge.TitleBadge>Status</InfoBadge.TitleBadge>
+        </span>
         <InfoBadge.DescriptionBadge>{status}</InfoBadge.DescriptionBadge>
       </InfoBadge.TextsBadge>
     </InfoBadge.Root>

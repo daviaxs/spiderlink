@@ -1,10 +1,10 @@
 import { TextsBadgeStyle } from './InfoBadge.style'
-import { ReactNode } from 'react'
+import { HTMLAttributes, ReactNode } from 'react'
 
-interface TextsBadgeProps {
+interface TextsBadgeProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode
 }
 
-export function TextsBadge({ children }: TextsBadgeProps) {
-  return <TextsBadgeStyle>{children}</TextsBadgeStyle>
+export function TextsBadge({ children, ...props }: TextsBadgeProps) {
+  return <TextsBadgeStyle {...props}>{children}</TextsBadgeStyle>
 }
