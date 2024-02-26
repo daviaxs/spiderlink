@@ -59,12 +59,12 @@ export function CreateOptionForm({
             <FormContent>
               <InputsRoot>
                 <InputText
-                  title="Nome"
+                  title="Nome*"
                   name="name"
                   placeholder="Nome da opção"
                 />
                 <InputPrice
-                  title="Preço"
+                  title="Preço*"
                   name="price"
                   placeholder="Preço da opção"
                 />

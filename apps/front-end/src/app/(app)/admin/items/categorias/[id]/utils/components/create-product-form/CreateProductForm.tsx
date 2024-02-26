@@ -74,17 +74,17 @@ export function CreateProductForm({ categoryId }: { categoryId: string }) {
 
               <InputsRoot>
                 <InputText
-                  title="Nome"
+                  title="Nome*"
                   name="name"
                   placeholder="Nome do produto"
                 />
                 <InputPrice
-                  title="Preço"
+                  title="Preço*"
                   name="price"
                   placeholder="Preço do produto"
                 />
                 <InputTextarea
-                  title="Descrição"
+                  title="Descrição*"
                   name="description"
                   placeholder="Descrição do produto"
                 />

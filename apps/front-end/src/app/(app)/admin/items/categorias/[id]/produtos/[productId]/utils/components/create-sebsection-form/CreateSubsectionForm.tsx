@@ -59,14 +59,14 @@ export function CreateSubsectionForm({
           <CreateSubsectionFormRoot onSubmit={createSubsection}>
             <Inputs>
               <CreateSubsectionInput
-                title="Nome"
+                title="Nome*"
                 name="name"
                 placeholder="Nome da subseção. Ex: Sabores"
               />
 
               <SpanContainer>
                 <CreateSubsectionLimitInput
-                  title="Limite"
+                  title="Limite*"
                   name="limit"
                   placeholder="Limite de quantas opções podem ser selecionadas"
                 />
