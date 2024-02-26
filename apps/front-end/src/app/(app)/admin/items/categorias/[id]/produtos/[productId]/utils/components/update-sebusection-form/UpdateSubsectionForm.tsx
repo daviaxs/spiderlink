@@ -25,18 +25,14 @@ import { UpdateSubsectionLimitInput } from './inputs/UpdateSubsectionLimitInput'
 import { UpdateSubsectionCheckboxInput } from './inputs/UpdateSubsectionCheckboxInput'
 
 interface UpdateSubsectionFormProps {
-  categoryId: string
-  productId: string
   subsectionId: string
 }
 
 export function UpdateSubsectionForm({
-  categoryId,
-  productId,
   subsectionId,
 }: UpdateSubsectionFormProps) {
   const { updateSubsection, errorMessage, loading, successMessage } =
-    useUpdateSubsection({ categoryId, productId, subsectionId })
+    useUpdateSubsection({ subsectionId })
   const theme = useTheme()
 
   return (
@@ -100,7 +96,7 @@ export function UpdateSubsectionForm({
               color="primary"
               disabled={loading || successMessage}
             >
-              {loading ? <Loading /> : successMessage ? <Check /> : 'Criar'}
+              {loading ? <Loading /> : successMessage ? <Check /> : 'Atualizar'}
             </ButtonForm>
           </UpdateSubsectionFormRoot>
 

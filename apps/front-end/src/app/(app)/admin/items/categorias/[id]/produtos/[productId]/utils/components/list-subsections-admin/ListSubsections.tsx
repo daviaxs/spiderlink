@@ -60,11 +60,7 @@ export function ListSubsectionsAdmin() {
                   </SubsectionItem.Button>
                 </Link>
 
-                <UpdateSubsectionForm
-                  categoryId={id as string}
-                  productId={productId as string}
-                  subsectionId={subsection.id}
-                />
+                <UpdateSubsectionForm subsectionId={subsection.id} />
 
                 <DeleteSubsectionForm
                   name={subsection.name}

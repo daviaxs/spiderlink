@@ -3,16 +3,10 @@ import { FormEvent, useState } from 'react'
 import { userAccesToken } from '../constants/cookiesValues'
 
 interface UpdateSubsectionProps {
-  categoryId: string
-  productId: string
   subsectionId: string
 }
 
-export function useUpdateSubsection({
-  productId,
-  categoryId,
-  subsectionId,
-}: UpdateSubsectionProps) {
+export function useUpdateSubsection({ subsectionId }: UpdateSubsectionProps) {
   const [errorMessage, setErrorMessage] = useState<string | null>()
   const [successMessage, setSuccessMessage] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -69,7 +63,7 @@ export function useUpdateSubsection({
       .then(() => {
         setErrorMessage(null)
         setSuccessMessage(true)
-        window.location.href = `/admin/items/categorias/${categoryId}/produtos/${productId}`
+        location.reload()
       })
       .catch((e) => {
         setErrorMessage(e.response.data.message)

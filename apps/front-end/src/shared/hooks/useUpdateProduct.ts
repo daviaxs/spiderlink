@@ -3,13 +3,7 @@ import { FormEvent, useContext, useState } from 'react'
 import { userAccesToken } from '../constants/cookiesValues'
 import { ProductsContext } from '../contexts/Products'
 
-export function useUpdateProduct({
-  categoryId,
-  productId,
-}: {
-  categoryId: string
-  productId: string
-}) {
+export function useUpdateProduct({ productId }: { productId: string }) {
   const [errorMessage, setErrorMessage] = useState<string | null>()
   const [successMessage, setSuccessMessage] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -88,7 +82,7 @@ export function useUpdateProduct({
       .then(() => {
         setErrorMessage(null)
         setSuccessMessage(true)
-        window.location.href = `/admin/items/categorias/${categoryId}`
+        location.reload()
       })
       .catch((e) => {
         setErrorMessage(e.response.data.message)

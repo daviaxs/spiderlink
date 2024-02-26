@@ -25,16 +25,12 @@ import { Loading } from '@/shared/components/loading/Loading'
 import { InputsRoot } from '@/shared/components/inputs/Inputs.style'
 
 interface UpdateProductFormProps {
-  categoryId: string
   productId: string
 }
 
-export function UpdateProductForm({
-  productId,
-  categoryId,
-}: UpdateProductFormProps) {
+export function UpdateProductForm({ productId }: UpdateProductFormProps) {
   const { errorMessage, loading, successMessage, updateProduct } =
-    useUpdateProduct({ categoryId, productId })
+    useUpdateProduct({ productId })
   const theme = useTheme()
 
   return (

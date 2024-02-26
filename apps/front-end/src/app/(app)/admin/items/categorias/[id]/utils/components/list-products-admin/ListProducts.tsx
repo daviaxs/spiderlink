@@ -104,10 +104,7 @@ export function ListProductsAdmin() {
                     </ButtonForm>
                   </Link>
 
-                  <UpdateProductForm
-                    productId={product.id}
-                    categoryId={id as string}
-                  />
+                  <UpdateProductForm productId={product.id} />
                 </ProductActions>
               </ProductFooter>
 
