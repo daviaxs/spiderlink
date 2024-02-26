@@ -21,24 +21,120 @@ import pastel from '@/shared/assets/imgs/categories-images/sopro.png'
 import { CategoryNames } from '@/categoryNames'
 
 const CategoryIcons = {
-  Vinhos: <Image src={wine} alt="Vinho" width={35} height={35} />,
-  Bebidas: <Image src={liquor} alt="Bebidas" width={35} height={35} />,
-  Sucos: <Image src={juices} alt="Sucos" width={35} height={35} />,
-  Brasileira: <Image src={feijoada} alt="Feijoada" width={35} height={35} />,
-  Lanches: <Image src={burger} alt="Lanches" width={35} height={35} />,
-  Pizza: <Image src={pizza} alt="Pizza" width={35} height={35} />,
-  Esfiha: <Image src={esfiha} alt="Esfiha" width={35} height={35} />,
-  Açai: <Image src={mirtilo} alt="Açai" width={35} height={35} />,
-  Francesa: <Image src={croissant} alt="Francesa" width={35} height={35} />,
-  Café: <Image src={coffee} alt="Café" width={35} height={35} />,
-  Saudável: <Image src={healthy} alt="Saudável" width={35} height={35} />,
-  Japonesa: <Image src={sushi} alt="Japonesa" width={35} height={35} />,
-  Chinesa: <Image src={chinese} alt="Chinesa" width={35} height={35} />,
-  Doces: <Image src={cake} alt="Doces" width={35} height={35} />,
-  Italiana: <Image src={italian} alt="Italiana" width={35} height={35} />,
-  Sorvetes: <Image src={iceCream} alt="Sorvetes" width={35} height={35} />,
-  Churros: <Image src={churros} alt="Churros" width={35} height={35} />,
-  Pastel: <Image src={pastel} alt="Pastel" width={35} height={35} />,
+  Vinhos: (
+    <Image src={wine} alt="Vinho" width={35} height={35} draggable={false} />
+  ),
+  Bebidas: (
+    <Image
+      src={liquor}
+      alt="Bebidas"
+      width={35}
+      height={35}
+      draggable={false}
+    />
+  ),
+  Sucos: (
+    <Image src={juices} alt="Sucos" width={35} height={35} draggable={false} />
+  ),
+  Brasileira: (
+    <Image
+      src={feijoada}
+      alt="Feijoada"
+      width={35}
+      height={35}
+      draggable={false}
+    />
+  ),
+  Lanches: (
+    <Image
+      src={burger}
+      alt="Lanches"
+      width={35}
+      height={35}
+      draggable={false}
+    />
+  ),
+  Pizza: (
+    <Image src={pizza} alt="Pizza" width={35} height={35} draggable={false} />
+  ),
+  Esfiha: (
+    <Image src={esfiha} alt="Esfiha" width={35} height={35} draggable={false} />
+  ),
+  Açai: (
+    <Image src={mirtilo} alt="Açai" width={35} height={35} draggable={false} />
+  ),
+  Francesa: (
+    <Image
+      src={croissant}
+      alt="Francesa"
+      width={35}
+      height={35}
+      draggable={false}
+    />
+  ),
+  Café: (
+    <Image src={coffee} alt="Café" width={35} height={35} draggable={false} />
+  ),
+  Saudável: (
+    <Image
+      src={healthy}
+      alt="Saudável"
+      width={35}
+      height={35}
+      draggable={false}
+    />
+  ),
+  Japonesa: (
+    <Image
+      src={sushi}
+      alt="Japonesa"
+      width={35}
+      height={35}
+      draggable={false}
+    />
+  ),
+  Chinesa: (
+    <Image
+      src={chinese}
+      alt="Chinesa"
+      width={35}
+      height={35}
+      draggable={false}
+    />
+  ),
+  Doces: (
+    <Image src={cake} alt="Doces" width={35} height={35} draggable={false} />
+  ),
+  Italiana: (
+    <Image
+      src={italian}
+      alt="Italiana"
+      width={35}
+      height={35}
+      draggable={false}
+    />
+  ),
+  Sorvetes: (
+    <Image
+      src={iceCream}
+      alt="Sorvetes"
+      width={35}
+      height={35}
+      draggable={false}
+    />
+  ),
+  Churros: (
+    <Image
+      src={churros}
+      alt="Churros"
+      width={35}
+      height={35}
+      draggable={false}
+    />
+  ),
+  Pastel: (
+    <Image src={pastel} alt="Pastel" width={35} height={35} draggable={false} />
+  ),
 }
 
 export const getCategoryIcon = (type: CategoryNames) => CategoryIcons[type]
