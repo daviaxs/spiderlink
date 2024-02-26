@@ -11,7 +11,7 @@ import {
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { Text } from '@/shared/components/text/Text'
 import { useTheme } from 'styled-components'
-import categories from './categories.json'
+import categories from '@/categories.json'
 import { Fragment, useContext } from 'react'
 import { CategoriesContext } from '@/shared/contexts/Categories'
 
@@ -30,8 +30,6 @@ export function AddCategory() {
   const existingCategoryNames = existingCategories.map(
     (category: Category) => category.name,
   )
-
-  // const loadingCategories = existingCategories.loading
 
   return (
     <DropdownMenu.Root>
