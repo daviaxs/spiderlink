@@ -34,5 +34,7 @@ declare module 'styled-components' {
     buttonTertiary: string
     hoverButtonSecondary: string
     hoverButton: string
+
+    shadow: string
   }
 }

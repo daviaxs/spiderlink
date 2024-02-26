@@ -33,6 +33,8 @@ export const lightTheme = {
   buttonTertiary: themeColors['dark-blue-100'],
   hoverButtonSecondary: themeColors['primary-600'],
   hoverButton: '#00000010',
+
+  shadow: '#4E4E4E',
 }
 
 export const darkTheme = {
@@ -68,4 +70,6 @@ export const darkTheme = {
   buttonTertiary: themeColors['dark-blue-500'],
   hoverButtonSecondary: themeColors['primary-400'],
   hoverButton: '#ffffff10',
+
+  shadow: '#474747',
 }
