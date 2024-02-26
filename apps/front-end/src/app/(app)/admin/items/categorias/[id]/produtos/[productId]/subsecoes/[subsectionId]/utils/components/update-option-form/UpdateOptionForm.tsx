@@ -77,7 +77,7 @@ export function UpdateOptionForm({ optionId }: UpdateOptionFormProps) {
               disabled={successMessage || loading}
               color="primary"
             >
-              {loading ? <Loading /> : successMessage ? <Check /> : 'Criar'}
+              {loading ? <Loading /> : successMessage ? <Check /> : 'Atualizar'}
             </ButtonForm>
           </FormRoot>
 
