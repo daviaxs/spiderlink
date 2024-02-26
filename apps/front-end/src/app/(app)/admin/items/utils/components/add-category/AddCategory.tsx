@@ -31,6 +31,12 @@ export function AddCategory() {
     (category: Category) => category.name,
   )
 
+  const allSubsectionsExist = (subcategories: string[]) => {
+    return subcategories.every((subcategory) =>
+      existingCategoryNames.includes(subcategory),
+    )
+  }
+
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild disabled={loading}>
@@ -62,6 +68,7 @@ export function AddCategory() {
             {categories.map(
               (category) =>
                 !existingCategoryNames.includes(category.name) &&
+                !allSubsectionsExist(category.subcategories) &&
                 (category.subcategories.length > 0 ? (
                   <DropdownMenu.Sub key={category.name}>
                     <SubTrigger className="DropdownMenuSubTrigger">
