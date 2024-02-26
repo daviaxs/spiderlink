@@ -1,10 +1,11 @@
 import React, { createContext, useState, useEffect, ReactNode } from 'react'
 import { api } from '@/lib/axios'
 import { userAccesToken } from '../constants/cookiesValues'
+import { CategoryNames } from '@/categoryNames'
 
 interface Category {
   id: string
-  name: string
+  name: CategoryNames
   domainId: string
 }
 
