@@ -1,6 +1,6 @@
 'use client'
 
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import {
   CategoryListRoot,
   CategoryScroll,
@@ -11,6 +11,7 @@ import { CategoriesContext } from '@/shared/contexts/Categories'
 
 export function CategoryList() {
   const { categories } = useContext(CategoriesContext)
+  const [focusId, setFocusId] = useState('')
 
   return (
     <CategoryListRoot>
@@ -20,6 +21,9 @@ export function CategoryList() {
             key={category.id}
             title={category.name}
             id={category.id}
+            focusId={focusId}
+            setFocusId={setFocusId}
+            categories={categories}
           />
         ))}
       </CategoryScroll>

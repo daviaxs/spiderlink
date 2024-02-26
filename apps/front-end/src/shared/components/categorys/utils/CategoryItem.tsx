@@ -1,6 +1,5 @@
 import { CategoryItemRoot } from '../Categorys.style'
 import { Text } from '../../text/Text'
-import Link from 'next/link'
 import { useSelectCategory } from '@/shared/hooks/useSelectCategory'
 import { getCategoryIcon } from './GetCategoryIcon'
 import { CategoryNames } from '@/categoryNames'
@@ -8,20 +7,37 @@ import { CategoryNames } from '@/categoryNames'
 interface CategoryItemProps {
   id: string
   title: CategoryNames
+  focusId: string
+  categories: { id: string }[]
+  setFocusId: (id: string) => void
 }
 
-export function CategoryItem({ title, id }: CategoryItemProps) {
-  const { focus, handleClick } = useSelectCategory(id)
+export function CategoryItem({
+  title,
+  id,
+  focusId,
+  setFocusId,
+  categories,
+}: CategoryItemProps) {
+  const { isFocused, handleClick } = useSelectCategory(
+    id,
+    focusId,
+    setFocusId,
+    categories,
+  )
 
   return (
-    <Link href={`?category=${id}`} passHref scroll={false}>
-      <CategoryItemRoot onClick={handleClick} className={focus ? 'focus' : ''}>
+    <div style={{ cursor: 'pointer' }}>
+      <CategoryItemRoot
+        onClick={handleClick}
+        className={isFocused ? 'focus' : ''}
+      >
         {getCategoryIcon(title)}
 
         <Text size={16} $weight="500">
           {title}
         </Text>
       </CategoryItemRoot>
-    </Link>
+    </div>
   )
 }
