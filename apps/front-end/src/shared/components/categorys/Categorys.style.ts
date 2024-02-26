@@ -74,10 +74,16 @@ export const CategoryItemRoot = styled.li`
   justify-content: center;
   gap: 0.375rem;
 
-  min-width: 80px;
-  min-height: 75px;
+  width: 90px;
+  height: 85px;
 
   background-color: ${(props) => props.theme.bodySecondary};
-  border: 1px solid ${(props) => props.theme.border};
   border-radius: 8px;
+
+  user-select: none;
+
+  &.focus {
+    filter: drop-shadow(0px 5px 5px ${({ theme }) => theme.shadow + '40'});
+    border: 1px solid ${({ theme }) => theme.border};
+  }
 `
