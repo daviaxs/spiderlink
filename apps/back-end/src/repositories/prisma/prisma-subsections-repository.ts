@@ -113,6 +113,9 @@ export class PrismaSubsectionsRepository implements SubsectionsRepository {
           },
         },
       },
+      include: {
+        Options: true,
+      },
     })
 
     return subSections
