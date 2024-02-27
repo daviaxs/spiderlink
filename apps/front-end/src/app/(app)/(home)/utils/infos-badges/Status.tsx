@@ -19,7 +19,9 @@ export function Status() {
         </span>
 
         <span className="mobile">
-          <div className="status-mobile" />
+          <div
+            className={`status-mobile ${status === 'fechado' && 'closed'}`}
+          />
         </span>
       </InfoBadge.IconBadge>
 
