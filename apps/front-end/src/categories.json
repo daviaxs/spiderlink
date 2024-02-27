@@ -1,62 +1,56 @@
 [
   {
-    "name": "Bebidas",
-    "subcategories": ["Vinhos", "Bebidas", "Sucos"]
+    "name": "Bebidas"
   },
   {
-    "name": "Brasileira",
-    "subcategories": []
+    "name": "Vinhos"
   },
   {
-    "name": "Lanches",
-    "subcategories": []
+    "name": "Sucos"
   },
   {
-    "name": "Pizza",
-    "subcategories": []
+    "name": "Brasileira"
   },
   {
-    "name": "Esfiha",
-    "subcategories": []
+    "name": "Lanches"
   },
   {
-    "name": "Açai",
-    "subcategories": []
+    "name": "Pizza"
   },
   {
-    "name": "Francesa",
-    "subcategories": []
+    "name": "Esfiha"
   },
   {
-    "name": "Café",
-    "subcategories": []
+    "name": "Açai"
   },
   {
-    "name": "Saudável",
-    "subcategories": []
+    "name": "Francesa"
   },
   {
-    "name": "Asiática",
-    "subcategories": ["Japonesa", "Chinesa"]
+    "name": "Café"
   },
   {
-    "name": "Doces",
-    "subcategories": []
+    "name": "Saudável"
   },
   {
-    "name": "Italiana",
-    "subcategories": []
+    "name": "Japonesa"
   },
   {
-    "name": "Sorvetes",
-    "subcategories": []
+    "name": "chinesa"
   },
   {
-    "name": "Churros",
-    "subcategories": []
+    "name": "Doces"
   },
   {
-    "name": "Pastel",
-    "subcategories": []
+    "name": "Italiana"
+  },
+  {
+    "name": "Sorvetes"
+  },
+  {
+    "name": "Churros"
+  },
+  {
+    "name": "Pastel"
   }
 ]

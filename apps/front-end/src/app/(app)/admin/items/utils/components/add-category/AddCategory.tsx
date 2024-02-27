@@ -1,18 +1,12 @@
 'use client'
 
-import { ChevronRightIcon, Plus } from 'lucide-react'
-import {
-  AddCategoryButtonRoot,
-  Content,
-  Item,
-  SubContent,
-  SubTrigger,
-} from './AddCategory.style'
+import { Plus } from 'lucide-react'
+import { AddCategoryButtonRoot, Content, Item } from './AddCategory.style'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { Text } from '@/shared/components/text/Text'
 import { useTheme } from 'styled-components'
 import categories from '@/categories.json'
-import { Fragment, useContext } from 'react'
+import { useContext } from 'react'
 import { CategoriesContext } from '@/shared/contexts/Categories'
 
 interface Category {
@@ -30,12 +24,6 @@ export function AddCategory() {
   const existingCategoryNames = existingCategories.map(
     (category: Category) => category.name,
   )
-
-  const allSubsectionsExist = (subcategories: string[]) => {
-    return subcategories.every((subcategory) =>
-      existingCategoryNames.includes(subcategory),
-    )
-  }
 
   return (
     <DropdownMenu.Root>
@@ -67,38 +55,7 @@ export function AddCategory() {
           <Content sideOffset={10}>
             {categories.map(
               (category) =>
-                !existingCategoryNames.includes(category.name) &&
-                !allSubsectionsExist(category.subcategories) &&
-                (category.subcategories.length > 0 ? (
-                  <DropdownMenu.Sub key={category.name}>
-                    <SubTrigger className="DropdownMenuSubTrigger">
-                      {category.name}
-                      <ChevronRightIcon />
-                    </SubTrigger>
-
-                    <DropdownMenu.Portal>
-                      <SubContent
-                        className="DropdownMenuSubContent"
-                        sideOffset={-200}
-                        alignOffset={30}
-                      >
-                        {category.subcategories.map(
-                          (subcategory) =>
-                            !existingCategoryNames.includes(subcategory) && (
-                              <Fragment key={subcategory}>
-                                <Item
-                                  className="DropdownMenuItem"
-                                  onClick={() => addCategory(subcategory)}
-                                >
-                                  {subcategory}
-                                </Item>
-                              </Fragment>
-                            ),
-                        )}
-                      </SubContent>
-                    </DropdownMenu.Portal>
-                  </DropdownMenu.Sub>
-                ) : (
+                !existingCategoryNames.includes(category.name) && (
                   <Item
                     key={category.name}
                     className="DropdownMenuItem"
@@ -106,7 +63,7 @@ export function AddCategory() {
                   >
                     {category.name}
                   </Item>
-                )),
+                ),
             )}
           </Content>
         )}
