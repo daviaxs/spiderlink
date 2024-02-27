@@ -9,8 +9,10 @@ export interface SkeletonProps {
 }
 
 export const SkeletonStyle = styled.div<SkeletonProps>`
-  width: ${({ width }) => width};
-  height: ${({ height }) => height};
+  min-width: ${({ width }) => width};
+  max-width: ${({ width }) => width};
+  min-height: ${({ height }) => height};
+  max-height: ${({ height }) => height};
 
   border-radius: ${({ $borderRadius }) => $borderRadius || '0'}rem;
   background-color: ${({ theme }) => theme.bodyTertiary};
