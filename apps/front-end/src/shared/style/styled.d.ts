@@ -11,6 +11,8 @@ declare module 'styled-components' {
     bodyTertiary: string
     bodyQuaternary: string
 
+    productBackground: string
+
     border: string
     borderSecondary: string
     borderTertiary: string

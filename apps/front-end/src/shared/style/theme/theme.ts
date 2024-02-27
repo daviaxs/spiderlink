@@ -11,6 +11,8 @@ export const lightTheme = {
   bodyQuaternary: themeColors['dark-blue-100'] + '50',
   bodyQuinary: themeColors['dark-blue-50'],
 
+  productBackground: themeColors['dark-blue-50'],
+
   border: themeColors['dark-blue-100'],
   borderSecondary: themeColors['dark-blue-200'],
   borderTertiary: themeColors['dark-blue-100'],
@@ -47,6 +49,8 @@ export const darkTheme = {
   bodyTertiary: themeColors['dark-blue-700'],
   bodyQuaternary: themeColors['dark-blue-600'],
   bodyQuinary: themeColors['dark-blue-600'],
+
+  productBackground: themeColors['dark-blue-700'],
 
   border: themeColors['dark-blue-500'],
   borderSecondary: themeColors['dark-blue-400'],
