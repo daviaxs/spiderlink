@@ -7,7 +7,12 @@ interface ProductDescriptionProps {
 
 export function ProductDescription({ children }: ProductDescriptionProps) {
   return (
-    <Text size={14} className="product-description" $lineheight="120%">
+    <Text
+      size={14}
+      className="product-description"
+      $lineheight="120%"
+      $textalign="left"
+    >
       {children}
     </Text>
   )

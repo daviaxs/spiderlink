@@ -7,7 +7,7 @@ interface ProductPriceProps {
 
 export function ProductPrice({ children }: ProductPriceProps) {
   return (
-    <Text size={16} $weight="500">
+    <Text size={16} $weight="600" className="product-price" $textalign="left">
       A partir de {children}
     </Text>
   )

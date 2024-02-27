@@ -7,7 +7,13 @@ interface ProductTitleProps {
 
 export function ProductTitle({ children }: ProductTitleProps) {
   return (
-    <Text as="h2" size={24} $weight="600">
+    <Text
+      as="h2"
+      size={24}
+      $weight="600"
+      $textalign="left"
+      className="product-title"
+    >
       {children}
     </Text>
   )

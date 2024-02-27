@@ -28,6 +28,31 @@ export const ProductItemRootStyle = styled.div`
   .product-image {
     border-radius: 8px;
     object-fit: cover;
+
+    min-width: 150px;
+    max-width: 150px;
+
+    @media (max-width: 420px) {
+      min-width: 100px;
+      max-width: 100px;
+
+      min-height: 90px;
+      max-height: 90px;
+    }
+  }
+
+  .product-title {
+    @media (max-width: 700px) {
+      font-size: 1rem;
+    }
+  }
+
+  .product-price {
+    color: ${({ theme }) => theme.button};
+
+    @media (max-width: 420px) {
+      font-size: 12px;
+    }
   }
 
   @media (max-width: 1000px) {
