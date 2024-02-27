@@ -24,6 +24,12 @@ export function useCreateProduct({ categoryId }: { categoryId: string }) {
       return
     }
 
+    if (description.toString().length > 99) {
+      setErrorMessage('A descrição deve ter no máximo 99 caracteres')
+      setLoading(false)
+      return
+    }
+
     let img = ''
     let price: number | string = ''
 
