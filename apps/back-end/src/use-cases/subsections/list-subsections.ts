@@ -1,6 +1,6 @@
 import { ProductsRepository } from '@/repositories/products-repository'
 import { SubsectionsRepository } from '@/repositories/subsections-repository'
-import { ProductNotFoundError } from '../errors/product-not-found-error'
+import { SubsectionNotFoundError } from '../errors/subsection-not-found-error'
 
 export class ListSubsectionsUseCase {
   constructor(
@@ -12,7 +12,7 @@ export class ListSubsectionsUseCase {
     const product = await this.productsRepository.findProductById(productId)
 
     if (!product) {
-      throw new ProductNotFoundError()
+      throw new SubsectionNotFoundError()
     }
 
     const subsections = await this.subsectionsRepository.listSubsections(
