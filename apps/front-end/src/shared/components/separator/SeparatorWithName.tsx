@@ -1,3 +1,5 @@
+'use client'
+
 import { Text } from '../text/Text'
 import { SeparatorWithNameStyle } from './SeparatorWithName.style'
 
