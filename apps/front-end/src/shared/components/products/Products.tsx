@@ -1,13 +1,12 @@
 'use client'
 
-import { convertPriceToBRFormat } from '@/shared/functions/convertPriceToBRFormat'
 import { ProductsRoot } from './Products.style'
-import { ProductItem } from './utils/components/ProductItem/ProductItem'
 import { useContext, useEffect } from 'react'
 import { ProductsContext } from '@/shared/contexts/Products'
 import { useSearchParams } from 'next/navigation'
 import { ProductsSkeletonRoot } from './utils/ProductsSkeleton.style'
 import { Skeleton } from '../skeleton/Skeleton'
+import { ProductMenu } from './utils/components/ProductMenu/ProductMenu'
 
 const skeletons = Array.from({ length: 4 })
 
@@ -26,19 +25,7 @@ export function Products() {
   return products.length > 0 ? (
     <ProductsRoot>
       {products.map((product) => (
-        <ProductItem.Root key={product.id}>
-          <ProductItem.Infos>
-            <ProductItem.Title>{product.name}</ProductItem.Title>
-            <ProductItem.Description>
-              {product.description}
-            </ProductItem.Description>
-            <ProductItem.Price>
-              {convertPriceToBRFormat(product.price as number)}
-            </ProductItem.Price>
-          </ProductItem.Infos>
-
-          <ProductItem.Image src={product.img} />
-        </ProductItem.Root>
+        <ProductMenu key={product.id} product={product} />
       ))}
     </ProductsRoot>
   ) : (
