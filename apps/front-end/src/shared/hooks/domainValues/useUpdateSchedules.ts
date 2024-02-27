@@ -23,7 +23,7 @@ export function useUpdateSchedules() {
 
     api
       .patch(
-        `schedules/${process.env.NEXT_PUBLIC_DOMAIN_ID}/e14b0281-5fe0-445e-8e9b-29dedf042aa9`,
+        `schedules/${process.env.NEXT_PUBLIC_DOMAIN_ID}/${process.env.NEXT_PUBLIC_SCHEDULE_ID}`,
         data,
         {
           headers: {
