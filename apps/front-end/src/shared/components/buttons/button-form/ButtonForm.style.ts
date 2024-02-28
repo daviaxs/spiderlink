@@ -31,7 +31,11 @@ export const ButtonStyle = styled.button<ButtonStyleProps>`
       ? props.theme.bodySecondary
       : props.theme.buttonSecondary};
 
-  border: 1px solid ${(props) => props.theme.border};
+  border: 1px solid
+    ${(props) =>
+      props.color === 'primary'
+        ? props.theme.border
+        : props.theme.borderQuaternary};
 
   width: ${({ size }) => (size === 'full' ? '100%' : 'auto')};
   height: ${({ size }) => (size === 'full' ? '4rem' : 'auto')};
