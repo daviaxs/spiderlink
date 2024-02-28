@@ -11,9 +11,13 @@ interface SubsectionAccordionProps {
 }
 
 export function SubsectionAccordion({ subsections }: SubsectionAccordionProps) {
+  const sortedSubsections = [...subsections].sort((a, b) =>
+    b.required === a.required ? 0 : b.required ? 1 : -1,
+  )
+
   return (
     <Accordion.Root type="multiple" style={{ width: '100%' }}>
-      {subsections.map((subsection) => (
+      {sortedSubsections.map((subsection) => (
         <Item key={subsection.id} value={subsection.id}>
           <Trigger>
             <div className="infos">
