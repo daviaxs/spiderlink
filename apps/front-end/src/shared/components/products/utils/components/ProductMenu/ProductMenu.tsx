@@ -10,12 +10,16 @@ import {
   MenuHeader,
   Overlay,
   ProductInfoRoot,
+  SubsectionsRoot,
   Trigger,
 } from './ProductMenu.style'
 import { ProductItem } from '../ProductItem/ProductItem'
 import { convertPriceToBRFormat } from '@/shared/functions/convertPriceToBRFormat'
 import { Text } from '@/shared/components/text/Text'
 import Image from 'next/image'
+import { useContext } from 'react'
+import { SubsectionsContext } from '@/shared/contexts/Subsections'
+import { SubsectionAccordion } from './utils/components/subsection-accordion/SubsectionAccordion'
 
 interface ProductMenuProps {
   product: {
@@ -29,10 +33,15 @@ interface ProductMenuProps {
 
 export function ProductMenu({ product }: ProductMenuProps) {
   const theme = useTheme()
+  const { setProductId, subsections } = useContext(SubsectionsContext)
+
+  function handleOpenMenu() {
+    setProductId(product.id)
+  }
 
   return (
     <Dialog.Root>
-      <Trigger>
+      <Trigger onClick={handleOpenMenu}>
         <ProductItem.Root key={product.id}>
           <ProductItem.Infos>
             <ProductItem.Title>{product.name}</ProductItem.Title>
@@ -82,6 +91,10 @@ export function ProductMenu({ product }: ProductMenuProps) {
                 </Text>
               </div>
             </ProductInfoRoot>
+
+            <SubsectionsRoot>
+              <SubsectionAccordion subsections={subsections} />
+            </SubsectionsRoot>
           </MenuContent>
         </Content>
       </Dialog.Portal>

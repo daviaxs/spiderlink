@@ -37,8 +37,10 @@ export const Content = styled(Dialog.Content)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   outline: none;
+
+  overflow-y: auto;
 
   width: 35rem;
   height: 100%;
@@ -51,6 +53,10 @@ export const Content = styled(Dialog.Content)`
 
   background-color: ${(props) => props.theme.body};
   border-left: 1px solid ${(props) => props.theme.border};
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   @media (max-width: 600px) {
     width: 100%;
@@ -94,7 +100,7 @@ export const MenuContent = styled.div`
   flex: 1;
 
   width: 100%;
-  padding: 1.875rem 1.25rem;
+  padding: 1.875rem 0rem;
   gap: 0.625rem;
 `
 
@@ -102,9 +108,10 @@ export const ProductInfoRoot = styled.div`
   display: flex;
   align-items: center;
   justify-content: start;
-  gap: 1rem;
 
+  gap: 1rem;
   width: 100%;
+  padding: 0 1rem;
 
   .product-image {
     border-radius: 0.375rem;
@@ -123,4 +130,12 @@ export const ProductInfoRoot = styled.div`
     height: 100%;
     padding: 1rem 0;
   }
+`
+
+export const SubsectionsRoot = styled.div`
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: column;
+  width: 100%;
 `
