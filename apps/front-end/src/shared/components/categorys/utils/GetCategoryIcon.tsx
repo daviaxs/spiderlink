@@ -22,24 +22,36 @@ import { CategoryNames } from '@/categoryNames'
 
 const CategoryIcons = {
   Vinhos: (
-    <Image src={wine} alt="Vinho" width={35} height={35} draggable={false} />
+    <Image
+      src={wine}
+      alt="Imagem-Vinho"
+      width={35}
+      height={35}
+      draggable={false}
+    />
   ),
   Bebidas: (
     <Image
       src={liquor}
-      alt="Bebidas"
+      alt="Imagem-Bebidas"
       width={35}
       height={35}
       draggable={false}
     />
   ),
   Sucos: (
-    <Image src={juices} alt="Sucos" width={35} height={35} draggable={false} />
+    <Image
+      src={juices}
+      alt="Imagem-Sucos"
+      width={35}
+      height={35}
+      draggable={false}
+    />
   ),
   Brasileira: (
     <Image
       src={feijoada}
-      alt="Feijoada"
+      alt="Imagem-Feijoada"
       width={35}
       height={35}
       draggable={false}
@@ -48,37 +60,61 @@ const CategoryIcons = {
   Lanches: (
     <Image
       src={burger}
-      alt="Lanches"
+      alt="Imagem-Lanches"
       width={35}
       height={35}
       draggable={false}
     />
   ),
   Pizza: (
-    <Image src={pizza} alt="Pizza" width={35} height={35} draggable={false} />
+    <Image
+      src={pizza}
+      alt="Imagem-Pizza"
+      width={35}
+      height={35}
+      draggable={false}
+    />
   ),
   Esfiha: (
-    <Image src={esfiha} alt="Esfiha" width={35} height={35} draggable={false} />
+    <Image
+      src={esfiha}
+      alt="Imagem-Esfiha"
+      width={35}
+      height={35}
+      draggable={false}
+    />
   ),
   Açai: (
-    <Image src={mirtilo} alt="Açai" width={35} height={35} draggable={false} />
+    <Image
+      src={mirtilo}
+      alt="Imagem-Açai"
+      width={35}
+      height={35}
+      draggable={false}
+    />
   ),
   Francesa: (
     <Image
       src={croissant}
-      alt="Francesa"
+      alt="Imagem-Francesa"
       width={35}
       height={35}
       draggable={false}
     />
   ),
   Café: (
-    <Image src={coffee} alt="Café" width={35} height={35} draggable={false} />
+    <Image
+      src={coffee}
+      alt="Imagem-Café"
+      width={35}
+      height={35}
+      draggable={false}
+    />
   ),
   Saudável: (
     <Image
       src={healthy}
-      alt="Saudável"
+      alt="Imagem-Saudável"
       width={35}
       height={35}
       draggable={false}
@@ -87,7 +123,7 @@ const CategoryIcons = {
   Japonesa: (
     <Image
       src={sushi}
-      alt="Japonesa"
+      alt="Imagem-Japonesa"
       width={35}
       height={35}
       draggable={false}
@@ -96,19 +132,25 @@ const CategoryIcons = {
   Chinesa: (
     <Image
       src={chinese}
-      alt="Chinesa"
+      alt="Imagem-Chinesa"
       width={35}
       height={35}
       draggable={false}
     />
   ),
   Doces: (
-    <Image src={cake} alt="Doces" width={35} height={35} draggable={false} />
+    <Image
+      src={cake}
+      alt="Imagem-Doces"
+      width={35}
+      height={35}
+      draggable={false}
+    />
   ),
   Italiana: (
     <Image
       src={italian}
-      alt="Italiana"
+      alt="Imagem-Italiana"
       width={35}
       height={35}
       draggable={false}
@@ -117,7 +159,7 @@ const CategoryIcons = {
   Sorvetes: (
     <Image
       src={iceCream}
-      alt="Sorvetes"
+      alt="Imagem-Sorvetes"
       width={35}
       height={35}
       draggable={false}
@@ -126,14 +168,20 @@ const CategoryIcons = {
   Churros: (
     <Image
       src={churros}
-      alt="Churros"
+      alt="Imagem-Churros"
       width={35}
       height={35}
       draggable={false}
     />
   ),
   Pastel: (
-    <Image src={pastel} alt="Pastel" width={35} height={35} draggable={false} />
+    <Image
+      src={pastel}
+      alt="Imagem-Pastel"
+      width={35}
+      height={35}
+      draggable={false}
+    />
   ),
 }
 

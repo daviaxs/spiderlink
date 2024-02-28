@@ -67,7 +67,7 @@ export const CategoryShadow = styled.span`
   box-shadow: -42px 0px 22.7px -26px ${(props) => props.theme.body} inset;
 `
 
-export const CategoryItemRoot = styled.li`
+export const CategoryItemRoot = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

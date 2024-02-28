@@ -27,7 +27,7 @@ export function CategoryItem({
   )
 
   return (
-    <div style={{ cursor: 'pointer' }}>
+    <li style={{ cursor: 'pointer', listStyle: 'none' }}>
       <CategoryItemRoot
         onClick={handleClick}
         className={isFocused ? 'focus' : ''}
@@ -38,6 +38,6 @@ export function CategoryItem({
           {title}
         </Text>
       </CategoryItemRoot>
-    </div>
+    </li>
   )
 }
