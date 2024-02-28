@@ -2,8 +2,9 @@ import * as Accordion from '@radix-ui/react-accordion'
 import { Content, Item, Trigger } from './SubsectionAccordion.style'
 import { Subsection } from '@/shared/contexts/Subsections'
 import { ChevronDown } from 'lucide-react'
-import { Text } from '@/shared/components/text/Text'
-import { roboto } from '@/shared/style/theme/fonts'
+import { Title } from './utils/Title'
+import { DescriptionQuantity } from './utils/DescriptionQuantity'
+import { Required } from './utils/Required'
 
 interface SubsectionAccordionProps {
   subsections: Subsection[]
@@ -16,33 +17,13 @@ export function SubsectionAccordion({ subsections }: SubsectionAccordionProps) {
         <Item key={subsection.id} value={subsection.id}>
           <Trigger>
             <div className="infos">
-              <Text
-                size={20}
-                $weight="600"
-                className={roboto.className}
-                $whiteSpace="nowrap"
-              >
-                {subsection.name}
-              </Text>
+              <Title>{subsection.name}</Title>
 
-              <Text size={14} $weight="500" className="description-quantity">
-                {subsection.Options.length > 1
-                  ? `Selecione até ${subsection.Options.length} opções`
-                  : `Selecione ${subsection.Options.length} opção`}
-              </Text>
+              <DescriptionQuantity subsection={subsection} />
             </div>
 
             <div className="infos2">
-              {subsection.required && (
-                <Text
-                  size={14}
-                  $weight="500"
-                  className="required"
-                  fontVariant="all-small-caps"
-                >
-                  Obrigatório
-                </Text>
-              )}
+              {subsection.required && <Required />}
 
               <ChevronDown className="icon" />
             </div>
