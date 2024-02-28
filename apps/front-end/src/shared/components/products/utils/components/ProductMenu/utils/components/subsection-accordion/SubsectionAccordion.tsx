@@ -9,13 +9,13 @@ import { Subsection } from '@/shared/contexts/Subsections'
 import { ChevronDown, Minus, Plus } from 'lucide-react'
 import { Title } from './utils/Title'
 import { DescriptionQuantity } from './utils/DescriptionQuantity'
-import { Required } from './utils/Required'
 import { AnimatePresence, motion } from 'framer-motion'
 import { OptionInfos } from './utils/option/OptionInfos'
 import { OptionDescription } from './utils/option/OptionDescription'
 import { OptionPrice } from './utils/option/OptionPrice'
 import { convertPriceToBRFormat } from '@/shared/functions/convertPriceToBRFormat'
 import { AddOptionToCartButton } from './utils/option/add-option-to-cart-buttons/AddOptionToCartButton'
+import { themeColors } from '@/shared/style/theme/pallete'
 
 interface SubsectionAccordionProps {
   subsections: Subsection[]
@@ -32,20 +32,22 @@ export function SubsectionAccordion({ subsections }: SubsectionAccordionProps) {
         <Item key={subsection.id} value={subsection.id}>
           <Trigger>
             <div className="infos">
-              <Title>{subsection.name}</Title>
+              <Title>
+                <span>{subsection.name}</span>
+
+                {subsection.required && (
+                  <span style={{ color: themeColors['red-400'] }}>*</span>
+                )}
+              </Title>
 
               <DescriptionQuantity subsection={subsection} />
             </div>
 
-            <div className="infos2">
-              {subsection.required && <Required />}
-
-              <ChevronDown className="icon" />
-            </div>
+            <ChevronDown className="icon" />
           </Trigger>
 
-          <Content>
-            <AnimatePresence>
+          <AnimatePresence>
+            <Content>
               {subsection.Options.map((option) => (
                 <motion.div
                   key={option.id}
@@ -80,8 +82,8 @@ export function SubsectionAccordion({ subsections }: SubsectionAccordionProps) {
                   </OptionActions>
                 </motion.div>
               ))}
-            </AnimatePresence>
-          </Content>
+            </Content>
+          </AnimatePresence>
         </Item>
       ))}
     </Accordion.Root>

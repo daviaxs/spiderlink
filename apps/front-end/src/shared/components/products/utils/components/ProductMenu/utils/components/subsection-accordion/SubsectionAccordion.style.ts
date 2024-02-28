@@ -44,27 +44,11 @@ export const Trigger = styled(Accordion.Trigger)`
     height: 100%;
   }
 
-  .infos2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    gap: 1rem;
-
-    .required {
-      background-color: ${({ theme }) => theme.body};
-      padding: 0.375rem;
-      border-radius: 0.375rem;
-
-      font-family: Roboto;
-    }
-
-    .icon {
-      color: ${({ theme }) => theme.icon};
-    }
+  .icon {
+    color: ${({ theme }) => theme.icon};
   }
 
-  &[data-state='open'] > .infos2 > .icon {
+  &[data-state='open'] > .icon {
     transition: all 200ms ease-in;
     transform: rotate(180deg);
   }
