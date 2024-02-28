@@ -7,6 +7,7 @@ import React, {
 } from 'react'
 import { api } from '@/lib/axios'
 import { userAccesToken } from '../constants/cookiesValues'
+import { Option } from './Options'
 
 export interface Subsection {
   id: string
@@ -14,6 +15,7 @@ export interface Subsection {
   limit: number
   required: boolean
   multipleChoice: boolean
+  Options: Option[]
 }
 
 interface SubsectionsContextData {
