@@ -40,7 +40,7 @@ export function SubsectionAccordion({ subsections }: SubsectionAccordionProps) {
                 )}
               </Title>
 
-              <DescriptionQuantity subsection={subsection} />
+              <DescriptionQuantity limit={subsection.limit} />
             </div>
 
             <ChevronDown className="icon" />
