@@ -1,4 +1,5 @@
 import { Text } from '@/shared/components/text/Text'
+import { roboto } from '@/shared/style/theme/fonts'
 import { ReactNode } from 'react'
 
 interface ProductDescriptionProps {
@@ -9,9 +10,9 @@ export function ProductDescription({ children }: ProductDescriptionProps) {
   return (
     <Text
       size={14}
-      className="product-description"
       $lineheight="120%"
       $textalign="left"
+      className={`product-description ${roboto.className}`}
     >
       {children}
     </Text>

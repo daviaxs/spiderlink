@@ -1,4 +1,5 @@
 import { Text } from '@/shared/components/text/Text'
+import { roboto } from '@/shared/style/theme/fonts'
 import { ReactNode } from 'react'
 
 interface ProductPriceProps {
@@ -7,7 +8,12 @@ interface ProductPriceProps {
 
 export function ProductPrice({ children }: ProductPriceProps) {
   return (
-    <Text size={16} $weight="600" className="product-price" $textalign="left">
+    <Text
+      size={16}
+      $weight="600"
+      $textalign="left"
+      className={`product-price ${roboto.className}`}
+    >
       A partir de {children}
     </Text>
   )
