@@ -39,9 +39,8 @@ export const SubsectionsProvider = ({ children }: { children: ReactNode }) => {
 
   const fetchSubsections = useCallback(
     async (productId: string) => {
+      setLoading(true)
       if (!subsectionsByProduct[productId]) {
-        setLoading(true)
-
         const response = await api.get(
           `/subsections/${process.env.NEXT_PUBLIC_DOMAIN_ID}/${productId}`,
         )
@@ -50,9 +49,8 @@ export const SubsectionsProvider = ({ children }: { children: ReactNode }) => {
           ...prev,
           [productId]: response.data.subsections,
         }))
-
-        setLoading(false)
       }
+      setLoading(false)
     },
     [subsectionsByProduct],
   )
