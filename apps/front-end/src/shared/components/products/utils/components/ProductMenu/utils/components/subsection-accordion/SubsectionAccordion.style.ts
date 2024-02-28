@@ -17,6 +17,7 @@ export const Item = styled(Accordion.Item)`
 export const Trigger = styled(Accordion.Trigger)`
   border: none;
   outline: none;
+  cursor: pointer;
 
   display: flex;
   align-items: center;
@@ -78,7 +79,47 @@ export const Content = styled(Accordion.Content)`
   width: 100%;
   background-color: transparent;
 
-  &[data-state='open'] {
-    padding: 1rem;
+  .option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    border-bottom: 1px solid ${({ theme }) => theme.border};
+
+    overflow: hidden;
+
+    .option-infos {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      flex-direction: column;
+
+      flex: 1;
+      padding: 1rem;
+      gap: 2rem;
+
+      .option-description {
+        color: ${({ theme }) => theme.description}99;
+      }
+
+      .option-price {
+        color: ${({ theme }) => theme.button};
+      }
+    }
+  }
+`
+
+export const OptionActions = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 1rem;
+  gap: 0.75rem;
+
+  .action-button {
+    color: ${({ theme }) => theme.button};
   }
 `

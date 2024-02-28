@@ -1,11 +1,21 @@
 import * as Accordion from '@radix-ui/react-accordion'
-import { Content, Item, Trigger } from './SubsectionAccordion.style'
+import {
+  Content,
+  Item,
+  OptionActions,
+  Trigger,
+} from './SubsectionAccordion.style'
 import { Subsection } from '@/shared/contexts/Subsections'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, Minus, Plus } from 'lucide-react'
 import { Title } from './utils/Title'
 import { DescriptionQuantity } from './utils/DescriptionQuantity'
 import { Required } from './utils/Required'
 import { AnimatePresence, motion } from 'framer-motion'
+import { OptionInfos } from './utils/option/OptionInfos'
+import { OptionDescription } from './utils/option/OptionDescription'
+import { OptionPrice } from './utils/option/OptionPrice'
+import { convertPriceToBRFormat } from '@/shared/functions/convertPriceToBRFormat'
+import { AddOptionToCartButton } from './utils/option/add-option-to-cart-buttons/AddOptionToCartButton'
 
 interface SubsectionAccordionProps {
   subsections: Subsection[]
@@ -47,14 +57,27 @@ export function SubsectionAccordion({ subsections }: SubsectionAccordionProps) {
                     collapsed: { opacity: 0, height: '1px' },
                   }}
                   transition={{ duration: 0.5, ease: [0.08, 0.62, 0.23, 0.98] }}
+                  className="option"
                 >
-                  <div>{option.name}</div>
-                  <div>{option.name}</div>
-                  <div>{option.name}</div>
-                  <div>{option.name}</div>
-                  <div>{option.name}</div>
-                  <div>{option.name}</div>
-                  <div>{option.name}</div>
+                  <OptionInfos>
+                    <Title size={18}>{option.name}</Title>
+
+                    <OptionDescription>{option.description}</OptionDescription>
+
+                    <OptionPrice>
+                      + {convertPriceToBRFormat(option.price)}
+                    </OptionPrice>
+                  </OptionInfos>
+
+                  <OptionActions>
+                    <AddOptionToCartButton>
+                      <Minus />
+                    </AddOptionToCartButton>
+                    <span>0</span>
+                    <AddOptionToCartButton>
+                      <Plus />
+                    </AddOptionToCartButton>
+                  </OptionActions>
                 </motion.div>
               ))}
             </AnimatePresence>

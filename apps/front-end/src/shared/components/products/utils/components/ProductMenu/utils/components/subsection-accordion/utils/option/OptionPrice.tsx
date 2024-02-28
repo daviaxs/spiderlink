@@ -2,17 +2,16 @@ import { Text } from '@/shared/components/text/Text'
 import { roboto } from '@/shared/style/theme/fonts'
 import { ReactNode } from 'react'
 
-interface TitleProps {
+interface OptionPrice {
   children: ReactNode
-  size?: number
 }
 
-export function Title({ children, size = 20 }: TitleProps) {
+export function OptionPrice({ children }: OptionPrice) {
   return (
     <Text
-      size={size}
-      $weight="600"
-      className={roboto.className}
+      size={18}
+      $weight="500"
+      className={`${roboto.className} option-price`}
       $whiteSpace="nowrap"
     >
       {children}
