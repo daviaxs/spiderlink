@@ -22,7 +22,7 @@ export const Trigger = styled(Accordion.Trigger)`
   align-items: center;
   justify-content: space-between;
 
-  background-color: ${({ theme }) => theme.border};
+  background-color: ${({ theme }) => theme.buttonQuaternary};
 
   width: 100%;
   height: 4rem;
@@ -76,7 +76,7 @@ export const Content = styled(Accordion.Content)`
   flex-direction: column;
 
   width: 100%;
-  background-color: ${({ theme }) => theme.bodySecondary};
+  background-color: transparent;
 
   &[data-state='open'] {
     transition: all 0.2s ease-in-out;

@@ -33,6 +33,8 @@ export const lightTheme = {
   button: themeColors['primary-500'],
   buttonSecondary: themeColors['primary-500'],
   buttonTertiary: themeColors['dark-blue-100'],
+  buttonQuaternary: themeColors['dark-blue-50'],
+
   hoverButtonSecondary: themeColors['primary-600'],
   hoverButton: '#00000010',
 
@@ -72,6 +74,8 @@ export const darkTheme = {
   button: themeColors['primary-200'],
   buttonSecondary: themeColors['primary-500'],
   buttonTertiary: themeColors['dark-blue-500'],
+  buttonQuaternary: themeColors['dark-blue-500'],
+
   hoverButtonSecondary: themeColors['primary-400'],
   hoverButton: '#ffffff10',
 
