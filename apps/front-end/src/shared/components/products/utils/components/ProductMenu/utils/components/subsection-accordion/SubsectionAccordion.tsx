@@ -5,6 +5,7 @@ import { ChevronDown } from 'lucide-react'
 import { Title } from './utils/Title'
 import { DescriptionQuantity } from './utils/DescriptionQuantity'
 import { Required } from './utils/Required'
+import { AnimatePresence, motion } from 'framer-motion'
 
 interface SubsectionAccordionProps {
   subsections: Subsection[]
@@ -34,17 +35,29 @@ export function SubsectionAccordion({ subsections }: SubsectionAccordionProps) {
           </Trigger>
 
           <Content>
-            {subsection.Options.map((option) => (
-              <div key={option.id}>
-                <div>{option.name}</div>
-                <div>{option.name}</div>
-                <div>{option.name}</div>
-                <div>{option.name}</div>
-                <div>{option.name}</div>
-                <div>{option.name}</div>
-                <div>{option.name}</div>
-              </div>
-            ))}
+            <AnimatePresence>
+              {subsection.Options.map((option) => (
+                <motion.div
+                  key={option.id}
+                  initial="collapsed"
+                  animate="open"
+                  exit="collapsed"
+                  variants={{
+                    open: { opacity: 1, height: 'auto' },
+                    collapsed: { opacity: 0, height: '1px' },
+                  }}
+                  transition={{ duration: 0.5, ease: [0.08, 0.62, 0.23, 0.98] }}
+                >
+                  <div>{option.name}</div>
+                  <div>{option.name}</div>
+                  <div>{option.name}</div>
+                  <div>{option.name}</div>
+                  <div>{option.name}</div>
+                  <div>{option.name}</div>
+                  <div>{option.name}</div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </Content>
         </Item>
       ))}

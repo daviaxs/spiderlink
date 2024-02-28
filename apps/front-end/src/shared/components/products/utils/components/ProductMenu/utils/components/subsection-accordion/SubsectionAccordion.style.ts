@@ -79,7 +79,6 @@ export const Content = styled(Accordion.Content)`
   background-color: transparent;
 
   &[data-state='open'] {
-    transition: all 0.2s ease-in-out;
     padding: 1rem;
   }
 `
