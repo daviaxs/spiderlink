@@ -2,6 +2,7 @@ import { HeaderStyle } from './Header.style'
 import { Text } from '../text/Text'
 import { Menu } from '../menu/Menu'
 import { useShowHeader } from '@/shared/hooks/useShowHeader'
+import { CartMenu } from '../cart-menu/CartMenu'
 
 export function Header({ toggleTheme }: { toggleTheme?: () => void }) {
   const showHeader = useShowHeader()
@@ -15,6 +16,8 @@ export function Header({ toggleTheme }: { toggleTheme?: () => void }) {
           spiderlink
         </Text>
       </div>
+
+      <CartMenu />
     </HeaderStyle>
   )
 }
