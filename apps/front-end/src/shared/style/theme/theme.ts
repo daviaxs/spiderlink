@@ -16,6 +16,7 @@ export const lightTheme = {
   border: themeColors['dark-blue-100'],
   borderSecondary: themeColors['dark-blue-200'],
   borderTertiary: themeColors['dark-blue-100'],
+  borderQuaternary: themeColors['primary-600'],
 
   title: themeColors['dark-blue-800'],
   text: themeColors['dark-blue-800'],
@@ -57,6 +58,7 @@ export const darkTheme = {
   border: themeColors['dark-blue-500'],
   borderSecondary: themeColors['dark-blue-400'],
   borderTertiary: themeColors['dark-blue-800'],
+  borderQuaternary: themeColors['primary-400'],
 
   title: themeColors.white,
   text: themeColors['dark-blue-50'],

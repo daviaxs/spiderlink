@@ -10,13 +10,14 @@ declare module 'styled-components' {
     bodySecondary: string
     bodyTertiary: string
     bodyQuaternary: string
+    bodyQuinary: string
 
     productBackground: string
 
     border: string
     borderSecondary: string
     borderTertiary: string
-    bodyQuinary: string
+    borderQuaternary: string
 
     title: string
     text: string
