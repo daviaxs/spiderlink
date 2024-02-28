@@ -21,6 +21,7 @@ import { useContext } from 'react'
 import { SubsectionsContext } from '@/shared/contexts/Subsections'
 import { SubsectionAccordion } from './utils/components/subsection-accordion/SubsectionAccordion'
 import { Loading } from './utils/components/loading/Loading'
+import { Footer } from './utils/components/footer/Footer'
 
 interface ProductMenuProps {
   product: {
@@ -100,6 +101,8 @@ export function ProductMenu({ product }: ProductMenuProps) {
                 <SubsectionAccordion subsections={subsections} />
               )}
             </SubsectionsRoot>
+
+            <Footer />
           </MenuContent>
         </Content>
       </Dialog.Portal>

@@ -97,6 +97,7 @@ export const MenuContent = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: start;
+  position: relative;
   flex: 1;
 
   width: 100%;
@@ -138,4 +139,5 @@ export const SubsectionsRoot = styled.div`
   justify-content: start;
   flex-direction: column;
   width: 100%;
+  margin-bottom: 4rem;
 `
