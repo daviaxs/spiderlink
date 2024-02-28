@@ -20,6 +20,7 @@ import Image from 'next/image'
 import { useContext } from 'react'
 import { SubsectionsContext } from '@/shared/contexts/Subsections'
 import { SubsectionAccordion } from './utils/components/subsection-accordion/SubsectionAccordion'
+import { Loading } from './utils/components/loading/Loading'
 
 interface ProductMenuProps {
   product: {
@@ -33,7 +34,7 @@ interface ProductMenuProps {
 
 export function ProductMenu({ product }: ProductMenuProps) {
   const theme = useTheme()
-  const { setProductId, subsections } = useContext(SubsectionsContext)
+  const { setProductId, subsections, loading } = useContext(SubsectionsContext)
 
   function handleOpenMenu() {
     setProductId(product.id)
@@ -93,7 +94,11 @@ export function ProductMenu({ product }: ProductMenuProps) {
             </ProductInfoRoot>
 
             <SubsectionsRoot>
-              <SubsectionAccordion subsections={subsections} />
+              {loading ? (
+                <Loading />
+              ) : (
+                <SubsectionAccordion subsections={subsections} />
+              )}
             </SubsectionsRoot>
           </MenuContent>
         </Content>
