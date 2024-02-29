@@ -60,7 +60,6 @@ const ADD_PRODUCT = 'ADD_PRODUCT'
 const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 const ADD_PRODUCT_QUANTITY = 'ADD_PRODUCT_QUANTITY'
 const REMOVE_PRODUCT_QUANTITY = 'REMOVE_PRODUCT_QUANTITY'
-const SET_SUBSECTION_LIMIT = 'SET_SUBSECTION_LIMIT'
 const ADD_OPTION_QUANTITY = 'ADD_OPTION_QUANTITY'
 const REMOVE_OPTION_QUANTITY = 'REMOVE_OPTION_QUANTITY'
 const REMOVE_OPTION = 'REMOVE_OPTION'
@@ -75,6 +74,7 @@ function cartReducer(state: any, action: any) {
         products: [...state.products, action.payload],
         productQuantity: { ...state.productQuantity, [action.payload.id]: 1 },
       }
+
     case REMOVE_PRODUCT:
       const { [action.payload]: _, ...restProductQuantity } =
         state.productQuantity
@@ -88,6 +88,7 @@ function cartReducer(state: any, action: any) {
         productQuantity: restProductQuantity,
         optionQuantity: restOptionQuantity,
       }
+
     case ADD_PRODUCT_QUANTITY:
       return {
         ...state,
@@ -96,6 +97,7 @@ function cartReducer(state: any, action: any) {
           [action.payload]: (state.productQuantity[action.payload] || 0) + 1,
         },
       }
+
     case REMOVE_PRODUCT_QUANTITY:
       return {
         ...state,
@@ -104,16 +106,11 @@ function cartReducer(state: any, action: any) {
           [action.payload]: (state.productQuantity[action.payload] || 0) - 1,
         },
       }
-    case SET_SUBSECTION_LIMIT:
-      return {
-        ...state,
-        subsectionLimit: {
-          ...state.subsectionLimit,
-          [action.payload.key]: action.payload.limit,
-        },
-      }
+
     case ADD_OPTION_QUANTITY:
       const { productId, optionId } = action.payload
+
+      console.log(state.optionQuantity[`${productId}-${optionId}`] || 0)
       return {
         ...state,
         optionQuantity: {
@@ -122,6 +119,7 @@ function cartReducer(state: any, action: any) {
             (state.optionQuantity[`${productId}-${optionId}`] || 0) + 1,
         },
       }
+
     case REMOVE_OPTION_QUANTITY:
       return {
         ...state,
@@ -133,6 +131,7 @@ function cartReducer(state: any, action: any) {
             ] || 0) - 1,
         },
       }
+
     case REMOVE_OPTION:
       const {
         [`${action.payload.productId}-${action.payload.optionId}`]: ___,
@@ -142,6 +141,7 @@ function cartReducer(state: any, action: any) {
         ...state,
         optionQuantity: rest,
       }
+
     case CLEAR_CART:
       return initialState
     default:
@@ -153,13 +153,27 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(cartReducer, initialState)
 
   const addProduct = (product: ProductProps) => {
-    dispatch({ type: ADD_PRODUCT, payload: product })
+    let totalOptionPrice = 0
 
     product.Subsection?.forEach((subsection) =>
       subsection.Options?.forEach((option) => {
-        state.subsectionLimit[`${product.id}-${option.id}`] = subsection.limit
+        const quantity = state.optionQuantity[`${product.id}-${option.id}`] || 0
+        if (quantity > 0) {
+          totalOptionPrice += option.price * quantity
+        }
       }),
     )
+
+    const productPrice =
+      typeof product.price === 'number'
+        ? product.price
+        : parseFloat(product.price)
+    const totalProductPrice = productPrice + totalOptionPrice
+
+    const productQuantity = state.productQuantity[product.id] || 0
+    const finalPrice = totalProductPrice * productQuantity
+
+    dispatch({ type: ADD_PRODUCT, payload: product })
   }
 
   const removeProduct = (productId: string) => {
