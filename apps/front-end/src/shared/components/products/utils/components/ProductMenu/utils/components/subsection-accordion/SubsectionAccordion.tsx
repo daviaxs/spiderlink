@@ -16,14 +16,34 @@ import { OptionPrice } from './utils/option/OptionPrice'
 import { convertPriceToBRFormat } from '@/shared/functions/convertPriceToBRFormat'
 import { AddOptionToCartButton } from './utils/option/add-option-to-cart-buttons/AddOptionToCartButton'
 import { themeColors } from '@/shared/style/theme/pallete'
+import { CartContext } from '@/shared/contexts/CartContext'
+import { useContext } from 'react'
 
 interface SubsectionAccordionProps {
   subsections: Subsection[]
+  productId: string
 }
 
-export function SubsectionAccordion({ subsections }: SubsectionAccordionProps) {
+export function SubsectionAccordion({
+  subsections,
+  productId,
+}: SubsectionAccordionProps) {
+  const { addOptionQuantity, removeOptionQuantity, optionQuantity } =
+    useContext(CartContext)
+
   const sortedSubsections = [...subsections].sort((a, b) =>
     b.required === a.required ? 0 : b.required ? 1 : -1,
+  )
+
+  const totalOptionsQuantity = subsections.reduce(
+    (acc, subsection) =>
+      acc +
+      subsection.Options.reduce(
+        (acc, option) =>
+          acc + (optionQuantity[`${productId}-${option.id}`] || 0),
+        0,
+      ),
+    0,
   )
 
   return (
@@ -72,11 +92,23 @@ export function SubsectionAccordion({ subsections }: SubsectionAccordionProps) {
                   </OptionInfos>
 
                   <OptionActions>
-                    <AddOptionToCartButton>
+                    <AddOptionToCartButton
+                      onClick={() => removeOptionQuantity(productId, option.id)}
+                      disabled={
+                        optionQuantity[`${productId}-${option.id}`] <= 0
+                      }
+                    >
                       <Minus />
                     </AddOptionToCartButton>
-                    <span>0</span>
-                    <AddOptionToCartButton>
+
+                    <span>
+                      {optionQuantity[`${productId}-${option.id}`] || 0}
+                    </span>
+
+                    <AddOptionToCartButton
+                      onClick={() => addOptionQuantity(productId, option.id)}
+                      disabled={totalOptionsQuantity >= subsection.limit}
+                    >
                       <Plus />
                     </AddOptionToCartButton>
                   </OptionActions>

@@ -98,7 +98,10 @@ export function ProductMenu({ product }: ProductMenuProps) {
               {loading ? (
                 <Loading />
               ) : (
-                <SubsectionAccordion subsections={subsections} />
+                <SubsectionAccordion
+                  subsections={subsections}
+                  productId={product.id}
+                />
               )}
             </SubsectionsRoot>
 
