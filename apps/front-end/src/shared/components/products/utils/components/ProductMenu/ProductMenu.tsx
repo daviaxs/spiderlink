@@ -22,15 +22,10 @@ import { SubsectionsContext } from '@/shared/contexts/Subsections'
 import { SubsectionAccordion } from './utils/components/subsection-accordion/SubsectionAccordion'
 import { Loading } from './utils/components/loading/Loading'
 import { Footer } from './utils/components/footer/Footer'
+import { ProductProps } from '@/shared/contexts/cart-context/interfaces'
 
 interface ProductMenuProps {
-  product: {
-    id: string
-    name: string
-    description: string
-    price: number | string
-    img: string
-  }
+  product: ProductProps
 }
 
 export function ProductMenu({ product }: ProductMenuProps) {
@@ -105,7 +100,11 @@ export function ProductMenu({ product }: ProductMenuProps) {
               )}
             </SubsectionsRoot>
 
-            <Footer />
+            <Footer
+              product={product}
+              productId={product.id}
+              subsections={subsections}
+            />
           </MenuContent>
         </Content>
       </Dialog.Portal>

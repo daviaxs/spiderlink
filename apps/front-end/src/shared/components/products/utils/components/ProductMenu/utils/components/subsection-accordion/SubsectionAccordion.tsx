@@ -16,7 +16,7 @@ import { OptionPrice } from './utils/option/OptionPrice'
 import { convertPriceToBRFormat } from '@/shared/functions/convertPriceToBRFormat'
 import { AddOptionToCartButton } from './utils/option/add-option-to-cart-buttons/AddOptionToCartButton'
 import { themeColors } from '@/shared/style/theme/pallete'
-import { CartContext } from '@/shared/contexts/CartContext'
+import { CartContext } from '@/shared/contexts/cart-context/CartContext'
 import { useContext } from 'react'
 
 interface SubsectionAccordionProps {

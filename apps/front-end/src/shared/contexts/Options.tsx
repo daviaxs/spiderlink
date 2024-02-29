@@ -13,6 +13,7 @@ export interface Option {
   name: string
   price: number
   description: string
+  quantity: number
 }
 
 interface OptionsContextData {
