@@ -14,7 +14,7 @@ import { CategoriesProvider } from '@/shared/contexts/Categories'
 import { ProductsProvider } from '@/shared/contexts/Products'
 import { SubsectionsProvider } from '@/shared/contexts/Subsections'
 import { OptionsProvider } from '@/shared/contexts/Options'
-import { CartProvider } from '@/shared/contexts/CartContext'
+import { CartProvider } from '@/shared/contexts/cart-context/CartContext'
 
 export default function RootLayout({
   children,
