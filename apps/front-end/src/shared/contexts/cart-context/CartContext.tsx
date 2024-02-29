@@ -8,6 +8,10 @@ import {
   SubsectionProps,
 } from './interfaces'
 import { convertPriceToBRFormat } from '@/shared/functions/convertPriceToBRFormat'
+import {
+  getLocalStorageItem,
+  setLocalStorageItem,
+} from '@/shared/functions/localStorage'
 
 type CartContextData = CartState & CartActions
 
@@ -115,6 +119,14 @@ function cartReducer(state: any, action: any) {
 export function CartProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(cartReducer, initialState)
 
+  function selectProductProperties(
+    product: ProductProps,
+    totalProductPrice: number,
+  ) {
+    const { id, name, price, description, img, Subsection } = product
+    return { id, name, price, description, Subsection, img, totalProductPrice }
+  }
+
   const addProduct = (
     product: ProductProps,
     subsections: SubsectionProps[],
@@ -146,7 +158,18 @@ export function CartProvider({ children }: { children: ReactNode }) {
       (Number(product.price) + totalOptionPrice) *
       (state.productQuantity[product.id] || 1)
 
-    console.log('totalProductPrice', convertPriceToBRFormat(totalProductPrice))
+    const selectedProduct = selectProductProperties(
+      productWithSelectedOptions,
+      totalProductPrice,
+    )
+    const existingProducts = getLocalStorageItem('products-cart') || []
+
+    existingProducts.push(selectedProduct)
+
+    setLocalStorageItem({
+      key: 'products-cart',
+      value: existingProducts,
+    })
 
     dispatch({
       type: ADD_PRODUCT,
