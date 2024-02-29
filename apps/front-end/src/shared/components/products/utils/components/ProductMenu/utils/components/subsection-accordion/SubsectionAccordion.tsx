@@ -35,89 +35,99 @@ export function SubsectionAccordion({
     b.required === a.required ? 0 : b.required ? 1 : -1,
   )
 
-  const totalOptionsQuantity = subsections.reduce(
-    (acc, subsection) =>
-      acc +
-      subsection.Options.reduce(
-        (acc, option) =>
-          acc + (optionQuantity[`${productId}-${option.id}`] || 0),
-        0,
-      ),
-    0,
-  )
-
   return (
     <Accordion.Root type="multiple" style={{ width: '100%' }}>
-      {sortedSubsections.map((subsection) => (
-        <Item key={subsection.id} value={subsection.id}>
-          <Trigger>
-            <div className="infos">
-              <Title>
-                <span>{subsection.name}</span>
+      {sortedSubsections.map((subsection) => {
+        const totalOptionsQuantityInSubsection = subsection.Options.reduce(
+          (acc, option) =>
+            acc + (optionQuantity[`${productId}-${option.id}`] || 0),
+          0,
+        )
 
-                {subsection.required && (
-                  <span style={{ color: themeColors['red-400'] }}>*</span>
-                )}
-              </Title>
+        return (
+          <Item key={subsection.id} value={subsection.id}>
+            <Trigger>
+              <div className="infos">
+                <Title>
+                  <span>{subsection.name}</span>
 
-              <DescriptionQuantity limit={subsection.limit} />
-            </div>
+                  {subsection.required && (
+                    <span style={{ color: themeColors['red-400'] }}>*</span>
+                  )}
+                </Title>
 
-            <ChevronDown className="icon" />
-          </Trigger>
+                <DescriptionQuantity limit={subsection.limit} />
+              </div>
 
-          <AnimatePresence>
-            <Content>
-              {subsection.Options.map((option) => (
-                <motion.div
-                  key={option.id}
-                  initial="collapsed"
-                  animate="open"
-                  exit="collapsed"
-                  variants={{
-                    open: { opacity: 1, height: 'auto' },
-                    collapsed: { opacity: 0, height: '1px' },
-                  }}
-                  transition={{ duration: 0.5, ease: [0.08, 0.62, 0.23, 0.98] }}
-                  className="option"
-                >
-                  <OptionInfos>
-                    <Title size={18}>{option.name}</Title>
+              <ChevronDown className="icon" />
+            </Trigger>
 
-                    <OptionDescription>{option.description}</OptionDescription>
+            <AnimatePresence>
+              <Content>
+                {subsection.Options.map((option) => (
+                  <motion.div
+                    key={option.id}
+                    initial="collapsed"
+                    animate="open"
+                    exit="collapsed"
+                    variants={{
+                      open: { opacity: 1, height: 'auto' },
+                      collapsed: { opacity: 0, height: '1px' },
+                    }}
+                    transition={{
+                      duration: 0.5,
+                      ease: [0.08, 0.62, 0.23, 0.98],
+                    }}
+                    className="option"
+                  >
+                    <OptionInfos>
+                      <Title size={18}>{option.name}</Title>
 
-                    <OptionPrice>
-                      + {convertPriceToBRFormat(option.price)}
-                    </OptionPrice>
-                  </OptionInfos>
+                      <OptionDescription>
+                        {option.description}
+                      </OptionDescription>
 
-                  <OptionActions>
-                    <AddOptionToCartButton
-                      onClick={() => removeOptionQuantity(productId, option.id)}
-                      disabled={
-                        optionQuantity[`${productId}-${option.id}`] <= 0
-                      }
-                    >
-                      <Minus />
-                    </AddOptionToCartButton>
+                      <OptionPrice>
+                        + {convertPriceToBRFormat(option.price)}
+                      </OptionPrice>
+                    </OptionInfos>
 
-                    <span>
-                      {optionQuantity[`${productId}-${option.id}`] || 0}
-                    </span>
+                    <OptionActions>
+                      {optionQuantity[`${productId}-${option.id}`] > 0 && (
+                        <>
+                          <AddOptionToCartButton
+                            onClick={() =>
+                              removeOptionQuantity(productId, option.id)
+                            }
+                            disabled={
+                              optionQuantity[`${productId}-${option.id}`] <= 0
+                            }
+                          >
+                            <Minus />
+                          </AddOptionToCartButton>
 
-                    <AddOptionToCartButton
-                      onClick={() => addOptionQuantity(productId, option.id)}
-                      disabled={totalOptionsQuantity >= subsection.limit}
-                    >
-                      <Plus />
-                    </AddOptionToCartButton>
-                  </OptionActions>
-                </motion.div>
-              ))}
-            </Content>
-          </AnimatePresence>
-        </Item>
-      ))}
+                          <span>
+                            {optionQuantity[`${productId}-${option.id}`] || 0}
+                          </span>
+                        </>
+                      )}
+
+                      <AddOptionToCartButton
+                        onClick={() => addOptionQuantity(productId, option.id)}
+                        disabled={
+                          totalOptionsQuantityInSubsection >= subsection.limit
+                        }
+                      >
+                        <Plus />
+                      </AddOptionToCartButton>
+                    </OptionActions>
+                  </motion.div>
+                ))}
+              </Content>
+            </AnimatePresence>
+          </Item>
+        )
+      })}
     </Accordion.Root>
   )
 }
