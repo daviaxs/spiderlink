@@ -15,9 +15,15 @@ interface FooterProps {
   productId: string
   product: ProductProps
   subsections: SubsectionProps[]
+  loading: boolean
 }
 
-export function Footer({ productId, product, subsections }: FooterProps) {
+export function Footer({
+  productId,
+  product,
+  subsections,
+  loading,
+}: FooterProps) {
   const theme = useTheme()
   const {
     addProductQuantity,
@@ -28,9 +34,11 @@ export function Footer({ productId, product, subsections }: FooterProps) {
   } = useContext(CartContext)
 
   const [totalPrice, setTotalPrice] = useState(product.price)
+  const [allRequiredMet, setAllRequiredMet] = useState(false)
 
   useEffect(() => {
     let totalOptionPrice = 0
+
     subsections.forEach((subsection) =>
       subsection.Options?.forEach((option) => {
         if (optionQuantity[`${product.id}-${option.id}`] > 0) {
@@ -41,9 +49,31 @@ export function Footer({ productId, product, subsections }: FooterProps) {
     )
 
     const totalProductPrice =
-      (Number(product.price) + totalOptionPrice) * productQuantity[product.id]
+      (Number(product.price) + totalOptionPrice) *
+      (productQuantity[product.id] || 1)
+
     setTotalPrice(totalProductPrice)
   }, [product.id, product.price, subsections, optionQuantity, productQuantity])
+
+  useEffect(() => {
+    const checkRequiredSubsections = () => {
+      return subsections.every((subsection) => {
+        if (subsection.required) {
+          if (!subsection.Options) return true
+
+          const totalOptionsQuantityInSubsection = subsection.Options.reduce(
+            (acc, option) =>
+              acc + (optionQuantity[`${productId}-${option.id}`] || 0),
+            0,
+          )
+          return totalOptionsQuantityInSubsection >= subsection.limit
+        }
+        return true
+      })
+    }
+
+    setAllRequiredMet(checkRequiredSubsections())
+  }, [subsections, productId, optionQuantity])
 
   return (
     <FooterRoot>
@@ -77,6 +107,7 @@ export function Footer({ productId, product, subsections }: FooterProps) {
           borderRadius: '4px',
           width: '12rem',
         }}
+        disabled={!allRequiredMet || loading}
       >
         <Text size={16} $weight="500" color={theme.white}>
           Adicionar

@@ -104,6 +104,7 @@ export function ProductMenu({ product }: ProductMenuProps) {
               product={product}
               productId={product.id}
               subsections={subsections}
+              loading={loading}
             />
           </MenuContent>
         </Content>
