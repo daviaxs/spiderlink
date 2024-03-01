@@ -36,6 +36,12 @@ export function ProductMenu({ product }: ProductMenuProps) {
     setProductId(product.id)
   }
 
+  function formatDescription(description: string) {
+    if (description.length > 50) {
+      return `${description.slice(0, 50)}...`
+    }
+  }
+
   return (
     <Dialog.Root>
       <Trigger onClick={handleOpenMenu}>
@@ -43,7 +49,7 @@ export function ProductMenu({ product }: ProductMenuProps) {
           <ProductItem.Infos>
             <ProductItem.Title>{product.name}</ProductItem.Title>
             <ProductItem.Description>
-              {product.description}
+              {formatDescription(product.description)}
             </ProductItem.Description>
             <ProductItem.Price>
               {convertPriceToBRFormat(product.price as number)}
