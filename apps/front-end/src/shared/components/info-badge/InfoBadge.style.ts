@@ -55,10 +55,10 @@ export const IconStyle = styled.div`
       height: 0.75rem;
       border-radius: 50%;
       background-color: ${({ theme }) => theme.statusOpen};
+    }
 
-      .closed {
-        background-color: ${({ theme }) => theme.statusClosed};
-      }
+    .closed {
+      background-color: ${({ theme }) => theme.statusClosed};
     }
   }
 `
