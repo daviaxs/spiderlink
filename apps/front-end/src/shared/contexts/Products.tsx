@@ -39,14 +39,19 @@ export const ProductsProvider = ({ children }: { children: ReactNode }) => {
     async (categoryId: string) => {
       if (!productsByCategory[categoryId]) {
         setLoading(true)
-        const response = await api.get(
-          `/products/${process.env.NEXT_PUBLIC_DOMAIN_ID}/${categoryId}`,
-        )
-        setProductsByCategory((prev) => ({
-          ...prev,
-          [categoryId]: response.data.products,
-        }))
-        setLoading(false)
+        try {
+          const response = await api.get(
+            `/products/${process.env.NEXT_PUBLIC_DOMAIN_ID}/${categoryId}`,
+          )
+          setProductsByCategory((prev) => ({
+            ...prev,
+            [categoryId]: response.data.products,
+          }))
+        } catch (error) {
+          console.error(error)
+        } finally {
+          setLoading(false)
+        }
       }
     },
     [productsByCategory],
