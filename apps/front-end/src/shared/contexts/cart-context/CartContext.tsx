@@ -12,6 +12,7 @@ import {
   getLocalStorageItem,
   setLocalStorageItem,
 } from '@/shared/functions/localStorage'
+import { ECOMMERCE_NAME } from '@/shared/constants/names'
 
 type CartContextData = CartState & CartActions
 
@@ -162,12 +163,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
       productWithSelectedOptions,
       totalProductPrice,
     )
-    const existingProducts = getLocalStorageItem('products-cart') || []
+    const existingProducts =
+      getLocalStorageItem(`${ECOMMERCE_NAME}-products-cart`) || []
 
     existingProducts.push(selectedProduct)
 
     setLocalStorageItem({
-      key: 'products-cart',
+      key: `${ECOMMERCE_NAME}-products-cart`,
       value: existingProducts,
     })
 
