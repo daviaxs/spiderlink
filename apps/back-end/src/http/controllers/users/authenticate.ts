@@ -8,7 +8,7 @@ export async function authenticate(req: FastifyRequest, reply: FastifyReply) {
   const authenticateBodySchema = z.object({
     email: z.string(),
     password: z.string(),
-    domainName: z.string(),
+    domainName: z.string().optional(),
   })
 
   const parsed = authenticateBodySchema.safeParse(req.body)

@@ -6,7 +6,15 @@ export class UpdateDomainUseCase {
 
   async execute(
     domainId: string,
-    { address, cep, deliveryTime, name, phone, cnpj }: Prisma.DomainUpdateInput,
+    {
+      address,
+      cep,
+      deliveryTime,
+      name,
+      phone,
+      cnpj,
+      deliveryCost,
+    }: Prisma.DomainUpdateInput,
   ) {
     const domain = await this.domainsRepository.updateDomain(
       {
@@ -16,6 +24,7 @@ export class UpdateDomainUseCase {
         name,
         phone,
         cnpj,
+        deliveryCost,
       },
       domainId,
     )

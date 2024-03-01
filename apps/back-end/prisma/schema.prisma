@@ -16,6 +16,7 @@ model Domain {
   address      String
   cnpj         String?
   deliveryTime String
+  deliveryCost Float        @default(0)
   Categories   Category[]
   Options      Option[]
   Products     Product[]

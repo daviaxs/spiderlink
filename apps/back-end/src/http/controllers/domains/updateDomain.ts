@@ -20,6 +20,7 @@ export async function updateDomain(req: FastifyRequest, reply: FastifyReply) {
         .min(8, 'Número de telefone muito curto')
         .max(12, 'Número de telefone muito longo'),
       cnpj: z.string().min(14).max(14),
+      deliveryCost: z.number().optional(),
     })
     .partial()
 
@@ -38,8 +39,16 @@ export async function updateDomain(req: FastifyRequest, reply: FastifyReply) {
 
   const { domainId } = parsedId.data
 
-  const { domainName, name, address, cep, deliveryTime, phone, cnpj } =
-    parsed.data
+  const {
+    domainName,
+    name,
+    address,
+    cep,
+    deliveryTime,
+    phone,
+    cnpj,
+    deliveryCost,
+  } = parsed.data
 
   try {
     const updateDomainUseCase = makeUpdateDomainUseCase()
@@ -52,6 +61,7 @@ export async function updateDomain(req: FastifyRequest, reply: FastifyReply) {
       deliveryTime,
       phone,
       cnpj,
+      deliveryCost,
     })
 
     return reply.status(200).send({ message: 'Domain updated', data: domain })

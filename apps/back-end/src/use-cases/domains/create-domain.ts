@@ -12,6 +12,7 @@ export class CreateDomainUseCase {
     name,
     phone,
     cnpj,
+    deliveryCost,
   }: Prisma.DomainCreateInput) {
     const domainExists =
       await this.domainsRepository.findDomainByName(domainName)
@@ -28,6 +29,7 @@ export class CreateDomainUseCase {
       cep,
       address,
       cnpj,
+      deliveryCost,
     })
 
     return { domain }

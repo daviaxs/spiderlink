@@ -7,7 +7,7 @@ export async function createAccount(req: FastifyRequest, reply: FastifyReply) {
   const createAccountBodySchema = z.object({
     email: z.string().email(),
     password: z.string().min(6),
-    domainId: z.string(),
+    domainId: z.string().optional(),
   })
 
   let email, password, domainId
@@ -19,7 +19,7 @@ export async function createAccount(req: FastifyRequest, reply: FastifyReply) {
     handleError(err, reply)
   }
 
-  if (!email || !password || !domainId) {
+  if (!email || !password) {
     return reply.status(400).send({ message: 'Invalid request body' })
   }
 

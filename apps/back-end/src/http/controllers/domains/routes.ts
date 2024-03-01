@@ -11,7 +11,7 @@ export async function domainsRoutes(app: FastifyInstance) {
   app.get('/domains/:id', getDomainProfile)
   app.get('/domains', { onRequest: [VerifyJWTRule('OWNER')] }, listDomains)
 
-  app.post('/domains', createDomain)
+  app.post('/domains', { onRequest: [VerifyJWTRule('OWNER')] }, createDomain)
 
   app.patch(
     '/domains/:domainId',

@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "domains" ADD COLUMN     "deliveryCost" DOUBLE PRECISION NOT NULL DEFAULT 0;

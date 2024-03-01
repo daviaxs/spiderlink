@@ -15,6 +15,7 @@ export async function createDomain(req: FastifyRequest, reply: FastifyReply) {
       .min(8, 'Número de telefone muito curto')
       .max(12, 'Número de telefone muito longo'),
     cnpj: z.string().min(14).max(14),
+    deliveryCost: z.number().optional(),
   })
 
   const parsed = createDomainBodySchema.safeParse(req.body)
@@ -24,8 +25,16 @@ export async function createDomain(req: FastifyRequest, reply: FastifyReply) {
     return reply.status(400).send({ message })
   }
 
-  const { address, cep, cnpj, deliveryTime, domainName, name, phone } =
-    parsed.data
+  const {
+    address,
+    cep,
+    cnpj,
+    deliveryTime,
+    domainName,
+    name,
+    phone,
+    deliveryCost,
+  } = parsed.data
 
   // eslint-disable-next-line prettier/prettier
   if (!address || !cep || !cnpj || !deliveryTime || !domainName || !name || !phone) {
@@ -43,6 +52,7 @@ export async function createDomain(req: FastifyRequest, reply: FastifyReply) {
       domainName,
       name,
       phone,
+      deliveryCost,
     })
 
     return reply.status(201).send({ message: 'Domain created', data: domain })

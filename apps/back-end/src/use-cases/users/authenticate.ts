@@ -8,7 +8,7 @@ import { User } from '@prisma/client'
 interface AuthenticateParams {
   email: string
   password: string
-  domainName: string
+  domainName?: string
 }
 
 interface AuthenticateResponse {
