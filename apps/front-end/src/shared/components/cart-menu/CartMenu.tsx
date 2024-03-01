@@ -10,6 +10,7 @@ import {
 import { Text } from '../text/Text'
 import { ShoppingBasket, X } from 'lucide-react'
 import { useTheme } from 'styled-components'
+import { ListCartProducts } from './utils/ListCartProducts'
 
 export function CartMenu() {
   const theme = useTheme()
@@ -34,7 +35,9 @@ export function CartMenu() {
             </Close>
           </MenuHeader>
 
-          <MenuContent>hello world</MenuContent>
+          <MenuContent>
+            <ListCartProducts />
+          </MenuContent>
         </Content>
       </Dialog.Portal>
     </Dialog.Root>
