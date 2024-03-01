@@ -18,6 +18,7 @@ import italian from '@/shared/assets/imgs/categories-images/spaguetti.png'
 import iceCream from '@/shared/assets/imgs/categories-images/ice-cream.png'
 import churros from '@/shared/assets/imgs/categories-images/churros.png'
 import pastel from '@/shared/assets/imgs/categories-images/sopro.png'
+import salgados from '@/shared/assets/imgs/categories-images/coxinha.png'
 import { CategoryNames } from '@/categoryNames'
 
 const CategoryIcons = {
@@ -178,6 +179,15 @@ const CategoryIcons = {
     <Image
       src={pastel}
       alt="Imagem-Pastel"
+      width={35}
+      height={35}
+      draggable={false}
+    />
+  ),
+  Salgados: (
+    <Image
+      src={salgados}
+      alt="Imagem-Salgados"
       width={35}
       height={35}
       draggable={false}
