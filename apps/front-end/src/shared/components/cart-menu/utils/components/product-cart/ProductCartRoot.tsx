@@ -65,7 +65,7 @@ export function ProductCardRoot({ product }: ProductCardRootProps) {
         fontVariant="all-small-caps"
         className="total-price"
       >
-        total: {convertPriceToBRFormat(product.totalProductPrice)}
+        total: {convertPriceToBRFormat(Number(product.totalProductPrice))}
       </Text>
     </ProductCardRootStyle>
   )
