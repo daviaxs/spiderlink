@@ -62,7 +62,7 @@ export const darkTheme = {
 
   title: themeColors.white,
   text: themeColors['dark-blue-50'],
-  description: themeColors['dark-blue-100'],
+  description: themeColors['dark-blue-200'],
   subtext: themeColors['dark-blue-200'],
 
   icon: themeColors['dark-blue-50'],
