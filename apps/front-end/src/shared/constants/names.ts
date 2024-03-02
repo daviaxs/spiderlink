@@ -1,1 +1,1 @@
-export const ECOMMERCE_NAME = "Habib's"
+export const ECOMMERCE_NAME = "Fritz's"
