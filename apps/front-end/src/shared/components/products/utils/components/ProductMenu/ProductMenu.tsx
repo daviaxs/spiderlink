@@ -40,6 +40,8 @@ export function ProductMenu({ product }: ProductMenuProps) {
     if (description.length > 50) {
       return `${description.slice(0, 50)}...`
     }
+
+    return description
   }
 
   return (
