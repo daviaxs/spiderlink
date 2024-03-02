@@ -5,9 +5,12 @@ import { Apresentation, Banner, Infos, Texts } from './Apresentation.style'
 import { Text } from '@/shared/components/text/Text'
 import { inter } from '@/shared/style/theme/fonts'
 import { ViewMoreMenu } from '@/shared/components/view-more-menu/ViewMoreMenu'
-import { ECOMMERCE_NAME } from '@/shared/constants/names'
+import { useContext } from 'react'
+import { DomainInfosContext } from '@/shared/contexts/DomainInfos'
 
 export function ApresentationRoot() {
+  const { name } = useContext(DomainInfosContext)
+
   return (
     <Apresentation>
       <Banner>
@@ -38,7 +41,7 @@ export function ApresentationRoot() {
             $weight="800"
             className={`${inter.className} ecommerceName`}
           >
-            {ECOMMERCE_NAME}
+            {name}
           </Text>
 
           <ViewMoreMenu />
