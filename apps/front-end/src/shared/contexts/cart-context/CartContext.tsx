@@ -195,6 +195,18 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }
 
   const removeProduct = (productId: string) => {
+    const existingProducts =
+      getLocalStorageItem(`${ECOMMERCE_NAME}-products-cart`) || []
+
+    const updatedProducts = existingProducts.filter(
+      (product: ProductProps) => product.id !== productId,
+    )
+
+    setLocalStorageItem({
+      key: `${ECOMMERCE_NAME}-products-cart`,
+      value: updatedProducts,
+    })
+
     dispatch({ type: REMOVE_PRODUCT, payload: productId })
   }
 
