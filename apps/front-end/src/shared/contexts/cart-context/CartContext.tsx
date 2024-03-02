@@ -231,6 +231,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }
 
   const clearCart = () => {
+    setLocalStorageItem({
+      key: `${ECOMMERCE_NAME}-products-cart`,
+      value: [],
+    })
+
     dispatch({ type: CLEAR_CART })
   }
 
