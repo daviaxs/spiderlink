@@ -48,6 +48,7 @@ export const CategoryShadow = styled.span`
   height: 5rem;
   width: 6rem;
   box-shadow: -42px 0px 22.7px -26px ${(props) => props.theme.body} inset;
+  pointer-events: none;
 `
 
 export const CategoryItemRoot = styled.div`
