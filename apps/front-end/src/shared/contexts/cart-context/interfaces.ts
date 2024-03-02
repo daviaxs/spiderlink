@@ -22,6 +22,7 @@ export interface ProductProps {
   img: string
   description: string
   totalProductPrice?: number
+  productQuantity?: number
   Subsection?: SubsectionProps[]
 }
 

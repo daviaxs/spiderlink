@@ -9,17 +9,23 @@ import { ProductProps } from '@/shared/contexts/cart-context/interfaces'
 import { Separator } from '@/shared/components/separator/Separator.style'
 import { convertPriceToBRFormat } from '@/shared/functions/convertPriceToBRFormat'
 import { v4 as uuid } from 'uuid'
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 
 interface ProductCardRootProps {
   product: ProductProps
 }
 
 export function ProductCardRoot({ product }: ProductCardRootProps) {
+  const [productQuantity, setProductQuantity] = useState(1)
+
+  useEffect(() => {
+    return setProductQuantity(Number(product.productQuantity))
+  }, [product.productQuantity, productQuantity])
+
   return (
     <ProductCardRootStyle>
       <Text as="h4" size={20} $weight="600">
-        {product.name}
+        {product.name} - QT: {productQuantity}
       </Text>
 
       {product.Subsection?.map((subsection) => {

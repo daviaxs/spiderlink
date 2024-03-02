@@ -123,9 +123,19 @@ export function CartProvider({ children }: { children: ReactNode }) {
   function selectProductProperties(
     product: ProductProps,
     totalProductPrice: number,
+    productQuantity?: number,
   ) {
     const { id, name, price, description, img, Subsection } = product
-    return { id, name, price, description, Subsection, img, totalProductPrice }
+    return {
+      id,
+      name,
+      price,
+      description,
+      Subsection,
+      img,
+      totalProductPrice,
+      productQuantity,
+    }
   }
 
   const addProduct = (
@@ -162,7 +172,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
     const selectedProduct = selectProductProperties(
       productWithSelectedOptions,
       totalProductPrice,
+      state.productQuantity[product.id] || 1,
     )
+
     const existingProducts =
       getLocalStorageItem(`${ECOMMERCE_NAME}-products-cart`) || []
 
