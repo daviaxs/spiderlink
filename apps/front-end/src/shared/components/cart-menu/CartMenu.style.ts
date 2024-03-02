@@ -31,6 +31,7 @@ export const Trigger = styled(Dialog.Trigger)`
   outline: none;
   cursor: pointer;
   background-color: transparent;
+  position: relative;
 
   display: flex;
   align-items: center;
