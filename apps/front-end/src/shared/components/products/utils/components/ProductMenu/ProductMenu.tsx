@@ -49,13 +49,26 @@ export function ProductMenu({ product }: ProductMenuProps) {
       <Trigger onClick={handleOpenMenu}>
         <ProductItem.Root key={product.id}>
           <ProductItem.Infos>
-            <ProductItem.Title>{product.name}</ProductItem.Title>
-            <ProductItem.Description>
-              {formatDescription(product.description)}
-            </ProductItem.Description>
-            <ProductItem.Price>
-              {convertPriceToBRFormat(product.price as number)}
-            </ProductItem.Price>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'start',
+                justifyContent: 'start',
+                flexDirection: 'column',
+                gap: '1rem',
+              }}
+            >
+              <ProductItem.Title>{product.name}</ProductItem.Title>
+              <ProductItem.Description>
+                {formatDescription(product.description)}
+              </ProductItem.Description>
+            </div>
+
+            {(product.price as number) > 0 && (
+              <ProductItem.Price>
+                {convertPriceToBRFormat(product.price as number)}
+              </ProductItem.Price>
+            )}
           </ProductItem.Infos>
 
           <ProductItem.Image src={product.img} />
@@ -91,9 +104,11 @@ export function ProductMenu({ product }: ProductMenuProps) {
                   {product.description}
                 </Text>
 
-                <Text size={16} $weight="500">
-                  {convertPriceToBRFormat(product.price as number)}
-                </Text>
+                {(product.price as number) > 0 && (
+                  <Text size={16} $weight="500">
+                    {convertPriceToBRFormat(product.price as number)}
+                  </Text>
+                )}
               </div>
             </ProductInfoRoot>
 
