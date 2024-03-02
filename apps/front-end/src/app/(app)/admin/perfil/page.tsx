@@ -12,6 +12,7 @@ import { ChevronLeft, Pencil } from 'lucide-react'
 import Link from 'next/link'
 import { Schedules } from '@/shared/components/schedules'
 import { Card } from './utils/components/card'
+import { DeliveryCost } from './utils/inputs/DeliveryCost'
 
 export default function ProfilePage() {
   return (
@@ -48,6 +49,7 @@ export default function ProfilePage() {
           <Address />
           <Cep />
           <Phone />
+          <DeliveryCost />
           <DeliveryTime />
         </ProfileInputs>
 

@@ -8,6 +8,7 @@ interface DomainInfos {
   address: string
   cnpj: string
   deliveryTime: string
+  deliveryCost: number
 }
 
 export const DomainInfosContext = createContext({} as DomainInfos)
@@ -20,6 +21,7 @@ export function DomainInfosProvider({ children }: { children: ReactNode }) {
     address: 'carregando',
     cnpj: '00.000.000/0000-00',
     deliveryTime: 'carregando',
+    deliveryCost: 0,
     domainName: 'carregando',
   })
 
@@ -44,6 +46,7 @@ export function DomainInfosProvider({ children }: { children: ReactNode }) {
           cnpj: domainData.cnpj,
           deliveryTime: domainData.deliveryTime,
           domainName: domainData.domainName,
+          deliveryCost: domainData.deliveryCost,
         })
       })
   }, [])
