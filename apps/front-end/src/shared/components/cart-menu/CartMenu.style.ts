@@ -55,8 +55,6 @@ export const Content = styled(Dialog.Content)`
   justify-content: start;
   outline: none;
 
-  overflow-y: auto;
-
   width: 35rem;
   height: 100%;
 
@@ -68,10 +66,6 @@ export const Content = styled(Dialog.Content)`
 
   background-color: ${(props) => props.theme.body};
   border-left: 1px solid ${(props) => props.theme.border};
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
 
   @media (max-width: 580px) {
     width: 100%;
@@ -119,6 +113,12 @@ export const MenuContent = styled.div`
   flex: 1;
 
   width: 100%;
-  padding: 0rem 1.25rem 2rem;
+  padding: 0rem 1.25rem 6rem 1.25rem;
   gap: 1rem;
+
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `

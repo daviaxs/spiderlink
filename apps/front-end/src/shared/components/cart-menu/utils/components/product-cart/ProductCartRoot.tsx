@@ -1,5 +1,6 @@
 import { Text } from '@/shared/components/text/Text'
 import {
+  DeleteProduct,
   ProductCardRootStyle,
   ProductOption,
   ProductOptions,
@@ -9,7 +10,9 @@ import { ProductProps } from '@/shared/contexts/cart-context/interfaces'
 import { Separator } from '@/shared/components/separator/Separator.style'
 import { convertPriceToBRFormat } from '@/shared/functions/convertPriceToBRFormat'
 import { v4 as uuid } from 'uuid'
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useContext, useEffect, useState } from 'react'
+import { Trash2 } from 'lucide-react'
+import { CartContext } from '@/shared/contexts/cart-context/CartContext'
 
 interface ProductCardRootProps {
   product: ProductProps
@@ -17,6 +20,7 @@ interface ProductCardRootProps {
 
 export function ProductCardRoot({ product }: ProductCardRootProps) {
   const [productQuantity, setProductQuantity] = useState(1)
+  const { removeProduct } = useContext(CartContext)
 
   useEffect(() => {
     return setProductQuantity(Number(product.productQuantity))
@@ -73,6 +77,10 @@ export function ProductCardRoot({ product }: ProductCardRootProps) {
       >
         total: {convertPriceToBRFormat(Number(product.totalProductPrice))}
       </Text>
+
+      <DeleteProduct onClick={() => removeProduct(product.id)}>
+        <Trash2 />
+      </DeleteProduct>
     </ProductCardRootStyle>
   )
 }

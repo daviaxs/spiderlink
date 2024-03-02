@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 export const ProductCardRootStyle = styled.li`
   list-style: none;
+  position: relative;
 
   display: flex;
   align-items: start;
@@ -58,4 +59,23 @@ export const ProductOption = styled.li`
   p {
     color: ${({ theme }) => theme.description};
   }
+`
+
+export const DeleteProduct = styled.button`
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: ${({ theme }) => theme.hoverButton};
+  color: ${({ theme }) => theme.icon};
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.5rem;
+  border-radius: 0 0 0 1rem;
+
+  position: absolute;
+  right: 0;
+  top: 0;
 `

@@ -15,6 +15,7 @@ import { Alert } from './utils/components/alert/Alert'
 import { useContext, useEffect, useState } from 'react'
 import { ECOMMERCE_NAME } from '@/shared/constants/names'
 import { CartContext } from '@/shared/contexts/cart-context/CartContext'
+import { FooterCart } from './utils/components/footer-cart/FooterCart'
 
 export function CartMenu() {
   const theme = useTheme()
@@ -58,6 +59,8 @@ export function CartMenu() {
           <MenuContent>
             <ListCartProducts />
           </MenuContent>
+
+          <FooterCart />
         </Content>
       </Dialog.Portal>
     </Dialog.Root>
