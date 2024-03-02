@@ -27,6 +27,7 @@ declare module 'styled-components' {
     icon: string
     iconSecondary: string
     iconTertiary: string
+    iconQuaternary: string
     iconContainer: string
 
     statusOpen: string

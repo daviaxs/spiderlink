@@ -26,6 +26,7 @@ export const lightTheme = {
   icon: themeColors['dark-blue-800'],
   iconSecondary: themeColors['dark-blue-300'],
   iconTertiary: themeColors['dark-blue-200'],
+  iconQuaternary: themeColors['dark-blue-200'],
   iconContainer: themeColors['dark-blue-100'],
 
   statusOpen: themeColors['primary-500'],
@@ -68,6 +69,7 @@ export const darkTheme = {
   icon: themeColors['dark-blue-50'],
   iconSecondary: themeColors['dark-blue-200'],
   iconTertiary: themeColors['dark-blue-500'],
+  iconQuaternary: themeColors['dark-blue-300'],
   iconContainer: themeColors['dark-blue-500'],
 
   statusOpen: themeColors['primary-200'],
