@@ -3,11 +3,13 @@ import { Text } from '../text/Text'
 import { Menu } from '../menu/Menu'
 import { useShowHeader } from '@/shared/hooks/useShowHeader'
 import { CartMenu } from '../cart-menu/CartMenu'
-import { ECOMMERCE_NAME } from '@/shared/constants/names'
 import Link from 'next/link'
+import { useContext } from 'react'
+import { DomainInfosContext } from '@/shared/contexts/DomainInfos'
 
 export function Header({ toggleTheme }: { toggleTheme?: () => void }) {
   const showHeader = useShowHeader()
+  const { name } = useContext(DomainInfosContext)
 
   return (
     <HeaderStyle className={showHeader ? '' : 'hideHeader'}>
@@ -24,7 +26,7 @@ export function Header({ toggleTheme }: { toggleTheme?: () => void }) {
           }}
         >
           <Text as="h2" size={30} fontVariant="all-small-caps" $weight="900">
-            {ECOMMERCE_NAME}
+            {name}
           </Text>
         </Link>
       </div>
