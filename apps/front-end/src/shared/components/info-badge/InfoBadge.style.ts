@@ -23,6 +23,10 @@ export const Root = styled.div`
 
   user-select: none;
 
+  button {
+    cursor: pointer;
+  }
+
   .mobile {
     display: none;
   }
@@ -30,6 +34,7 @@ export const Root = styled.div`
   @media (max-width: 680px) {
     min-height: fit-content;
     max-height: fit-content;
+    padding: 0.25rem 0.625rem;
 
     .desktop {
       display: none;
@@ -63,7 +68,7 @@ export const IconStyle = styled.div`
   }
 `
 
-export const ButtonBadgeStyle = styled.button`
+export const ButtonBadgeStyle = styled.div`
   outline: none;
   border: none;
   cursor: pointer;
@@ -71,13 +76,11 @@ export const ButtonBadgeStyle = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
   right: 0;
 
   background-color: ${(props) => props.theme.bodySecondary};
   color: ${(props) => props.theme.button};
 
-  padding: 0.375rem;
   height: 100%;
 
   span {
@@ -109,6 +112,6 @@ export const TextsBadgeStyle = styled.div`
   }
 
   &.padding-right {
-    padding: 0 2.4rem 0 0;
+    padding: 0 0rem 0 0;
   }
 `

@@ -1,14 +1,14 @@
 import { InfosBadgesRoot } from './InfosBadges.style'
 import { DeliveryTime } from './DeliveryTime'
 import { Status } from './Status'
-import { Address } from './Address'
+import { DeliveryDetails } from './DeliveryDetails'
 
 export function InfosBadges() {
   return (
     <InfosBadgesRoot>
       <Status />
 
-      <Address />
+      <DeliveryDetails />
 
       <DeliveryTime />
     </InfosBadgesRoot>

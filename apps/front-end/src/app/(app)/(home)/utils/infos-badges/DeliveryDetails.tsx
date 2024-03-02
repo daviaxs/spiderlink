@@ -1,10 +1,11 @@
 'use client'
 
+import { DeliveryDetailsForm } from '@/shared/components/delivery-details-form/DeliveryDetailsForm'
 import { InfoBadge } from '@/shared/components/info-badge'
-import { MapPin, Settings2 } from 'lucide-react'
+import { MapPin } from 'lucide-react'
 import { useTheme } from 'styled-components'
 
-export function Address() {
+export function DeliveryDetails() {
   const theme = useTheme()
 
   return (
@@ -15,7 +16,7 @@ export function Address() {
 
       <InfoBadge.TextsBadge className="padding-right">
         <span className="desktop">
-          <InfoBadge.TitleBadge>Endereço para entrega</InfoBadge.TitleBadge>
+          <InfoBadge.TitleBadge>Dados para entrega</InfoBadge.TitleBadge>
           <InfoBadge.DescriptionBadge>
             Rua SpiderLink, Jardim Sp...
           </InfoBadge.DescriptionBadge>
@@ -26,9 +27,7 @@ export function Address() {
         </span>
       </InfoBadge.TextsBadge>
 
-      <InfoBadge.ButtonBadge>
-        <Settings2 />
-      </InfoBadge.ButtonBadge>
+      <DeliveryDetailsForm />
     </InfoBadge.Root>
   )
 }
