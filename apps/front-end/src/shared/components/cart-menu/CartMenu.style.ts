@@ -36,9 +36,15 @@ export const Trigger = styled(Dialog.Trigger)`
   align-items: center;
   justify-content: center;
 
-  padding: 0 2rem;
+  padding: 0.5rem;
+  margin-right: 1rem;
+  border-radius: 50%;
 
   color: ${({ theme }) => theme.icon};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.hoverButton};
+  }
 `
 
 export const Content = styled(Dialog.Content)`
