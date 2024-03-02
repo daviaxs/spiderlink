@@ -7,7 +7,7 @@ export const Apresentation = styled.div`
   flex-direction: column;
   width: 100%;
   height: fit-content;
-  padding: 1.88rem 2rem 0;
+  padding: 0.5rem 2rem 0;
 
   @media (max-width: 900px) {
     padding: 0 0 7.5rem 0;
@@ -25,7 +25,7 @@ export const Banner = styled.div`
     border-radius: 1rem;
     object-fit: cover;
     width: 100%;
-    height: 300px;
+    height: 270px;
 
     @media (max-width: 900px) {
       border-radius: 0;
