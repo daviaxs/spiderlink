@@ -16,6 +16,7 @@ import { useContext, useEffect, useState } from 'react'
 import { ECOMMERCE_NAME } from '@/shared/constants/names'
 import { CartContext } from '@/shared/contexts/cart-context/CartContext'
 import { FooterCart } from './utils/components/footer-cart/FooterCart'
+import { CartEmpty } from './utils/CartEmpty'
 
 export function CartMenu() {
   const theme = useTheme()
@@ -57,10 +58,24 @@ export function CartMenu() {
           </MenuHeader>
 
           <MenuContent>
-            <ListCartProducts />
+            {productsInCart > 0 ? (
+              <ListCartProducts />
+            ) : (
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '100%',
+                  height: '100%',
+                }}
+              >
+                <CartEmpty />
+              </div>
+            )}
           </MenuContent>
 
-          <FooterCart />
+          {productsInCart > 0 && <FooterCart />}
         </Content>
       </Dialog.Portal>
     </Dialog.Root>
