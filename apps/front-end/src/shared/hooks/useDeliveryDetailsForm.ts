@@ -1,5 +1,8 @@
 import { FormEvent, useState } from 'react'
-import { setLocalStorageItem } from '../functions/localStorage'
+import {
+  getLocalStorageItem,
+  setLocalStorageItem,
+} from '../functions/localStorage'
 import { SPIDER_LINK_USER_INFOS } from '../constants/names'
 
 export interface DeliveryDetailsForm {
@@ -34,6 +37,24 @@ export function useDeliveryDetailsForm() {
       return
     }
 
+    const userData = getLocalStorageItem(
+      SPIDER_LINK_USER_INFOS,
+    ) as DeliveryDetailsForm
+
+    if (!userData || !userData.endereco) {
+      setErrorMessage('Preencha o endereço')
+      setLoading(false)
+      return
+    }
+
+    const { rua, bairro, cidade, numero, complemento } = userData.endereco
+
+    if (!rua || !bairro || !cidade || !numero || !complemento) {
+      setErrorMessage('Todos os campos do endereço devem ser preenchidos')
+      setLoading(false)
+      return
+    }
+
     try {
       setErrorMessage(null)
 
@@ -41,11 +62,11 @@ export function useDeliveryDetailsForm() {
         nome: name,
         telefone: phone,
         endereco: {
-          rua: '',
-          bairro: '',
-          cidade: '',
-          numero: '',
-          complemento: '',
+          rua,
+          bairro,
+          cidade,
+          numero,
+          complemento,
         },
       }
 
