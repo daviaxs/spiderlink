@@ -1,1 +1,2 @@
 export const ECOMMERCE_NAME = "Fritz's"
+export const SPIDER_LINK_USER_INFOS = 'SPIDER_LINK_USER_INFOS'
