@@ -13,7 +13,6 @@ export function Title({ children, size = 20 }: TitleProps) {
       size={size}
       $weight="600"
       className={roboto.className}
-      $whiteSpace="nowrap"
       style={{ gap: '0.35rem', display: 'flex' }}
     >
       {children}
