@@ -15,6 +15,8 @@ import { ProductsProvider } from '@/shared/contexts/Products'
 import { SubsectionsProvider } from '@/shared/contexts/Subsections'
 import { OptionsProvider } from '@/shared/contexts/Options'
 import { CartProvider } from '@/shared/contexts/cart-context/CartContext'
+import { ProductAddToCartContextProvider } from '@/shared/contexts/ProductAddToCartContextContext'
+import { ProductAddedToCartSuccessfully } from '@/shared/components/product-added-to-cart-successfully-dialog/ProductAddedToCartSuccessfully'
 
 export default function RootLayout({
   children,
@@ -31,23 +33,26 @@ export default function RootLayout({
       <body className={roboto.className}>
         <StyledComponentsRegistry>
           <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-            <DomainInfosProvider>
-              <CategoriesProvider>
-                <ProductsProvider>
-                  <SubsectionsProvider>
-                    <OptionsProvider>
-                      <SchedulesProvider>
-                        <CartProvider>
-                          <GlobalStyle />
-                          <Header toggleTheme={toggleTheme} />
-                          {children}
-                        </CartProvider>
-                      </SchedulesProvider>
-                    </OptionsProvider>
-                  </SubsectionsProvider>
-                </ProductsProvider>
-              </CategoriesProvider>
-            </DomainInfosProvider>
+            <ProductAddToCartContextProvider>
+              <DomainInfosProvider>
+                <CategoriesProvider>
+                  <ProductsProvider>
+                    <SubsectionsProvider>
+                      <OptionsProvider>
+                        <SchedulesProvider>
+                          <CartProvider>
+                            <GlobalStyle />
+                            <Header toggleTheme={toggleTheme} />
+                            <ProductAddedToCartSuccessfully />
+                            {children}
+                          </CartProvider>
+                        </SchedulesProvider>
+                      </OptionsProvider>
+                    </SubsectionsProvider>
+                  </ProductsProvider>
+                </CategoriesProvider>
+              </DomainInfosProvider>
+            </ProductAddToCartContextProvider>
           </ThemeProvider>
         </StyledComponentsRegistry>
       </body>

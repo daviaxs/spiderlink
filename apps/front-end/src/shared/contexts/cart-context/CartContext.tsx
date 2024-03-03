@@ -1,6 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-case-declarations */
-import React, { createContext, useReducer, ReactNode, useState } from 'react'
+import React, {
+  createContext,
+  useReducer,
+  ReactNode,
+  useState,
+  useContext,
+} from 'react'
 import {
   CartActions,
   CartState,
@@ -13,6 +19,7 @@ import {
   setLocalStorageItem,
 } from '@/shared/functions/localStorage'
 import { ECOMMERCE_NAME } from '@/shared/constants/names'
+import { ProductAddToCartContextContext } from '../ProductAddToCartContextContext'
 
 type CartContextData = CartState & CartActions
 
@@ -121,6 +128,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(cartReducer, initialState)
   const [successAddProduct, setSuccessAddProduct] = useState(false)
   const [loadingAddProduct, setLoadingAddProduct] = useState(false)
+  const { openDialog } = useContext(ProductAddToCartContextContext)
 
   function selectProductProperties(
     product: ProductProps,
@@ -203,6 +211,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setTimeout(() => {
       setSuccessAddProduct(false)
     }, 1000)
+
+    openDialog()
 
     dispatch({ type: CLEAR_CART })
   }
