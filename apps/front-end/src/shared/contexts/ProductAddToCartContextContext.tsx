@@ -1,8 +1,8 @@
 import { createContext, useState } from 'react'
 
 interface ProductAddToCartContextContextProps {
-  openDialog: () => void
-  closeDialog: () => void
+  openAddProductDialog: () => void
+  closeAddProductDialog: () => void
   isOpen: boolean
 }
 
@@ -17,12 +17,16 @@ export function ProductAddToCartContextProvider({
 }) {
   const [isOpen, setIsOpen] = useState(false)
 
-  const openDialog = () => setIsOpen(true)
-  const closeDialog = () => setIsOpen(false)
+  const openAddProductDialog = () => setIsOpen(true)
+  const closeAddProductDialog = () => setIsOpen(false)
 
   return (
     <ProductAddToCartContextContext.Provider
-      value={{ openDialog, closeDialog, isOpen }}
+      value={{
+        openAddProductDialog,
+        closeAddProductDialog,
+        isOpen,
+      }}
     >
       {children}
     </ProductAddToCartContextContext.Provider>

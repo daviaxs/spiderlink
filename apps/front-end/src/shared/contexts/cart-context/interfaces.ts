@@ -43,4 +43,8 @@ export interface CartActions {
   clearCart: () => void
   successAddProduct: boolean
   loadingAddProduct: boolean
+
+  openCartDialog: () => void
+  closeCartDialog: () => void
+  isCartDialogOpen: boolean
 }

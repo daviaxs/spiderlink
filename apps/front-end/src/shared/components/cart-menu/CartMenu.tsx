@@ -21,7 +21,13 @@ import { CartEmpty } from './utils/CartEmpty'
 export function CartMenu() {
   const theme = useTheme()
   const [productsInCart, setProductsInCart] = useState(0)
-  const { addProduct, removeProduct } = useContext(CartContext)
+  const {
+    addProduct,
+    removeProduct,
+    isCartDialogOpen,
+    closeCartDialog,
+    openCartDialog,
+  } = useContext(CartContext)
 
   useEffect(() => {
     const productsCart = JSON.parse(
@@ -34,8 +40,8 @@ export function CartMenu() {
   }, [addProduct, removeProduct])
 
   return (
-    <Dialog.Root>
-      <Trigger>
+    <Dialog.Root open={isCartDialogOpen}>
+      <Trigger onClick={openCartDialog}>
         <ShoppingBasket size={30} />
 
         {productsInCart > 0 && (
@@ -44,7 +50,7 @@ export function CartMenu() {
       </Trigger>
 
       <Dialog.Portal>
-        <Overlay />
+        <Overlay onClick={closeCartDialog} />
 
         <Content>
           <MenuHeader>
@@ -52,7 +58,7 @@ export function CartMenu() {
               Carrinho
             </Text>
 
-            <Close>
+            <Close onClick={closeCartDialog}>
               <X size={30} color={theme.icon} />
             </Close>
           </MenuHeader>

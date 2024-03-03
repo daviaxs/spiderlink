@@ -125,10 +125,11 @@ function cartReducer(state: any, action: any) {
 }
 
 export function CartProvider({ children }: { children: ReactNode }) {
+  const [isCartDialogOpen, setIsCartDialogOpen] = useState(false)
   const [state, dispatch] = useReducer(cartReducer, initialState)
   const [successAddProduct, setSuccessAddProduct] = useState(false)
   const [loadingAddProduct, setLoadingAddProduct] = useState(false)
-  const { openDialog } = useContext(ProductAddToCartContextContext)
+  const { openAddProductDialog } = useContext(ProductAddToCartContextContext)
 
   function selectProductProperties(
     product: ProductProps,
@@ -212,7 +213,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       setSuccessAddProduct(false)
     }, 1000)
 
-    openDialog()
+    openAddProductDialog()
 
     dispatch({ type: CLEAR_CART })
   }
@@ -262,6 +263,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
     dispatch({ type: CLEAR_CART })
   }
 
+  const openCartDialog = () => setIsCartDialogOpen(true)
+  const closeCartDialog = () => setIsCartDialogOpen(false)
+
   return (
     <CartContext.Provider
       value={{
@@ -276,6 +280,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
         clearCart,
         successAddProduct,
         loadingAddProduct,
+        closeCartDialog,
+        openCartDialog,
+        isCartDialogOpen,
       }}
     >
       {children}
