@@ -2,16 +2,14 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { Close, Content, Overlay } from '../DialogBase.style'
 import { X } from 'lucide-react'
 import { useContext } from 'react'
-import { ProductAddToCartContextContext } from '@/shared/contexts/ProductAddToCartContextContext'
 import { Text } from '../text/Text'
 import { ButtonForm } from '../buttons/button-form/ButtonForm'
 import { Actions } from './ProductAddedToCartSuccessfully.style'
 import { CartContext } from '@/shared/contexts/cart-context/CartContext'
+import { ProductAddToCartContext } from '@/shared/contexts/ProductAddToCart'
 
 export function ProductAddedToCartSuccessfully() {
-  const { isOpen, closeAddProductDialog } = useContext(
-    ProductAddToCartContextContext,
-  )
+  const { isOpen, closeAddProductDialog } = useContext(ProductAddToCartContext)
   const { openCartDialog } = useContext(CartContext)
 
   function handleOpenCartDialog() {

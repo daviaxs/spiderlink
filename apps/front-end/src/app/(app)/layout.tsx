@@ -15,8 +15,8 @@ import { ProductsProvider } from '@/shared/contexts/Products'
 import { SubsectionsProvider } from '@/shared/contexts/Subsections'
 import { OptionsProvider } from '@/shared/contexts/Options'
 import { CartProvider } from '@/shared/contexts/cart-context/CartContext'
-import { ProductAddToCartContextProvider } from '@/shared/contexts/ProductAddToCartContextContext'
 import { ProductAddedToCartSuccessfully } from '@/shared/components/product-added-to-cart-successfully-dialog/ProductAddedToCartSuccessfully'
+import { ProductAddToCartProvider } from '@/shared/contexts/ProductAddToCart'
 
 export default function RootLayout({
   children,
@@ -33,7 +33,7 @@ export default function RootLayout({
       <body className={roboto.className}>
         <StyledComponentsRegistry>
           <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-            <ProductAddToCartContextProvider>
+            <ProductAddToCartProvider>
               <DomainInfosProvider>
                 <CategoriesProvider>
                   <ProductsProvider>
@@ -52,7 +52,7 @@ export default function RootLayout({
                   </ProductsProvider>
                 </CategoriesProvider>
               </DomainInfosProvider>
-            </ProductAddToCartContextProvider>
+            </ProductAddToCartProvider>
           </ThemeProvider>
         </StyledComponentsRegistry>
       </body>

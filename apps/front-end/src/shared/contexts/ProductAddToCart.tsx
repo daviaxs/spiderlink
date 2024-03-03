@@ -1,16 +1,16 @@
 import { createContext, useState } from 'react'
 
-interface ProductAddToCartContextContextProps {
+interface ProductAddToCartProps {
   openAddProductDialog: () => void
   closeAddProductDialog: () => void
   isOpen: boolean
 }
 
-export const ProductAddToCartContextContext = createContext(
-  {} as ProductAddToCartContextContextProps,
+export const ProductAddToCartContext = createContext(
+  {} as ProductAddToCartProps,
 )
 
-export function ProductAddToCartContextProvider({
+export function ProductAddToCartProvider({
   children,
 }: {
   children: React.ReactNode
@@ -21,7 +21,7 @@ export function ProductAddToCartContextProvider({
   const closeAddProductDialog = () => setIsOpen(false)
 
   return (
-    <ProductAddToCartContextContext.Provider
+    <ProductAddToCartContext.Provider
       value={{
         openAddProductDialog,
         closeAddProductDialog,
@@ -29,6 +29,6 @@ export function ProductAddToCartContextProvider({
       }}
     >
       {children}
-    </ProductAddToCartContextContext.Provider>
+    </ProductAddToCartContext.Provider>
   )
 }

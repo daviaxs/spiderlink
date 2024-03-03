@@ -19,7 +19,7 @@ import {
   setLocalStorageItem,
 } from '@/shared/functions/localStorage'
 import { ECOMMERCE_NAME } from '@/shared/constants/names'
-import { ProductAddToCartContextContext } from '../ProductAddToCartContextContext'
+import { ProductAddToCartContext } from '../ProductAddToCart'
 
 type CartContextData = CartState & CartActions
 
@@ -129,7 +129,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(cartReducer, initialState)
   const [successAddProduct, setSuccessAddProduct] = useState(false)
   const [loadingAddProduct, setLoadingAddProduct] = useState(false)
-  const { openAddProductDialog } = useContext(ProductAddToCartContextContext)
+  const { openAddProductDialog } = useContext(ProductAddToCartContext)
 
   function selectProductProperties(
     product: ProductProps,
