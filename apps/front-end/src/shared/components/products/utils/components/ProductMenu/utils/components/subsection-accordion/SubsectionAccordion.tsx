@@ -118,7 +118,15 @@ export function SubsectionAccordion({
                           totalOptionsQuantityInSubsection >= subsection.limit
                         }
                       >
-                        <Plus />
+                        <Plus
+                          style={{
+                            opacity:
+                              totalOptionsQuantityInSubsection >=
+                              subsection.limit
+                                ? 0.5
+                                : 1,
+                          }}
+                        />
                       </AddOptionToCartButton>
                     </OptionActions>
                   </motion.div>
