@@ -7,8 +7,12 @@ import {
 import { Text } from '@/shared/components/text/Text'
 import { Separator } from '@/shared/components/separator/Separator.style'
 import { AddressInfos } from './utils/components/address-infos/AddressInfos'
+import { useContext } from 'react'
+import { UpdateAddressContext } from '@/shared/contexts/UpdateAddress'
 
 export function UserAddressCard() {
+  const { openUpdateAddressDialog } = useContext(UpdateAddressContext)
+
   return (
     <UserAddressCardRoot>
       <UserAddressCardHeader>
@@ -26,7 +30,7 @@ export function UserAddressCard() {
           </Text>
         </div>
 
-        <EditAddressButton type="button">
+        <EditAddressButton type="button" onClick={openUpdateAddressDialog}>
           <Settings className="icon" />
         </EditAddressButton>
       </UserAddressCardHeader>

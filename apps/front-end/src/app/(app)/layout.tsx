@@ -17,6 +17,8 @@ import { OptionsProvider } from '@/shared/contexts/Options'
 import { CartProvider } from '@/shared/contexts/cart-context/CartContext'
 import { ProductAddedToCartSuccessfully } from '@/shared/components/product-added-to-cart-successfully-dialog/ProductAddedToCartSuccessfully'
 import { ProductAddToCartProvider } from '@/shared/contexts/ProductAddToCart'
+import { UpdateAddressProvider } from '@/shared/contexts/UpdateAddress'
+import { UpdateAddress } from '@/shared/components/delivery-details-form/utils/components/user-address-card/utils/components/update-address/UpdateAddress'
 
 export default function RootLayout({
   children,
@@ -34,24 +36,27 @@ export default function RootLayout({
         <StyledComponentsRegistry>
           <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
             <ProductAddToCartProvider>
-              <DomainInfosProvider>
-                <CategoriesProvider>
-                  <ProductsProvider>
-                    <SubsectionsProvider>
-                      <OptionsProvider>
-                        <SchedulesProvider>
-                          <CartProvider>
-                            <GlobalStyle />
-                            <Header toggleTheme={toggleTheme} />
-                            <ProductAddedToCartSuccessfully />
-                            {children}
-                          </CartProvider>
-                        </SchedulesProvider>
-                      </OptionsProvider>
-                    </SubsectionsProvider>
-                  </ProductsProvider>
-                </CategoriesProvider>
-              </DomainInfosProvider>
+              <UpdateAddressProvider>
+                <DomainInfosProvider>
+                  <CategoriesProvider>
+                    <ProductsProvider>
+                      <SubsectionsProvider>
+                        <OptionsProvider>
+                          <SchedulesProvider>
+                            <CartProvider>
+                              <GlobalStyle />
+                              <Header toggleTheme={toggleTheme} />
+                              <ProductAddedToCartSuccessfully />
+                              <UpdateAddress />
+                              {children}
+                            </CartProvider>
+                          </SchedulesProvider>
+                        </OptionsProvider>
+                      </SubsectionsProvider>
+                    </ProductsProvider>
+                  </CategoriesProvider>
+                </DomainInfosProvider>
+              </UpdateAddressProvider>
             </ProductAddToCartProvider>
           </ThemeProvider>
         </StyledComponentsRegistry>

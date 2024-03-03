@@ -24,6 +24,7 @@ export const InputContainer = styled.div`
   input {
     font-size: 1.5rem;
     font-weight: 500;
+    width: 100%;
 
     color: ${(props) => props.theme.title};
     background-color: transparent;
