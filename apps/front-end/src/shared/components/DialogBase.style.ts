@@ -112,4 +112,6 @@ export const Close = styled(Dialog.Close)`
   position: absolute;
   left: 0.5rem;
   top: 1rem;
+
+  color: ${({ theme }) => theme.icon};
 `
