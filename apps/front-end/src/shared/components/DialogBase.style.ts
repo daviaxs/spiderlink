@@ -83,7 +83,7 @@ export const Content = styled(Dialog.Content)`
     border: 0px none;
   }
 
-  @media (max-width: 450px) {
+  @media (max-width: 550px) {
     width: 100%;
     height: 100%;
     max-height: 100%;
