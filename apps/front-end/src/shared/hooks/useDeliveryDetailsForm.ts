@@ -80,6 +80,7 @@ export function useDeliveryDetailsForm() {
       await new Promise((resolve) => setTimeout(resolve, 500))
 
       setSuccessMessage(false)
+      window.location.reload()
     } catch (err) {
       setErrorMessage('Erro ao salvar os dados')
       setLoading(false)

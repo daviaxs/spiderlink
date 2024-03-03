@@ -1,14 +1,20 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useContext, useState } from 'react'
 import {
   getLocalStorageItem,
   setLocalStorageItem,
 } from '../functions/localStorage'
 import { SPIDER_LINK_USER_INFOS } from '../constants/names'
+import { DeliveryDetailsContext } from '../contexts/DeliveryDetails'
 
 export function useUpdateUserAddressForm() {
   const [errorMessage, setErrorMessage] = useState<string | null>()
   const [successMessage, setSuccessMessage] = useState(false)
   const [loading, setLoading] = useState(false)
+  const { closeUpdateAddressDialog } = useContext(DeliveryDetailsContext)
+
+  function saveAddress() {
+    closeUpdateAddressDialog()
+  }
 
   const updateUserAddressForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -58,6 +64,7 @@ export function useUpdateUserAddressForm() {
       await new Promise((resolve) => setTimeout(resolve, 500))
 
       setSuccessMessage(false)
+      saveAddress()
     } catch (err) {
       setErrorMessage('Erro ao salvar os dados')
       setLoading(false)

@@ -17,7 +17,7 @@ import { OptionsProvider } from '@/shared/contexts/Options'
 import { CartProvider } from '@/shared/contexts/cart-context/CartContext'
 import { ProductAddedToCartSuccessfully } from '@/shared/components/product-added-to-cart-successfully-dialog/ProductAddedToCartSuccessfully'
 import { ProductAddToCartProvider } from '@/shared/contexts/ProductAddToCart'
-import { UpdateAddressProvider } from '@/shared/contexts/UpdateAddress'
+import { DeliveryDetailsProvider } from '@/shared/contexts/DeliveryDetails'
 import { UpdateAddress } from '@/shared/components/delivery-details-form/utils/components/user-address-card/utils/components/update-address/UpdateAddress'
 
 export default function RootLayout({
@@ -36,7 +36,7 @@ export default function RootLayout({
         <StyledComponentsRegistry>
           <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
             <ProductAddToCartProvider>
-              <UpdateAddressProvider>
+              <DeliveryDetailsProvider>
                 <DomainInfosProvider>
                   <CategoriesProvider>
                     <ProductsProvider>
@@ -56,7 +56,7 @@ export default function RootLayout({
                     </ProductsProvider>
                   </CategoriesProvider>
                 </DomainInfosProvider>
-              </UpdateAddressProvider>
+              </DeliveryDetailsProvider>
             </ProductAddToCartProvider>
           </ThemeProvider>
         </StyledComponentsRegistry>

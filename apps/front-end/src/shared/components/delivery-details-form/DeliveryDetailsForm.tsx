@@ -5,10 +5,18 @@ import { InfoBadge } from '../info-badge'
 import { UserDetailsForm } from './utils/components/user-details-form/UserDetailsForm'
 import { UserDetails } from './DeliveryDetailsForm.style'
 import { Text } from '../text/Text'
+import { DeliveryDetailsContext } from '@/shared/contexts/DeliveryDetails'
+import { useContext } from 'react'
 
 export function DeliveryDetailsForm() {
+  const {
+    isDeliveryDetailsDialogOpen,
+    openDeliveryDetailsDialog,
+    closeDeliveryDetailsDialog,
+  } = useContext(DeliveryDetailsContext)
+
   return (
-    <Dialog.Root>
+    <Dialog.Root open={isDeliveryDetailsDialogOpen}>
       <Trigger
         style={{
           padding: '0',
@@ -16,6 +24,7 @@ export function DeliveryDetailsForm() {
           alignItems: 'center',
           justifyContent: 'center',
         }}
+        onClick={openDeliveryDetailsDialog}
       >
         <InfoBadge.ButtonBadge>
           <Settings2 />
@@ -23,7 +32,7 @@ export function DeliveryDetailsForm() {
       </Trigger>
 
       <Dialog.Portal>
-        <Overlay />
+        <Overlay onClick={closeDeliveryDetailsDialog} />
 
         <Content>
           <UserDetails>
@@ -34,7 +43,7 @@ export function DeliveryDetailsForm() {
             <UserDetailsForm />
           </UserDetails>
 
-          <Close>
+          <Close onClick={closeDeliveryDetailsDialog}>
             <X size={32} />
           </Close>
         </Content>

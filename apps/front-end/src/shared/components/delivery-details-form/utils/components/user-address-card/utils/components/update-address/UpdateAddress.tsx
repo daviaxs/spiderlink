@@ -2,7 +2,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { Close, Content } from './UpdateAddress.style'
 import { Check, X } from 'lucide-react'
 import { ChangeEvent, useContext, useEffect, useState } from 'react'
-import { UpdateAddressContext } from '@/shared/contexts/UpdateAddress'
+import { DeliveryDetailsContext } from '@/shared/contexts/DeliveryDetails'
 import { UserDetailsFormRoot } from '../../../../user-details-form/UserDetailsForm.style'
 import { useUpdateUserAddressForm } from '@/shared/hooks/useUpdateUserAddressForm'
 import { ButtonForm } from '@/shared/components/buttons/button-form/ButtonForm'
@@ -15,7 +15,9 @@ import { SPIDER_LINK_USER_INFOS } from '@/shared/constants/names'
 import { getLocalStorageItem } from '@/shared/functions/localStorage'
 
 export function UpdateAddress() {
-  const { isOpen, closeUpdateAddressDialog } = useContext(UpdateAddressContext)
+  const { isUpdateAddressDialogOpen, closeUpdateAddressDialog } = useContext(
+    DeliveryDetailsContext,
+  )
   const { errorMessage, loading, successMessage, updateUserAddressForm } =
     useUpdateUserAddressForm()
 
@@ -90,7 +92,7 @@ export function UpdateAddress() {
   ]
 
   return (
-    <Dialog.Root open={isOpen}>
+    <Dialog.Root open={isUpdateAddressDialogOpen}>
       <Dialog.Portal>
         <Overlay onClick={closeUpdateAddressDialog} />
 
