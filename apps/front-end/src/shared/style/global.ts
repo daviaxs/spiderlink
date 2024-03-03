@@ -30,5 +30,23 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.text};
     overflow-x: hidden;
+
+    .desktop {
+      display: flex;
+    }
+
+    .mobile {
+      display: none;
+    }
+
+    @media (max-width: 680px) {
+      .desktop {
+        display: none;
+      }
+
+      .mobile {
+        display: flex;
+      }
+    }
   }
 `

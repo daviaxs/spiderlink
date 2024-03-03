@@ -27,22 +27,10 @@ export const Root = styled.div`
     cursor: pointer;
   }
 
-  .mobile {
-    display: none;
-  }
-
   @media (max-width: 680px) {
     min-height: fit-content;
     max-height: fit-content;
     padding: 0.25rem 0.625rem;
-
-    .desktop {
-      display: none;
-    }
-
-    .mobile {
-      display: flex;
-    }
   }
 `
 
