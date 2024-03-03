@@ -26,8 +26,8 @@ export function useDeliveryDetailsForm() {
       setErrorMessage(null)
 
       const userInfo = {
-        name,
-        phone,
+        nome: name,
+        telefone: phone,
       }
 
       setLocalStorageItem({ key: SPIDER_LINK_USER_INFOS, value: userInfo })
