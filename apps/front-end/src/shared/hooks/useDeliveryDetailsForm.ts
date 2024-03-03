@@ -2,6 +2,18 @@ import { FormEvent, useState } from 'react'
 import { setLocalStorageItem } from '../functions/localStorage'
 import { SPIDER_LINK_USER_INFOS } from '../constants/names'
 
+export interface DeliveryDetailsForm {
+  nome: string
+  telefone: string
+  endereco: {
+    rua: string
+    bairro: string
+    cidade: string
+    numero: string
+    complemento: string
+  }
+}
+
 export function useDeliveryDetailsForm() {
   const [errorMessage, setErrorMessage] = useState<string | null>()
   const [successMessage, setSuccessMessage] = useState(false)
@@ -28,6 +40,13 @@ export function useDeliveryDetailsForm() {
       const userInfo = {
         nome: name,
         telefone: phone,
+        endereco: {
+          rua: '',
+          bairro: '',
+          cidade: '',
+          numero: '',
+          complemento: '',
+        },
       }
 
       setLocalStorageItem({ key: SPIDER_LINK_USER_INFOS, value: userInfo })
