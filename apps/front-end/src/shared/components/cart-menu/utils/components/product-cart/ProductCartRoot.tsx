@@ -28,9 +28,13 @@ export function ProductCardRoot({ product }: ProductCardRootProps) {
 
   return (
     <ProductCardRootStyle>
-      <Text as="h4" size={20} $weight="600">
-        {product.name} - QT: {productQuantity}
-      </Text>
+      <div className="title">
+        <Text as="h4" size={20} $weight="600">
+          {product.name} - QT: {productQuantity}
+          {Number(product.price) > 0 &&
+            ' - ' + convertPriceToBRFormat(Number(product.price))}
+        </Text>
+      </div>
 
       {product.Subsection?.map((subsection) => {
         const hasSelectedOptions = subsection.Options?.some(

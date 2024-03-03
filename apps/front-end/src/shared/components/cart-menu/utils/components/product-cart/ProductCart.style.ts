@@ -25,6 +25,13 @@ export const ProductCardRootStyle = styled.li`
     color: ${({ theme }) => theme.title};
   }
 
+  .title {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    padding: 0 2.5rem 0 0;
+  }
+
   .total-price {
     color: ${({ theme }) => theme.button};
   }
@@ -65,7 +72,7 @@ export const DeleteProduct = styled.button`
   outline: none;
   border: none;
   cursor: pointer;
-  background-color: ${({ theme }) => theme.hoverButton};
+  background-color: ${({ theme }) => theme.buttonTertiary};
   color: ${({ theme }) => theme.icon};
 
   display: flex;
