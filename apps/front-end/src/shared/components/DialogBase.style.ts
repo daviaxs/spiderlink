@@ -65,22 +65,8 @@ export const Content = styled(Dialog.Content)`
   border-radius: 0.5rem;
 
   & {
-    scrollbar-width: none;
+    scrollbar-width: thin;
     scrollbar-color: ${({ theme }) => theme.border} transparent;
-  }
-
-  &::-webkit-scrollbar {
-    width: 2px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: ${({ theme }) => theme.border};
-    border-radius: 10px;
-    border: 0px none;
   }
 
   @media (max-width: 550px) {
