@@ -7,7 +7,7 @@ import {
   SubsectionProps,
 } from '@/shared/contexts/cart-context/interfaces'
 import { convertPriceToBRFormat } from '@/shared/functions/convertPriceToBRFormat'
-import { Minus, Plus } from 'lucide-react'
+import { Check, Minus, Plus } from 'lucide-react'
 import { useContext, useEffect, useState } from 'react'
 import { useTheme } from 'styled-components'
 
@@ -31,6 +31,8 @@ export function Footer({
     productQuantity,
     addProduct,
     optionQuantity,
+    loadingAddProduct,
+    successAddProduct,
   } = useContext(CartContext)
 
   const [totalPrice, setTotalPrice] = useState(product.price)
@@ -106,18 +108,30 @@ export function Footer({
           justifyContent: 'space-between',
           borderRadius: '4px',
           width: '12rem',
+          height: '2.5rem',
         }}
-        disabled={!allRequiredMet || loading}
+        disabled={
+          !allRequiredMet || loading || loadingAddProduct || successAddProduct
+        }
       >
-        <Text size={16} $weight="500" color={theme.white}>
-          Adicionar
-        </Text>
+        {successAddProduct ? (
+          <Check size={14} />
+        ) : (
+          <Text size={14} $weight="500" color={theme.white}>
+            Adicionar
+          </Text>
+        )}
 
         <Text
           size={14}
           $weight="500"
           color={theme.white}
-          style={{ marginTop: '2px' }}
+          style={{
+            marginTop: '2px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
         >
           {convertPriceToBRFormat(Number(totalPrice) || Number(product.price))}
         </Text>

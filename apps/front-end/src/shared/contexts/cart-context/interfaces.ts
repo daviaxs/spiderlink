@@ -41,4 +41,6 @@ export interface CartActions {
   removeOptionQuantity: (productId: string, optionId: string) => void
   removeOption: (productId: string, optionId: string) => void
   clearCart: () => void
+  successAddProduct: boolean
+  loadingAddProduct: boolean
 }

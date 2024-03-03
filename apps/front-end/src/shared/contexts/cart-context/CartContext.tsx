@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-case-declarations */
-import React, { createContext, useReducer, ReactNode } from 'react'
+import React, { createContext, useReducer, ReactNode, useState } from 'react'
 import {
   CartActions,
   CartState,
@@ -119,6 +119,8 @@ function cartReducer(state: any, action: any) {
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(cartReducer, initialState)
+  const [successAddProduct, setSuccessAddProduct] = useState(false)
+  const [loadingAddProduct, setLoadingAddProduct] = useState(false)
 
   function selectProductProperties(
     product: ProductProps,
@@ -142,6 +144,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
     product: ProductProps,
     subsections: SubsectionProps[],
   ) => {
+    setLoadingAddProduct(true)
+
     const productWithSelectedOptions = {
       ...product,
       id: `${product.id}-${Date.now()}`,
@@ -192,6 +196,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
         price: totalProductPrice,
       },
     })
+
+    setSuccessAddProduct(true)
+    setLoadingAddProduct(false)
+
+    setTimeout(() => {
+      setSuccessAddProduct(false)
+    }, 1000)
+
+    dispatch({ type: CLEAR_CART })
   }
 
   const removeProduct = (productId: string) => {
@@ -251,6 +264,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
         removeOptionQuantity,
         removeOption,
         clearCart,
+        successAddProduct,
+        loadingAddProduct,
       }}
     >
       {children}
