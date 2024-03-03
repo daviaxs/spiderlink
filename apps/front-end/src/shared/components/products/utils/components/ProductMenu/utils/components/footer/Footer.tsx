@@ -108,7 +108,7 @@ export function Footer({
           justifyContent: 'space-between',
           borderRadius: '4px',
           width: '12rem',
-          height: '2.5rem',
+          height: '3.125rem',
         }}
         disabled={
           !allRequiredMet || loading || loadingAddProduct || successAddProduct

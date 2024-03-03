@@ -15,6 +15,7 @@ export const FooterRoot = styled.div`
   width: 100%;
   height: fit-content;
   padding: 1rem;
+  gap: 1rem;
   bottom: 0;
 `
 
