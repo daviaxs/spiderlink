@@ -9,11 +9,11 @@ export function AddressInfos() {
   const { userDeliveryDetails } = useContext(DeliveryDetailsContext)
 
   const userAddress = userDeliveryDetails?.endereco || {
-    rua: '',
-    numero: '',
-    bairro: '',
-    cidade: '',
-    complemento: '',
+    rua: null,
+    numero: null,
+    bairro: null,
+    cidade: null,
+    complemento: null,
   }
 
   const fields = [
@@ -30,7 +30,7 @@ export function AddressInfos() {
         <Field.Root key={index}>
           <Field.Title>{field.title}</Field.Title>
 
-          {field.description && field.description.length > 0 ? (
+          {field.description ? (
             <Field.Description>{field.description}</Field.Description>
           ) : (
             <Text
