@@ -1,9 +1,7 @@
-import { FormEvent, useState } from 'react'
-import {
-  getLocalStorageItem,
-  setLocalStorageItem,
-} from '../functions/localStorage'
+import { FormEvent, useContext, useState } from 'react'
+import { getLocalStorageItem } from '../functions/localStorage'
 import { SPIDER_LINK_USER_INFOS } from '../constants/names'
+import { DeliveryDetailsContext } from '../contexts/DeliveryDetails'
 
 export interface DeliveryDetailsForm {
   nome: string
@@ -21,6 +19,9 @@ export function useDeliveryDetailsForm() {
   const [errorMessage, setErrorMessage] = useState<string | null>()
   const [successMessage, setSuccessMessage] = useState(false)
   const [loading, setLoading] = useState(false)
+  const { updateUserDeliveryDetails, closeDeliveryDetailsDialog } = useContext(
+    DeliveryDetailsContext,
+  )
 
   const deliveryDetailsForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -28,8 +29,8 @@ export function useDeliveryDetailsForm() {
 
     const formData = new FormData(event.currentTarget)
 
-    const name = formData.get('nome')
-    const phone = formData.get('telefone')
+    const name = formData.get('nome') as string
+    const phone = formData.get('telefone') as string
 
     if (!name || !phone) {
       setErrorMessage('Preencha todos os campos')
@@ -70,7 +71,7 @@ export function useDeliveryDetailsForm() {
         },
       }
 
-      setLocalStorageItem({ key: SPIDER_LINK_USER_INFOS, value: userInfo })
+      updateUserDeliveryDetails(userInfo)
 
       await new Promise((resolve) => setTimeout(resolve, 500))
 
@@ -80,7 +81,7 @@ export function useDeliveryDetailsForm() {
       await new Promise((resolve) => setTimeout(resolve, 500))
 
       setSuccessMessage(false)
-      window.location.reload()
+      closeDeliveryDetailsDialog()
     } catch (err) {
       setErrorMessage('Erro ao salvar os dados')
       setLoading(false)

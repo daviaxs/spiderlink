@@ -1,8 +1,5 @@
 import { FormEvent, useContext, useState } from 'react'
-import {
-  getLocalStorageItem,
-  setLocalStorageItem,
-} from '../functions/localStorage'
+import { getLocalStorageItem } from '../functions/localStorage'
 import { SPIDER_LINK_USER_INFOS } from '../constants/names'
 import { DeliveryDetailsContext } from '../contexts/DeliveryDetails'
 
@@ -10,7 +7,9 @@ export function useUpdateUserAddressForm() {
   const [errorMessage, setErrorMessage] = useState<string | null>()
   const [successMessage, setSuccessMessage] = useState(false)
   const [loading, setLoading] = useState(false)
-  const { closeUpdateAddressDialog } = useContext(DeliveryDetailsContext)
+  const { closeUpdateAddressDialog, updateUserDeliveryDetails } = useContext(
+    DeliveryDetailsContext,
+  )
 
   function saveAddress() {
     closeUpdateAddressDialog()
@@ -22,11 +21,11 @@ export function useUpdateUserAddressForm() {
 
     const formData = new FormData(event.currentTarget)
 
-    const street = formData.get('rua')
-    const neighborhood = formData.get('bairro')
-    const city = formData.get('cidade')
-    const number = formData.get('numero')
-    const complement = formData.get('complemento')
+    const street = formData.get('rua') as string
+    const neighborhood = formData.get('bairro') as string
+    const city = formData.get('cidade') as string
+    const number = formData.get('numero') as string
+    const complement = formData.get('complemento') as string
 
     if (!street || !neighborhood || !city || !number || !complement) {
       setErrorMessage('Preencha todos os campos')
@@ -54,7 +53,7 @@ export function useUpdateUserAddressForm() {
         },
       }
 
-      setLocalStorageItem({ key: SPIDER_LINK_USER_INFOS, value: userInfo })
+      updateUserDeliveryDetails(userInfo)
 
       await new Promise((resolve) => setTimeout(resolve, 500))
 

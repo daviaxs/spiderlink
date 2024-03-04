@@ -1,35 +1,27 @@
-import { useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { AddressInfosRoot } from './AddressInfos.style'
 import { Field } from './components/field/Field'
-import { getLocalStorageItem } from '@/shared/functions/localStorage'
-import { SPIDER_LINK_USER_INFOS } from '@/shared/constants/names'
-import { DeliveryDetailsForm } from '@/shared/hooks/useDeliveryDetailsForm'
 import { Text } from '@/shared/components/text/Text'
 import { themeColors } from '@/shared/style/theme/pallete'
+import { DeliveryDetailsContext } from '@/shared/contexts/DeliveryDetails'
 
 export function AddressInfos() {
-  const [userAddressObject, setUserAddressObject] = useState(
-    {} as DeliveryDetailsForm['endereco'],
-  )
+  const { userDeliveryDetails } = useContext(DeliveryDetailsContext)
 
-  useEffect(() => {
-    const userInfos: DeliveryDetailsForm = getLocalStorageItem(
-      SPIDER_LINK_USER_INFOS,
-    )
-
-    const userAddress = userInfos?.endereco
-
-    if (userAddress) {
-      setUserAddressObject(userAddress)
-    }
-  }, [])
+  const userAddress = userDeliveryDetails?.endereco || {
+    rua: '',
+    numero: '',
+    bairro: '',
+    cidade: '',
+    complemento: '',
+  }
 
   const fields = [
-    { title: 'Rua:', description: userAddressObject.rua },
-    { title: 'Bairro:', description: userAddressObject.bairro },
-    { title: 'Cidade:', description: userAddressObject.cidade },
-    { title: 'Número:', description: userAddressObject.numero },
-    { title: 'Complemento:', description: userAddressObject.complemento },
+    { title: 'Rua:', description: userAddress.rua },
+    { title: 'Bairro:', description: userAddress.bairro },
+    { title: 'Cidade:', description: userAddress.cidade },
+    { title: 'Número:', description: userAddress.numero },
+    { title: 'Complemento:', description: userAddress.complemento },
   ]
 
   return (

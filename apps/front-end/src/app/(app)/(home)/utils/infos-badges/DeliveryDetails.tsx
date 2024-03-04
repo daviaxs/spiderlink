@@ -2,24 +2,21 @@
 
 import { DeliveryDetailsForm as DeliveryDetailsFormComponent } from '@/shared/components/delivery-details-form/DeliveryDetailsForm'
 import { InfoBadge } from '@/shared/components/info-badge'
-import { SPIDER_LINK_USER_INFOS } from '@/shared/constants/names'
-import { getLocalStorageItem } from '@/shared/functions/localStorage'
-import { DeliveryDetailsForm } from '@/shared/hooks/useDeliveryDetailsForm'
+import { DeliveryDetailsContext } from '@/shared/contexts/DeliveryDetails'
 import { MapPin } from 'lucide-react'
+import { useContext } from 'react'
 import { useTheme } from 'styled-components'
 
 export function DeliveryDetails() {
   const theme = useTheme()
-  const userData = getLocalStorageItem(
-    SPIDER_LINK_USER_INFOS,
-  ) as DeliveryDetailsForm
+  const { userDeliveryDetails } = useContext(DeliveryDetailsContext)
 
   function formatDescription() {
-    if (!userData) {
+    if (!userDeliveryDetails) {
       return 'Não informado'
     }
 
-    const description = `${userData.nome} - ${userData.endereco.rua}, ${userData.endereco.numero} ${userData.endereco.cidade}`
+    const description = `${userDeliveryDetails?.nome} - ${userDeliveryDetails.endereco.rua}, ${userDeliveryDetails.endereco.numero} ${userDeliveryDetails.endereco.cidade}`
 
     if (description.length > 20) {
       return `${description.slice(0, 20)}...`

@@ -10,14 +10,13 @@ import { Loading } from '@/shared/components/loading/Loading'
 import { TextInput } from '../../../../inputs/TextInput'
 import { Overlay } from '@/shared/components/DialogBase.style'
 import { Text } from '@/shared/components/text/Text'
-import { DeliveryDetailsForm } from '@/shared/hooks/useDeliveryDetailsForm'
-import { SPIDER_LINK_USER_INFOS } from '@/shared/constants/names'
-import { getLocalStorageItem } from '@/shared/functions/localStorage'
 
 export function UpdateAddress() {
-  const { isUpdateAddressDialogOpen, closeUpdateAddressDialog } = useContext(
-    DeliveryDetailsContext,
-  )
+  const {
+    isUpdateAddressDialogOpen,
+    closeUpdateAddressDialog,
+    userDeliveryDetails,
+  } = useContext(DeliveryDetailsContext)
   const { errorMessage, loading, successMessage, updateUserAddressForm } =
     useUpdateUserAddressForm()
 
@@ -48,11 +47,7 @@ export function UpdateAddress() {
   }
 
   useEffect(() => {
-    const userInfos: DeliveryDetailsForm = getLocalStorageItem(
-      SPIDER_LINK_USER_INFOS,
-    )
-
-    const userAddress = userInfos?.endereco
+    const userAddress = userDeliveryDetails?.endereco
 
     if (userAddress) {
       setRua(userAddress.rua)
@@ -61,7 +56,7 @@ export function UpdateAddress() {
       setCidade(userAddress.cidade)
       setComplemento(userAddress.complemento)
     }
-  }, [])
+  }, [userDeliveryDetails])
 
   const inputs = [
     { name: 'rua', value: rua, onChange: handleChange, placeholder: 'Rua' },
