@@ -13,7 +13,6 @@ import {
   ProductProps,
   SubsectionProps,
 } from './interfaces'
-import { convertPriceToBRFormat } from '@/shared/functions/convertPriceToBRFormat'
 import {
   getLocalStorageItem,
   setLocalStorageItem,
@@ -126,9 +125,11 @@ function cartReducer(state: any, action: any) {
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [isCartDialogOpen, setIsCartDialogOpen] = useState(false)
-  const [state, dispatch] = useReducer(cartReducer, initialState)
   const [successAddProduct, setSuccessAddProduct] = useState(false)
   const [loadingAddProduct, setLoadingAddProduct] = useState(false)
+  const [isCheckoutDialogOpen, setIsCheckoutDialogOpen] = useState(false)
+
+  const [state, dispatch] = useReducer(cartReducer, initialState)
   const { openAddProductDialog } = useContext(ProductAddToCartContext)
 
   function selectProductProperties(
@@ -266,6 +267,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const openCartDialog = () => setIsCartDialogOpen(true)
   const closeCartDialog = () => setIsCartDialogOpen(false)
 
+  const closeCheckoutDialog = () => setIsCheckoutDialogOpen(false)
+  const openCheckoutDialog = () => setIsCheckoutDialogOpen(true)
+
   return (
     <CartContext.Provider
       value={{
@@ -283,6 +287,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
         closeCartDialog,
         openCartDialog,
         isCartDialogOpen,
+        openCheckoutDialog,
+        closeCheckoutDialog,
+        isCheckoutDialogOpen,
       }}
     >
       {children}
