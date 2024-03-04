@@ -13,9 +13,6 @@ export const GlobalStyle = createGlobalStyle`
 
   html {
     scroll-behavior: smooth;
-
-    scrollbar-width: thin;
-    scrollbar-color: ${(props) => props.theme.border} transparent;
   }
 
   input:-webkit-autofill,
