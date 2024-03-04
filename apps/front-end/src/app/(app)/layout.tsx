@@ -19,6 +19,7 @@ import { ProductAddedToCartSuccessfully } from '@/shared/components/product-adde
 import { ProductAddToCartProvider } from '@/shared/contexts/ProductAddToCart'
 import { DeliveryDetailsProvider } from '@/shared/contexts/DeliveryDetails'
 import { UpdateAddress } from '@/shared/components/delivery-details-form/utils/components/user-address-card/utils/components/update-address/UpdateAddress'
+import { CheckoutMenu } from '@/shared/components/checkout-menu/CheckoutMenu'
 
 export default function RootLayout({
   children,
@@ -48,6 +49,7 @@ export default function RootLayout({
                               <Header toggleTheme={toggleTheme} />
                               <ProductAddedToCartSuccessfully />
                               <UpdateAddress />
+                              <CheckoutMenu />
                               {children}
                             </CartProvider>
                           </SchedulesProvider>
