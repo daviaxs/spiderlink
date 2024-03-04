@@ -47,23 +47,6 @@ export const Content = styled(DropdownMenu.Content)`
     scrollbar-color: ${(props) => props.theme.border} transparent;
   }
 
-  &::-webkit-scrollbar-track {
-    border-radius: 20px;
-    background-color: trans;
-    border: 10px solid trans;
-    margin-inline: 1rem;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 20px;
-    background-color: #87879a;
-    border: 5px solid trans;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background-color: ${(props) => props.theme.border};
-  }
-
   @media (max-width: 350px) {
     margin-left: 2rem;
   }
