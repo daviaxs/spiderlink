@@ -18,3 +18,4 @@ export type CategoryNames =
   | 'Churros'
   | 'Pastel'
   | 'Salgados'
+  | 'Refri'
