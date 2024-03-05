@@ -66,43 +66,47 @@ export function Menu({ toggleTheme }: { toggleTheme?: () => void }) {
               </ButtonMenu.ButtonTexts>
             </ButtonMenu.Root>
 
-            {window.location.pathname !== '/' && (
-              <Link href="/" style={{ width: '100%' }} onClick={closeMenu}>
-                <ButtonMenu.Root>
-                  <ButtonMenu.ButtonIcon>
-                    <Home size={25} color={theme.icon} />
-                  </ButtonMenu.ButtonIcon>
+            {typeof window !== 'undefined' &&
+              window.location.pathname !== '/' && (
+                <Link href="/" style={{ width: '100%' }} onClick={closeMenu}>
+                  <ButtonMenu.Root>
+                    <ButtonMenu.ButtonIcon>
+                      <Home size={25} color={theme.icon} />
+                    </ButtonMenu.ButtonIcon>
 
-                  <ButtonMenu.ButtonTexts>
-                    <ButtonMenu.ButtonTitle>
-                      Página inicial
-                    </ButtonMenu.ButtonTitle>
-                  </ButtonMenu.ButtonTexts>
-                </ButtonMenu.Root>
-              </Link>
-            )}
+                    <ButtonMenu.ButtonTexts>
+                      <ButtonMenu.ButtonTitle>
+                        Página inicial
+                      </ButtonMenu.ButtonTitle>
+                    </ButtonMenu.ButtonTexts>
+                  </ButtonMenu.Root>
+                </Link>
+              )}
 
             {!token ? (
               <SignInMenu />
             ) : (
               <>
-                {!window.location.pathname.startsWith('/admin') && (
-                  <Link
-                    href="/admin"
-                    style={{ width: '100%' }}
-                    onClick={closeMenu}
-                  >
-                    <ButtonMenu.Root>
-                      <ButtonMenu.ButtonIcon>
-                        <SlidersHorizontal size={25} color={theme.icon} />
-                      </ButtonMenu.ButtonIcon>
+                {typeof window !== 'undefined' &&
+                  !window.location.pathname.startsWith('/admin') && (
+                    <Link
+                      href="/admin"
+                      style={{ width: '100%' }}
+                      onClick={closeMenu}
+                    >
+                      <ButtonMenu.Root>
+                        <ButtonMenu.ButtonIcon>
+                          <SlidersHorizontal size={25} color={theme.icon} />
+                        </ButtonMenu.ButtonIcon>
 
-                      <ButtonMenu.ButtonTexts>
-                        <ButtonMenu.ButtonTitle>Painel</ButtonMenu.ButtonTitle>
-                      </ButtonMenu.ButtonTexts>
-                    </ButtonMenu.Root>
-                  </Link>
-                )}
+                        <ButtonMenu.ButtonTexts>
+                          <ButtonMenu.ButtonTitle>
+                            Painel
+                          </ButtonMenu.ButtonTitle>
+                        </ButtonMenu.ButtonTexts>
+                      </ButtonMenu.Root>
+                    </Link>
+                  )}
 
                 <ButtonMenu.Root onClick={handleLogout}>
                   <ButtonMenu.ButtonIcon>

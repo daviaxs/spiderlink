@@ -56,8 +56,6 @@ export function useCreateProduct({ categoryId }: { categoryId: string }) {
           },
         })
 
-        console.log(uploadResponse)
-
         img = uploadResponse.data.data.secure_url
       }
     } catch (err) {

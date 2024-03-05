@@ -1,15 +1,14 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export function useTheme() {
-  const [theme, setTheme] = useState(() => {
-    const storageValue = localStorage.getItem('SPIDERLINK_THEME')
+  const [theme, setTheme] = useState('light')
 
+  useEffect(() => {
+    const storageValue = localStorage.getItem('SPIDERLINK_THEME')
     if (storageValue) {
-      return storageValue
-    } else {
-      return 'light'
+      setTheme(storageValue)
     }
-  })
+  }, [])
 
   function toggleTheme() {
     const newTheme = theme === 'light' ? 'dark' : 'light'

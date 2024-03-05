@@ -3,12 +3,14 @@
 import { Motorcycle } from '@/shared/assets/svgs'
 import { InfoBadge } from '@/shared/components/info-badge'
 import { DomainInfosContext } from '@/shared/contexts/DomainInfos'
+import { useWindowWidth } from '@/shared/hooks/useWindowWidth'
 import { useContext } from 'react'
 import { useTheme } from 'styled-components'
 
 export function DeliveryTime() {
   const theme = useTheme()
   const { deliveryTime } = useContext(DomainInfosContext)
+  const { width } = useWindowWidth()
 
   return (
     <InfoBadge.Root>
@@ -17,9 +19,12 @@ export function DeliveryTime() {
       </InfoBadge.IconBadge>
 
       <InfoBadge.TextsBadge>
-        <span className="desktop">
-          <InfoBadge.TitleBadge>Entrega</InfoBadge.TitleBadge>
-        </span>
+        {width > 680 && (
+          <span>
+            <InfoBadge.TitleBadge>Entrega</InfoBadge.TitleBadge>
+          </span>
+        )}
+
         <InfoBadge.DescriptionBadge>{deliveryTime}</InfoBadge.DescriptionBadge>
       </InfoBadge.TextsBadge>
     </InfoBadge.Root>

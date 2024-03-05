@@ -3,6 +3,7 @@
 import { DeliveryDetailsForm as DeliveryDetailsFormComponent } from '@/shared/components/delivery-details-form/DeliveryDetailsForm'
 import { InfoBadge } from '@/shared/components/info-badge'
 import { DeliveryDetailsContext } from '@/shared/contexts/DeliveryDetails'
+import { useWindowWidth } from '@/shared/hooks/useWindowWidth'
 import { MapPin } from 'lucide-react'
 import { useContext } from 'react'
 import { useTheme } from 'styled-components'
@@ -10,6 +11,7 @@ import { useTheme } from 'styled-components'
 export function DeliveryDetails() {
   const theme = useTheme()
   const { userDeliveryDetails } = useContext(DeliveryDetailsContext)
+  const { width } = useWindowWidth()
 
   function formatDescription() {
     if (!userDeliveryDetails) {
@@ -32,16 +34,20 @@ export function DeliveryDetails() {
       </InfoBadge.IconBadge>
 
       <InfoBadge.TextsBadge className="padding-right">
-        <span className="desktop">
-          <InfoBadge.TitleBadge>Dados para entrega</InfoBadge.TitleBadge>
-          <InfoBadge.DescriptionBadge>
-            {formatDescription()}
-          </InfoBadge.DescriptionBadge>
-        </span>
+        {width > 680 && (
+          <span>
+            <InfoBadge.TitleBadge>Dados para entrega</InfoBadge.TitleBadge>
+            <InfoBadge.DescriptionBadge>
+              {formatDescription()}
+            </InfoBadge.DescriptionBadge>
+          </span>
+        )}
 
-        <span className="mobile">
-          <InfoBadge.DescriptionBadge>Entrega</InfoBadge.DescriptionBadge>
-        </span>
+        {width <= 680 && (
+          <span>
+            <InfoBadge.DescriptionBadge>Entrega</InfoBadge.DescriptionBadge>
+          </span>
+        )}
       </InfoBadge.TextsBadge>
 
       <DeliveryDetailsFormComponent />

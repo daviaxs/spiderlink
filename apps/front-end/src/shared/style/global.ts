@@ -9,6 +9,24 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    .desktop {
+      display: flex;
+    }
+
+    .mobile {
+      display: none;
+    }
+
+    @media (max-width: 680px) {
+      .desktop {
+        display: none;
+      }
+
+      .mobile {
+        display: flex;
+      }
+    }
   }
 
   html {
@@ -34,23 +52,5 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.text};
     overflow-x: hidden;
-
-    .desktop {
-      display: flex;
-    }
-
-    .mobile {
-      display: none;
-    }
-
-    @media (max-width: 680px) {
-      .desktop {
-        display: none;
-      }
-
-      .mobile {
-        display: flex;
-      }
-    }
   }
 `
