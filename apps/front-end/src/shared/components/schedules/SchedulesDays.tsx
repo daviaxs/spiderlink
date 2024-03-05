@@ -36,11 +36,20 @@ export function SchedulesDays() {
               {day.name}
             </Text>
 
-            <Text size={18} $weight="500" className={inter.className}>
-              {day.schedule.fechado
-                ? 'FECHADO'
-                : `${formatHour(day.schedule.inicio)} - ${formatHour(day.schedule.termino)}`}
-            </Text>
+            {day.schedule.fechado ? (
+              <Text
+                size={18}
+                $weight="800"
+                className={`${inter.className} closed-text`}
+              >
+                FECHADO
+              </Text>
+            ) : (
+              <Text size={18} $weight="600" className={inter.className}>
+                {formatHour(day.schedule.inicio)} -{' '}
+                {formatHour(day.schedule.termino)}
+              </Text>
+            )}
           </SchedulesDay>
 
           {day.name !== 'dom' && <Separator />}

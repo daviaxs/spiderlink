@@ -1,5 +1,6 @@
 'use client'
 
+import { themeColors } from '@/shared/style/theme/pallete'
 import styled from 'styled-components'
 
 export const SchedulesRoot = styled.div`
@@ -48,6 +49,10 @@ export const SchedulesDay = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+
+  .closed-text {
+    color: ${themeColors['red-400']};
+  }
 `
 
 export const Separator = styled.span`
