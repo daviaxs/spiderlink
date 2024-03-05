@@ -20,6 +20,7 @@ import churros from '@/shared/assets/imgs/categories-images/churros.png'
 import pastel from '@/shared/assets/imgs/categories-images/sopro.png'
 import salgados from '@/shared/assets/imgs/categories-images/coxinha.png'
 import refri from '@/shared/assets/imgs/categories-images/refri.png'
+import promo from '@/shared/assets/imgs/categories-images/promo.png'
 import { CategoryNames } from '@/categoryNames'
 
 const CategoryIcons = {
@@ -36,6 +37,15 @@ const CategoryIcons = {
     <Image
       src={refri}
       alt="Imagem-Refri"
+      width={35}
+      height={35}
+      draggable={false}
+    />
+  ),
+  Promo: (
+    <Image
+      src={promo}
+      alt="Imagem-Promo"
       width={35}
       height={35}
       draggable={false}
