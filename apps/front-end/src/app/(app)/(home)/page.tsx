@@ -4,6 +4,7 @@ import { ApresentationRoot } from './utils/components/Apresentation'
 import { InfosBadges } from './utils/infos-badges/InfosBadges'
 import { SeparatorWithName } from '@/shared/components/separator/SeparatorWithName'
 import { Products } from '@/shared/components/products/Products'
+import { Footer } from '@/shared/components/footer/Footer'
 
 export default function Home() {
   return (
@@ -19,6 +20,8 @@ export default function Home() {
       </div>
 
       <Products />
+
+      <Footer />
     </Root>
   )
 }
