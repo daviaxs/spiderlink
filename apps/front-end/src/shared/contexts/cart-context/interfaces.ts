@@ -51,4 +51,8 @@ export interface CartActions {
   openCheckoutDialog: () => void
   closeCheckoutDialog: () => void
   isCheckoutDialogOpen: boolean
+
+  openDeliveryClosedDialog: () => void
+  closeDeliveryClosedDialog: () => void
+  isDeliveryClosedDialogOpen: boolean
 }

@@ -20,6 +20,7 @@ import { ProductAddToCartProvider } from '@/shared/contexts/ProductAddToCart'
 import { DeliveryDetailsProvider } from '@/shared/contexts/DeliveryDetails'
 import { UpdateAddress } from '@/shared/components/delivery-details-form/utils/components/user-address-card/utils/components/update-address/UpdateAddress'
 import { CheckoutMenu } from '@/shared/components/checkout-menu/CheckoutMenu'
+import { ClosedDialog } from '@/shared/components/cart-menu/utils/components/footer-cart/closed-dialog/ClosedDialog'
 
 export default function RootLayout({
   children,
@@ -50,6 +51,7 @@ export default function RootLayout({
                               <ProductAddedToCartSuccessfully />
                               <UpdateAddress />
                               <CheckoutMenu />
+                              <ClosedDialog />
                               {children}
                             </CartProvider>
                           </SchedulesProvider>

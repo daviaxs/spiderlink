@@ -1,8 +1,12 @@
 import { LoadingStyle } from './Loading.style'
 
-export function Loading() {
+interface LoadingProps {
+  color?: 'primary' | 'secondary'
+}
+
+export function Loading({ color = 'primary' }: LoadingProps) {
   return (
-    <LoadingStyle>
+    <LoadingStyle color={color}>
       <span className="loader"></span>
     </LoadingStyle>
   )

@@ -13,14 +13,22 @@ import { Check } from 'lucide-react'
 import { DomainInfosContext } from '@/shared/contexts/DomainInfos'
 import { DeliveryDetailsContext } from '@/shared/contexts/DeliveryDetails'
 import { getLocalStorageItem } from '@/shared/functions/localStorage'
+import { Loading } from '@/shared/components/loading/Loading'
+import { useGetDomainStatus } from '@/shared/hooks/useGetDomainStatus'
 
 export function FooterCart() {
   const [productsInCart, setProductsInCart] = useState<ProductProps[]>([])
+  const [loading, setLoading] = useState(false)
 
-  const { addProduct, removeProduct, openCheckoutDialog } =
-    useContext(CartContext)
+  const {
+    addProduct,
+    removeProduct,
+    openCheckoutDialog,
+    openDeliveryClosedDialog,
+  } = useContext(CartContext)
 
   const { deliveryCost } = useContext(DomainInfosContext)
+  const deliveryStatus = useGetDomainStatus()
   const { openDeliveryDetailsDialog } = useContext(DeliveryDetailsContext)
 
   useEffect(() => {
@@ -41,7 +49,9 @@ export function FooterCart() {
     }, 0)
   }
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
+    setLoading(true)
+
     const userInfos = getLocalStorageItem(SPIDER_LINK_USER_INFOS)
     const { nome, telefone, endereco } = userInfos || {}
 
@@ -53,6 +63,15 @@ export function FooterCart() {
       Object.values(endereco || {}).some((value) => !value)
     ) {
       openDeliveryDetailsDialog()
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 500))
+
+    setLoading(false)
+
+    if (deliveryStatus === 'fechado') {
+      openDeliveryClosedDialog()
+      return
     }
 
     openCheckoutDialog()
@@ -73,8 +92,23 @@ export function FooterCart() {
         size="normal"
         style={{ borderRadius: '4px', paddingInline: '2rem' }}
         onClick={handleCheckout}
+        disabled={loading}
       >
-        Finalizar <Check size={18} />
+        {loading ? (
+          <Loading color="secondary" />
+        ) : (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '0.5rem',
+            }}
+          >
+            Finalizar
+            <Check size={18} />
+          </div>
+        )}
       </ButtonForm>
     </FooterCartStyle>
   )
