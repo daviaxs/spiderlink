@@ -95,8 +95,8 @@ export function ProductMenu({ product }: ProductMenuProps) {
                 src={product.img}
                 alt={product.name}
                 className="product-image"
-                width={140}
-                height={140}
+                width={150}
+                height={137}
               />
 
               <div className="infos">

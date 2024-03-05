@@ -60,6 +60,22 @@ export const Content = styled(Dialog.Content)`
     border: none;
   }
 
+  .product-image {
+    border-radius: 8px;
+    object-fit: cover;
+
+    min-width: 150px;
+    max-width: 150px;
+
+    @media (max-width: 420px) {
+      min-width: 100px;
+      max-width: 100px;
+
+      min-height: 90px;
+      max-height: 90px;
+    }
+  }
+
   &[data-state='open'] {
     animation: ${AnimationFadeInOpacityWithTop} 0.2s ease-in-out;
   }
