@@ -21,7 +21,7 @@ export function DeliverySelection({ onNext }: CheckoutStepsProps) {
     if (option === 'Entrega') {
       onNext(1)
     } else if (option === 'Retirada') {
-      onNext(5)
+      onNext(4)
     }
   }
 
