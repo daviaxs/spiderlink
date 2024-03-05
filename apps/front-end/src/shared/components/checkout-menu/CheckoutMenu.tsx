@@ -12,12 +12,22 @@ import { Change } from './checkout-steps/payment-selection/money-selected/Change
 import { VerifyUserData } from './checkout-steps/verify-user-data/VerifyUserData'
 import { FinishCheckout } from './checkout-steps/finish-checkout/FinishCheckout'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import { getLocalStorageItem } from '@/shared/functions/localStorage'
+import {
+  ECOMMERCE_NAME,
+  SPIDER_LINK_USER_INFOS,
+} from '@/shared/constants/names'
+import { ProductProps } from '@/shared/contexts/cart-context/interfaces'
+import { convertPriceToBRFormat } from '@/shared/functions/convertPriceToBRFormat'
+import { DomainInfosContext } from '@/shared/contexts/DomainInfos'
+import { DeliveryDetailsForm } from '@/shared/hooks/useDeliveryDetailsForm'
 
 export interface CheckoutStepsProps {
   onNext: (step: number) => void
 }
 
 export function CheckoutMenu() {
+  const { deliveryCost, deliveryTime } = useContext(DomainInfosContext)
   const { isCheckoutDialogOpen, closeCheckoutDialog } = useContext(CartContext)
   const [step, setStep] = useState(0)
   const [history, setHistory] = useState([0])
@@ -38,7 +48,104 @@ export function CheckoutMenu() {
   }
 
   function finishCheckout() {
-    window.alert('Compra finalizada!')
+    const cartProducts = getLocalStorageItem(`${ECOMMERCE_NAME}-products-cart`)
+
+    let orderMessage =
+      '✅ NOVO PEDIDO\n-----------------------------\n▶ RESUMO DO PEDIDO\n\n'
+
+    cartProducts.forEach((product: ProductProps, index: number) => {
+      if (index !== 0) {
+        orderMessage += '----------\n\n'
+      }
+      orderMessage += `*${product.productQuantity}x ${product.name}*\n\n`
+
+      product.Subsection?.forEach((subsection, subsectionIndex) => {
+        const selectedOptions = subsection.Options?.filter(
+          (option) => option.quantity > 0,
+        )
+
+        if (selectedOptions) {
+          orderMessage += `${subsection.name}:\n`
+          selectedOptions.forEach((option) => {
+            orderMessage += `• ${option.name} - QT: ${option.quantity}\n`
+          })
+
+          if (
+            product.Subsection &&
+            subsectionIndex < product.Subsection?.length - 1
+          ) {
+            orderMessage += '\n'
+          }
+        }
+      })
+
+      orderMessage += `\nSubtotal do item: ${convertPriceToBRFormat(Number(product.totalProductPrice))}\n\n`
+    })
+
+    const deliverySelected = getLocalStorageItem('step0-deliveryOption')
+    const paymentOption = getLocalStorageItem('step1-paymentOption')
+    const needChange = getLocalStorageItem('step2-needChange')
+    const change = getLocalStorageItem('step3-change')
+
+    orderMessage += `
+------------------------------------------\n
+SUBTOTAL: ${convertPriceToBRFormat(cartProducts.reduce((total: number, product: ProductProps) => total + Number(product.totalProductPrice), 0))}
+TAXA DE ENTREGA: ${deliveryCost === 0 ? 'Grátis' : convertPriceToBRFormat(deliveryCost)}
+TOTAL: ${convertPriceToBRFormat(cartProducts.reduce((total: number, product: ProductProps) => total + Number(product.totalProductPrice), 0) + deliveryCost)}
+`
+
+    const userInfos: DeliveryDetailsForm = getLocalStorageItem(
+      SPIDER_LINK_USER_INFOS,
+    )
+
+    const name = userInfos.nome
+    const address = userInfos.endereco.rua
+    const neighborhood = userInfos.endereco.bairro
+    const complement = userInfos.endereco.complemento
+    const phone = userInfos.telefone
+
+    if (deliverySelected === 'Entrega') {
+      orderMessage += `
+------------------------------------------\n
+`
+    }
+
+    if (deliverySelected === 'Entrega') {
+      deliverySelected === 'Entrega' &&
+        (orderMessage += '🚚 *Entrega - Forma de pagamento:*\n\n')
+
+      if (paymentOption === 'Dinheiro') {
+        orderMessage += '💵 *Dinheiro*\n'
+
+        needChange === 'Sim' && (orderMessage += `Troco para: ${change}`)
+        needChange === 'Não' && (orderMessage += '- Não precisa de troco\n')
+      }
+
+      paymentOption === 'Cartão' && (orderMessage += '💳 *Cartão*\n')
+    }
+
+    orderMessage += `
+------------------------------------------\n
+${deliverySelected === 'Retirada' ? '🏠 *Retirada no local*' : ''}
+${deliverySelected === 'Retirada' ? '*Dados para retirada:*' : '*Dados para entrega:*'}
+
+Nome: ${name} \n
+Telefone: ${phone}
+${
+  deliverySelected !== 'Retirada'
+    ? `
+Endereço: ${address} \n
+Bairro: ${neighborhood} \n
+Complemento: ${complement}\n`
+    : ''
+}
+------------------------------------------
+
+${deliverySelected === 'Entrega' ? `🚚 Previsão de entrega:* ${deliveryTime}` : ''}${deliverySelected === 'Retirada' ? `🏠 *Tempo para retirada no local:* ${deliveryTime}\n` : ''}
+`
+    window.open(
+      `https://wa.me/+558296041284?text=${encodeURIComponent(orderMessage)}`,
+    )
   }
 
   return (
