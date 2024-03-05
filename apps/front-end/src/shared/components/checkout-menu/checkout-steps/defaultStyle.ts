@@ -8,6 +8,8 @@ export const Root = styled.div`
 
   gap: 1.5rem;
   width: 100%;
+
+  position: absolute;
 `
 
 export const Actions = styled.div`

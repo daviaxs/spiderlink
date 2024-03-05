@@ -7,7 +7,7 @@ export function FinishCheckout() {
 
   return (
     <Root>
-      <Text as="h3" size={24} $weight="600" $textalign="center">
+      <Text as="h1" size={32} $weight="800" $textalign="center">
         Quase lá! 🎉
       </Text>
 
