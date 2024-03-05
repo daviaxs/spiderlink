@@ -21,6 +21,7 @@ import { DeliveryDetailsProvider } from '@/shared/contexts/DeliveryDetails'
 import { UpdateAddress } from '@/shared/components/delivery-details-form/utils/components/user-address-card/utils/components/update-address/UpdateAddress'
 import { CheckoutMenu } from '@/shared/components/checkout-menu/CheckoutMenu'
 import { ClosedDialog } from '@/shared/components/cart-menu/utils/components/footer-cart/closed-dialog/ClosedDialog'
+import { Analytics } from '@vercel/analytics/react'
 
 export default function RootLayout({
   children,
@@ -52,6 +53,7 @@ export default function RootLayout({
                               <UpdateAddress />
                               <CheckoutMenu />
                               <ClosedDialog />
+                              <Analytics />
                               {children}
                             </CartProvider>
                           </SchedulesProvider>
