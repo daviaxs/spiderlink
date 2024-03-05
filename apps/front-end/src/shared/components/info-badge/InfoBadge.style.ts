@@ -28,8 +28,8 @@ export const Root = styled.div`
   }
 
   @media (max-width: 680px) {
-    min-height: fit-content;
-    max-height: fit-content;
+    min-height: 50px;
+    max-height: 50px;
     padding: 0.25rem 0.625rem;
   }
 `
