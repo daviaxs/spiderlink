@@ -63,6 +63,8 @@ export function FooterCart() {
       Object.values(endereco || {}).some((value) => !value)
     ) {
       openDeliveryDetailsDialog()
+      setLoading(false)
+      return
     }
 
     await new Promise((resolve) => setTimeout(resolve, 500))
