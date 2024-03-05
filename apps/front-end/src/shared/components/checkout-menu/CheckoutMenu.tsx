@@ -15,6 +15,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { getLocalStorageItem } from '@/shared/functions/localStorage'
 import {
   ECOMMERCE_NAME,
+  ECOMMERCE_PHONE,
   SPIDER_LINK_USER_INFOS,
 } from '@/shared/constants/names'
 import { ProductProps } from '@/shared/contexts/cart-context/interfaces'
@@ -143,8 +144,11 @@ Complemento: ${complement}\n`
 
 ${deliverySelected === 'Entrega' ? `🚚 Previsão de entrega:* ${deliveryTime}` : ''}${deliverySelected === 'Retirada' ? `🏠 *Tempo para retirada no local:* ${deliveryTime}\n` : ''}
 `
+
+    localStorage.removeItem(`${ECOMMERCE_NAME}-products-cart`)
+
     window.open(
-      `https://wa.me/+558296041284?text=${encodeURIComponent(orderMessage)}`,
+      `https://wa.me/${ECOMMERCE_PHONE}?text=${encodeURIComponent(orderMessage)}`,
     )
   }
 
