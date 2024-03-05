@@ -9,12 +9,15 @@ import { useContext } from 'react'
 import { DomainInfosContext } from '@/shared/contexts/DomainInfos'
 import { Actions, Root } from '../defaultStyle'
 import { CheckoutStepsProps } from '../../CheckoutMenu'
+import { setLocalStorageItem } from '@/shared/functions/localStorage'
 
 export function DeliverySelection({ onNext }: CheckoutStepsProps) {
   const theme = useTheme()
   const { deliveryTime } = useContext(DomainInfosContext)
 
   const handleDeliveryOption = (option: string) => {
+    setLocalStorageItem({ key: 'step0-deliveryOption', value: option })
+
     if (option === 'Entrega') {
       onNext(1)
     } else if (option === 'Retirada') {

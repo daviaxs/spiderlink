@@ -3,9 +3,20 @@ import { Actions, Button, Root } from '../defaultStyle'
 import { Banknote, CreditCard } from 'lucide-react'
 import { useTheme } from 'styled-components'
 import { CheckoutStepsProps } from '../../CheckoutMenu'
+import { setLocalStorageItem } from '@/shared/functions/localStorage'
 
 export function PaymentSelection({ onNext }: CheckoutStepsProps) {
   const theme = useTheme()
+
+  function handlePaymentOption(option: string) {
+    setLocalStorageItem({ key: 'step1-paymentOption', value: option })
+
+    if (option === 'Dinheiro') {
+      onNext(2)
+    } else if (option === 'Cartão') {
+      onNext(4)
+    }
+  }
 
   return (
     <Root>
@@ -14,7 +25,7 @@ export function PaymentSelection({ onNext }: CheckoutStepsProps) {
       </Text>
 
       <Actions>
-        <Button onClick={() => onNext(2)}>
+        <Button onClick={() => handlePaymentOption('Dinheiro')}>
           <div className="delivery-option">
             <Banknote color={theme.iconSecondary} />
             <Text size={16} $weight="600">
@@ -23,7 +34,7 @@ export function PaymentSelection({ onNext }: CheckoutStepsProps) {
           </div>
         </Button>
 
-        <Button onClick={() => onNext(4)}>
+        <Button onClick={() => handlePaymentOption('Cartão')}>
           <div className="delivery-option">
             <CreditCard color={theme.iconSecondary} />
             <Text size={16} $weight="600">

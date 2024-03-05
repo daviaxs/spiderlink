@@ -31,8 +31,10 @@ export function CheckoutMenu() {
   const previousStep = () => {
     if (history.length > 1) {
       const newHistory = history.slice(0, -1)
+      const previousStep = newHistory[newHistory.length - 1]
+
       setHistory(newHistory)
-      setStep(newHistory[newHistory.length - 1])
+      setStep(previousStep)
     }
   }
 

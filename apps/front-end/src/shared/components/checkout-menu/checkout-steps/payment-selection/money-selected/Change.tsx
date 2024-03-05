@@ -5,6 +5,7 @@ import { PriceInput } from '@/app/(app)/admin/perfil/utils/components/forms/comp
 import { ButtonForm } from '@/shared/components/buttons/button-form/ButtonForm'
 import { FormEvent, useState } from 'react'
 import { themeColors } from '@/shared/style/theme/pallete'
+import { setLocalStorageItem } from '@/shared/functions/localStorage'
 
 export function Change({ onNext }: CheckoutStepsProps) {
   const [erroMessage, setErroMessage] = useState('')
@@ -20,6 +21,8 @@ export function Change({ onNext }: CheckoutStepsProps) {
       setErroMessage('Digite um valor para o troco')
       return
     }
+
+    setLocalStorageItem({ key: 'step3-change', value: troco })
 
     onNext(5)
   }
