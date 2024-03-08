@@ -9,7 +9,7 @@ export async function schedulesRoutes(app: FastifyInstance) {
   app.get('/schedules/:domainId', findSchedule)
 
   app.patch(
-    '/schedules/:scheduleId/:domainId',
+    '/schedules/:domainId/:scheduleId',
     { onRequest: [CheckUserDomainAccess] },
     updateSchedule,
   )

@@ -24,8 +24,8 @@ export class UpdateScheduleUseCase {
           },
         },
       },
-      scheduleId,
       domainId,
+      scheduleId,
     )
 
     return { updatedSchedule }
